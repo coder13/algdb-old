@@ -1,0 +1,28 @@
+db:
+- Algset:
+    - name
+    - description
+    - recognition?
+    - subsets / cases
+    --- avg alg length 
+- Subset
+    - name
+    - description
+    - recognition
+    - cases / subset
+    --- 
+- Case
+    - name? defaults to id
+    - comment?
+    - algs
+- Alg
+    - type: array of single string: 'TH' (two hand'), 'OH' (one hand), 'OP' (optimal)
+    --- moveset
+    - auf
+    - alg
+
+
+
+Legend:
+--- = calculate
+?   = optional
