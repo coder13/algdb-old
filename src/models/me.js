@@ -17,8 +17,7 @@ module.exports = Model.extend({
 	},
 
 	save () {
-		console.log('saving...');
-		console.log(JSON.stringify(this));
+		console.log('saving...', JSON.stringify(this));
 		window.localStorage['clltrainer'] = JSON.stringify(this);
 	},
 

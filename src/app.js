@@ -16,6 +16,8 @@ const app = window.app = App.extend({
 		this.me = new Me();
 		this.router = new Router();
 		this.router.history.start();
+
+		this.DB = require('./data/algs');
 	}
 });
 

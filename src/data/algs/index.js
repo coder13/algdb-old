@@ -1,6 +1,6 @@
-module.exports = {
-	coll: require('./coll.json'),
-	coll: require('./coll.json'),
-	coll: require('./cll.json'),
-	coll: require('./cmll.json'),
-}
+module.exports = [
+	require('./cxll.hson'),
+	require('./coll.hson'),
+	require('./cll.hson'),
+	require('./cmll.hson'),
+];

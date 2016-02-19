@@ -1,0 +1,491 @@
+{
+	name: 'coll',
+
+	description: `*CLL* is a subset of [C*LL](/learn/cxll) that does not preserve edges. CLL is best used for 2x2 which doesn't have any edges. CLL can also be used for 3x3 for Corners First methods.`,
+
+	subsets: {
+		T: {
+			oll: [1, 0, 0, -1],
+			cases: [{
+					perm: 0,
+					comment: 'pure 2gen case',
+					algs: [{
+						type: '*',
+						moveSet: 'RU',
+						auf: 'U',
+						alg: "R U2' R' U' R U' R2 U2' R U R' U R"
+					}, {
+						type: '*',
+						moveSet: 'RUL',
+						alg: "R U R' U R U2 R' L' U' L U' L' U2 L"
+					}]
+				}, {
+					perm: 1,
+					algs: [{
+						type: ['TH', 'OP'],
+						moveSet: 'RUF',
+						auf: 'U2',
+						alg: "R' F' r U R U' r' F"
+					}, {
+						type: ['TH', 'OP'],
+						moveSet: 'RUF',
+						alg: "F R F' r U R' U' r'"
+					}, {
+						type: ['OH', 'OP'],
+						moveSet: 'RUD',
+						auf: 'U\'',
+						alg: "x' R U R' D R U' R' D'"
+					}, {
+						type: ['OH', 'OP'],
+						moveSet: 'RUL',
+						auf: 'U\'',
+						alg: "R' U' R U L U' R' U x"
+					}]
+				}, {
+					perm: 2,
+					algs: [{
+						type: ['CLL', 'CMLL'],
+						moveSet: 'RUF',
+						alg: "R U R' U' R' F R F'"
+					}, {
+						type: '*',
+						moveSet: 'RUF',
+						alg: "r U R' U' r' F R F'"
+					}, {
+						type: '*',
+						moveSet: 'RUD',
+						auf: 'U',
+						alg: "R U R D R' U' R D' R2"
+					}, {
+						type: '*',
+						moveSet: 'RUD',
+						alg: "R U R' U' L' U R U' R' L"
+					}]
+				}, {
+					perm: 3,
+					algs: [{
+						type: '*',
+						moveSet: 'RUF',
+						auf: 'U\'',
+						alg: "F R U R' U' R U' R' U' R U R' F'"
+					}, {
+						type: ['CLL', 'CMLL'],
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "F R' U' R F' R' U F' R"
+					}, {
+						type: '*',
+						moveSet: 'RUF',
+						auf: 'U2',
+						alg: "R U2 R' F2 R U2 R' U2 R' F2 R"
+					}, {
+						type: ['COLL', 'CMLL'],
+						moveSet: 'RUD',
+						alg: "x' R U2 R D2 R' U2 R D2 R2 x"
+					}, {
+						type: ['CLL', 'CMLL'],
+						moveSet: 'RUD',
+						auf: 'U2',
+						alg: "R' D R U' R U R' U R' D' R"
+					}]
+				}, {
+					perm: 4,
+					algs: [{
+						type: 'CLL',
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "R' U R U2 R2' F R F' R"
+					}, {
+						type: '*',
+						moveSet: 'RUL',
+						auf: 'U',
+						alg: "R' U R U2' R' L' U R U' L"
+					}, {
+						type: '*',
+						moveSet: 'RUL',
+						auf: 'U\'',
+						alg: "R U' R' U2 L R U' R' U L'"
+					}, {
+						type: 'CLL',
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "R' U R U2 R2 F R F' R"
+					}, {
+						type: ['CLL', 'CMLL'],
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "R' U r U2 R2' F R F' r"
+					}]
+				}, {
+					perm: 5,
+					comment: 'diagonal swap case',
+					algs: [{
+						type: '*',
+						moveSet: 'RUD',
+						auf: 'U',
+						alg: "R' U R2 D r' U2 r D' R2 U' R"
+					}, {
+						type: ['CLL', 'CMLL'],
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "R2' U' R F R' U R2 U' R' F' R"
+					}, {
+						type: 'CLL',
+						moveSet: 'RUF',
+						auf: 'U',
+						alg: "F U' R U2 R' U' F2 R U R'"
+					}]
+				}
+			]
+		}, 
+		U: {
+			oll: [-1, 0, 0, 1],
+			cases: [{
+				perm: 0,
+				algs: [{
+					type: '*',
+					moveSet: 'RU',
+					auf: 'U',
+					alg: "R' U' R U' R' U2 R2 U R' U R U2 R'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RU',
+					auf: 'U2',
+					alg: "R U' R U' R U' R' U R' U R'"
+				}, {
+					type: '*',
+					moveSet: 'RU',
+					alg: "R U R' U' R U' R' U2 R U' R' U2 R U R'"
+				}, {
+					type: '*',
+					moveSet: 'RU',
+					alg: "R' U' R U' R' U2 R2 U R' U R U2 R'"
+				}]
+			}, {
+				perm: 1,
+				algs: [{
+					type: '*',
+					moveSet: 'RUD',
+					auf: 'U\'',
+					alg: "R2 D R' U2 R D' R' U2 R'"
+				}, {
+					type: '*',
+					moveSet: 'RUD',
+					auf: 'U\'',
+					alg: "x' R U' R' D R U2 R' D' R U' R' x"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'LUF',
+					auf: 'U',
+					alg: "L F' L' U' L F' L' U' F' U2 F"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUL',
+					auf: 'U\'',
+					alg: "R2 U R' U' R2 U' y L' U2 L"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R' U R' F R F' R U2 R' U R"
+				}]
+			}, {
+				perm: 2,
+				algs: [{
+					type: '*',
+					moveSet: 'RUD',
+					auf: 'U',
+					alg: "R2 D' R U2 R' D R U2 R"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: 'U\'',
+					alg: "R U2 R' U R' F2 R F' R' F2 R"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: "U",
+					alg: "R' U R' F R F' R U2 R' U R"
+				}]
+			}, {
+				perm: 3,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "F R U' R' U R U R' U R U' R' F'"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R' F2 R U2 R U2 R' F2 R U2 R'"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R' F U' R F R' U R F'"
+				}]
+			}, {
+				perm: 4,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R' U' R F R2 D' R U R' D R2 U' F'"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					alg: "F R2 D R' U R D' R2' U' F'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RU',
+					alg: "z' U2 R' U' R2 U' R' U' R U' R' U' x2"
+				}]
+			}, {
+				perm: 5,
+				algs: [{
+					type: '*',
+					moveSet: "RUF",
+					auf: 'U',
+					alg: "R' U2 R F U' R' U' R U F'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: "F R U R' U' F'"
+				}, {
+					type: '*',
+					moveSet: 'RUD',
+					auf: 'U',
+					alg: "R2 D' R U R' D R U R U' R' U' R"
+				}, {
+					type: '*',
+					moveSet: 'RUD',
+					auf: 'U',
+					alg: "R U' R' U' R U R D R' U R D' R2"
+				}]
+			}]
+		}, 
+		H: {
+			oll: [1, -1, 1, -1],
+			cases: [{
+				perm: 0,
+				algs: [{
+					type: '*',
+					moveSet: 'RU',
+					alg: "R U2 R' U' R U R' U' R U' R'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RU',
+					auf: 'U',
+					alg: "R2 U2 R U2' R2'"
+				}, {
+
+				}]
+			}, {
+				perm: 1,
+				algs: [{
+					type: '*',
+					moveSet: 'RUL',
+					auf: 'U',
+					alg: "R U R' U R U L' U R' U' L"
+				}, {
+					type: 'CLL',
+					moveSet: "RUF",
+					auf: 'U',
+					alg: "R U R' U R U R' F R' F' R"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: "RUF",
+					auf: 'U',
+					alg: "R U2 R2 F R F' U2 R' F R F'"
+				}]
+			}, {
+				perm: 4,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "F R U' R' U R U2 R' U' R U R' U' F'"
+				}]
+			}, {
+				perm: 5,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					alg: "F R U R' U' R U R' U' R U R' U' F'"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					alg: "F2 R' F2 R2 U2 R' F2"
+				}]
+			}]
+		}, 
+		Pi: {
+			oll: [-1, -1, 1, 1],
+			cases: [{
+				perm: 0,
+				algs: [{
+					type: '*',
+					moveSet: 'RU',
+					alg: "R U2 R2 U' R2 U' R2 U2 R"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					alg: "f R U R' U' f' F R U R' U' F"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					alg: "F R U R' U' R U R' U' F'"
+				}]
+			}, {
+				perm: 1,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					alg: "R' F2 R U2 R U2 R' F2 U' R U' R'"
+				}, {
+					type: '*',
+					moveSet: 'RUL',
+					alg: "R U2 R' U' R U' R2 U L U' R U L'"
+				}, {
+					type: ['CMLL', 'CLL'],
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "F R' F' R U2 R U' R' U R U2 R'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: "R' F2 R F' U2 R U' R' U' F"
+				}]
+			}, {
+				perm: 2,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					alg: "R U R' U' R' F R2 U R' U' R U R' U' F'"
+				}, {
+					type: '*',
+					moveSet: 'RUL',
+					alg: "R' U2 R U R' U R2 U' L' U R' U' L"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					alg: "R U R' U F2 R U2 R' U2 R' F2 R"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					alg: "R U R' U F2 R U2 R' U2 R' F2 R"
+				}]
+			}, {
+				perm: 3,
+				algs: [{
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "F U R U' R' U R U2 R' U' R U R' F'"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					alg: "R' U' F' R U R' U' R' F R2 U2 R' U2 R"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					auf: 'U\'',
+					alg: "U' R' F R U F U' R U R' U' F'"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					auf: 'U\'',
+					alg: "R U' R U' R' U R' F R2 F'"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					auf: 'y',
+					alg: "F R2 U' R2 U R2 U R2 F'"
+				}]
+			}, {
+				perm: 4,
+				algs: [{
+					type: '*',
+					moveSet: 'RUL',
+					alg: "R U' L' U R' U L U L' U L"
+				}, {
+					type: '*',
+					moveSet: 'RU',
+					alg: "r U' r' U' r U r' U' x' R2 U' R' U R' x"
+				}, {
+					type: '*',
+					moveSet: 'RUL',
+					alg: "L U' R' U L' U R U R' U R"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: "R U' R' F R' F R U R' F R"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					auf: 'U2',
+					alg: "R' F R F' R U' R' U' R U' R'"
+				}]
+			}, {
+				perm: 5,
+				algs: [{
+					type: '*',
+					moveSet: 'RUD',
+					alg: "R U D' R U R' D R2 U' R' U' R2' U2' R"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					auf: 'U',
+					alg: "R U2 R' U' F' R U2 R' U' R U' R' F R U' R'"
+				}, {
+					type: '*',
+					moveSet: 'RUF',
+					alg: "F R2' U' R U' R U' R' U2 R' U R2 F'"
+				}, {
+					type: ['CLL', 'CMLL'],
+					moveSet: 'RUF',
+					auf: 'U2',
+					alg: "R' U' R U' R' U F' U F R"
+				}, {
+					type: 'CLL',
+					moveSet: 'RUF',
+					alg: "R' U' R' F R F' R U' R' U2 R"
+				}]
+			}]
+		}, 
+		L: {
+			oll: [-1, 0, 1, 0],
+			cases: [{
+				perm: 0
+			}, {
+				perm: 1
+			}, {
+				perm: 2
+			}, {
+				perm: 3
+			}, {
+				perm: 4
+			}, {
+				perm: 5
+			}]
+		}, 
+		S: {
+			oll: [1, 1, 1, 0],
+			cases: [{
+
+			}]
+		},
+		AS: {
+			oll: [-1, -1, -1, 0],
+			cases: [{
+
+			}]
+		}
+	}
+}

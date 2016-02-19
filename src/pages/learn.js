@@ -8,9 +8,9 @@ const intersects = (a,b) => a.filter(i => b.indexOf(i) !== -1)
 
 const Types = {
 	'*': (<span style={{marginLeft: '.5em'}} className='label label-default'>*</span>),
-	'CLL': (<span style={{marginLeft: '.5em'}} className='label label-primary'>cll</span>),
-	'CMLL': (<span style={{marginLeft: '.5em'}} className='label label-success'>cmll</span>),
-	'COLL': (<span style={{marginLeft: '.5em'}} className='label label-info'>coll</span>),
+	'TH': (<span style={{marginLeft: '.5em'}} className='label label-primary'>TH</span>),
+	'OH': (<span style={{marginLeft: '.5em'}} className='label label-success'>OH</span>),
+	'OP': (<span style={{marginLeft: '.5em'}} className='label label-info'>optimal</span>),
 }
 
 const Alg = ({alg, auf, type}) => {
@@ -50,7 +50,6 @@ module.exports = React.createClass({
 		this.state.filterAlgType = this.refs.filterAlgType.getCheckedValues();
 		app.me.filterCaseType = this.state.filterCaseType;
 		app.me.filterAlgType = this.state.filterAlgType;
-		console.log(app.me.filterCaseType, app.me.filterAlgType);
 		app.me.save();
 
 		this.forceUpdate();
@@ -92,9 +91,9 @@ module.exports = React.createClass({
 									<div className='panel-heading'>Case Types</div>
 									<div className='panel-body checkbox'>
 										<CheckboxGroup name='case_type' ref='filterCaseType' value={this.state.filterCaseType} onChange={this.filter}>
-											<label><input type='checkbox' value='CLL'/>CLL</label><br/>
-											<label><input type='checkbox' value='CMLL'/>CMLL</label><br/>
-											<label><input type='checkbox' value='COLL'/>COLL</label><br/>
+											<label><input type='checkbox' value='TH'/>TH</label><br/>
+											<label><input type='checkbox' value='OH'/>OH</label><br/>
+											<label><input type='checkbox' value='optimal'/>optimal</label><br/>
 										</CheckboxGroup>
 									</div>
 								</div>

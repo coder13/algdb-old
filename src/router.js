@@ -20,7 +20,7 @@ module.exports = Router.extend({
 
 	routes: {
 		'': 'index',
-		'learn/:case': 'learn',
+		'learn/:algset': 'learn',
 		'drill': 'drill',
 		'drill/:algset': 'drill',
 		'*404': 'redirect'
@@ -30,8 +30,12 @@ module.exports = Router.extend({
 		this.renderPage(<IndexPage/>, 'home');
 	},
 
-	learn (oll) {
-		this.renderPage(<LearnPage oll={oll}/>, 'learn');
+	learn (name) {
+		let algset = app.DB.find(set => set.name.toLowerCase() === name.toLowerCase())
+		if (algset) {
+			console.log(algset)
+			this.renderPage(<LearnPage algset={algset}/>, 'learn');
+		}
 	},
 
 	drill (algset) {

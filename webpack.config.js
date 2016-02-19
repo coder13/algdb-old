@@ -18,13 +18,13 @@ console.log('NODE_ENV=', ENV)
 // 	}
 // }
 
-module.exports = {
-	devtool: 'eval',
-	entry: [
-		'./src/app.js',
-		'webpack-dev-server/client?http://localhost:3000',
-		'webpack/hot/only-dev-server'
-	],
+const config = module.exports = {
+	entry: './src/app.js',
+	// entry: [
+	// 	'./src/app.js', // main entry
+	// 	'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
+	// 	'webpack/hot/only-dev-server' // no need to do --hot
+	// ],
 
 	output: {
 		path: './public',
@@ -72,35 +72,42 @@ module.exports = {
 			template: './src/index.html'
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
-	],
-
-	port: 3000,
-	publicPath: '/',
-	devServer: {
-		port: 3000,
-		hot: true,
-		historyApiFallback: true,
-		quiet: true,
-		stats: {
-			colors: true
-		}
-	}
+	]
 };
 
-/* module.exports = getConfig({
- 	in: 'src/app.js',
- 	out: 'public',
- 	html: function (context) {
- 		let html = `<!doctype html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/></head><body><div id="root"></div></body><script src="/app.js"></script>`
- 		return {
- 			'404.html': html,
- 			'index.html': html
- 		}
- 	},
+if (ENV === 'dev') { // dev specific stuff
+	config.devtool = 'eval';
+	config.devServer = {
+		quiet: false,
+		noInfo: true,
+		lazy: false,
+		historyApiFallback: true,
+		hot: true,
+		publicPath: '/',
+		stats: {colors: false},
+		port: 3000
+	};
 
- 	devServer: {
- 		quiet: true
- 	}
- }); */
+	config.plugins.push(
+		new webpack.HotModuleReplacementPlugin()
+	);
+
+} else { // Produciton stuff
+	config.plugins.push(
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			},
+			output: {
+				comments: false
+			},
+			sourceMap: false
+		}),
+		new ExtractTextPlugin(config.output.cssFilename, {
+			allChunks: true
+		})
+	);
+}
+
