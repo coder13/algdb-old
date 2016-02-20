@@ -13,7 +13,7 @@ const Types = {
 	'OP': (<span style={{marginLeft: '.5em'}} className='label label-info'>optimal</span>),
 }
 
-const Alg = ({alg, auf, type}) => {
+const Alg = function (alg, auf, type) {
 	let aufSpan = auf ? (<span style={{color: 'black'}}>[{auf}]</span>) : '';
 	let types = type ? (typeof type === 'string' ? Types[type] : type.map((t, i) => Types[t])) : '';
 	return (<code style={{font: "1em 'monospace'"}}>{aufSpan} {alg}{types}<br/></code>);
@@ -55,7 +55,7 @@ module.exports = React.createClass({
 		this.forceUpdate();
 	},
 
-	render () {
+	render () {	
 		// let size = window.innerWidth / 13;
 		// size = size < 80 ? 80 : size;
 		let size = 100;

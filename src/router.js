@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 const Layout = require('./pages/layout');
 const IndexPage = require('./pages/index');
 const LearnPage = require('./pages/learn');
+const AlgPage = require('./pages/algset');
 const DrillPage = require('./pages/drill');
 
 module.exports = Router.extend({
@@ -20,6 +21,7 @@ module.exports = Router.extend({
 
 	routes: {
 		'': 'index',
+		'set/:algset': 'set',
 		'learn/:algset': 'learn',
 		'drill': 'drill',
 		'drill/:algset': 'drill',
@@ -31,11 +33,20 @@ module.exports = Router.extend({
 	},
 
 	learn (name) {
-		let algset = app.DB.find(set => set.name.toLowerCase() === name.toLowerCase())
+		let algset = app.DB.find(set => set.id.toLowerCase() === name.toLowerCase())
 		if (algset) {
-			console.log(algset)
+			console.log(38, algset)
 			this.renderPage(<LearnPage algset={algset}/>, 'learn');
 		}
+	},
+
+	set (name) {
+		let algset = app.findAlgset(name);
+		if (algset) {
+			console.log(38, algset)
+			this.renderPage(<AlgPage algset={algset}/>, 'learn');
+		}
+		console.log(44, arguments)
 	},
 
 	drill (algset) {

@@ -14,10 +14,15 @@ if (typeof window !== 'undefined') {
 const app = window.app = App.extend({
 	init () {
 		this.me = new Me();
-		this.router = new Router();
-		this.router.history.start();
 
 		this.DB = require('./data/algs');
+
+		this.router = new Router();
+		this.router.history.start();
+	},
+
+	findAlgset (name) {
+		return app.DB.find(set => (set.id||set.abbrev||set.name||'').toLowerCase() === name.toLowerCase())
 	}
 });
 

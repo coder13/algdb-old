@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline",
+    "start": "webpack-dev-server --hot --inline",
     "build": "NODE_ENV=prod webpack --progress",
     "surge": "surge -p public -d algdb.surge.sh",
-    "deploy": "npm run build; npm run deploy",
+    "deploy": "npm run build; npm run surge",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "validate": "npm ls"

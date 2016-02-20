@@ -1,1 +1,4 @@
-{}
+{
+	name: 'OLL',
+	image: '../assets/coll.png'
+}

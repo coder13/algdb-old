@@ -1,5 +1,7 @@
 {
-	name: 'coll',
+	id: 'coll',
+	name: 'COLL',
+	image: 'coll',
 
 	description: `*CLL* is a subset of [C*LL](/learn/cxll) that does not preserve edges. CLL is best used for 2x2 which doesn't have any edges. CLL can also be used for 3x3 for Corners First methods.`,
 
