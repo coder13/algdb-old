@@ -35,6 +35,7 @@ module.exports = React.createClass({
 
 		let abbrev = algset.abbrev;
 		let subsets = algset.subsets ? algset.subsets.map(name => app.findAlgset(name)).filter(i=>!!i) : false;
+		let cases = algset.cases;// ? algset.subsets.map(name => app.findAlgset(name)).filter(i=>!!i) : false;
 		console.log(33, subsets)
 
 		return (
@@ -62,7 +63,14 @@ module.exports = React.createClass({
 				<div className='panel panel-default'>
 				<div className='panel-body' style={{paddingLeft: '5px'}}>
 					<h1 className='text-center'>Subsets</h1>
-					<div className='container'>{subsets.map((set, index) => (<AlgsetIcon key={index} algset={set}/>))}</div>
+					<div className='container'>{subsets.map((set, index) => (<AlgsetIcon key={index} algset={set} href={'/set/' + set.id}/>))}</div>
+				</div>
+				</div> : ''}
+				{cases ?
+				<div className='panel panel-default'>
+				<div className='panel-body' style={{paddingLeft: '5px'}}>
+					<h1 className='text-center'>Cases</h1>
+					<div className='container'>{}</div>
 				</div>
 				</div> : ''}
 			</div>

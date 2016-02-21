@@ -38,10 +38,10 @@ module.exports = React.createClass({
 		let image = this.props.algset.image;
 
 		return (
-			<div className='jumbotron contianer' style={this.style}>
+			<a href={this.props.href}><div className='jumbotron contianer' style={this.style}>
 				{this.props.algset.image ? <img width='100px' src={Assets[image]} alt={Assets.blank}/> : ''}
 				<h3 style={{textAlign: 'center'}}>{this.props.algset.name}</h3>
-			</div>
+			</div></a>
 		);
 	}
 });

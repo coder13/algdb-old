@@ -247,6 +247,7 @@ window.Cube = module.exports = React.createClass({
 
 	getDefaultProps () {
 		return {
+			scramble: '',
 			puzzle: 3,
 			scale: 20,
 			lineWidth: 4,
@@ -256,8 +257,9 @@ window.Cube = module.exports = React.createClass({
 		}
 	},
 
-	willReceiveNewProps () {
-		console.log(90, arguments)
+	componentWillReceiveProps (props) {
+		this.state.cube = solved();
+		this.doMoves(props.scramble);
 	},
 
 	getInitialState () {
@@ -266,7 +268,9 @@ window.Cube = module.exports = React.createClass({
 		};
 	},
 
-	componentWillMount: function() {},
+	componentWillMount: function() {
+		this.doMoves(this.props.scramble);
+	},
 
 	doMoves (moves) {
 		moves.split(' ').forEach(function (m) {

@@ -26,13 +26,13 @@ module.exports = React.createClass({
 		console.log('learn page. Props:', this.props);
 	},
 
-	componentDidMount () {
-        window.addEventListener('resize', this.resize);
-	},
+	// componentDidMount () {
+ //        window.addEventListener('resize', this.resize);
+	// },
 
-	componentWillUnmount () {
-        window.removeEventListener('resize', this.resize);
-	},
+	// componentWillUnmount () {
+ //        window.removeEventListener('resize', this.resize);
+	// },
 
 	getInitialState () {
 		return {

@@ -3,9 +3,9 @@ const Router = require('ampersand-router');
 const ReactDOM = require('react-dom');
 const Layout = require('./pages/layout');
 const IndexPage = require('./pages/index');
-const LearnPage = require('./pages/learn');
+// const LearnPage = require('./pages/learn');
 const AlgPage = require('./pages/algset');
-const DrillPage = require('./pages/drill');
+// const DrillPage = require('./pages/drill');
 
 module.exports = Router.extend({
 	renderPage (page, active) {
@@ -22,7 +22,7 @@ module.exports = Router.extend({
 	routes: {
 		'': 'index',
 		'set/:algset': 'set',
-		'learn/:algset': 'learn',
+		'learn/:algset': 'set',
 		'drill': 'drill',
 		'drill/:algset': 'drill',
 		'*404': 'redirect'
@@ -32,13 +32,13 @@ module.exports = Router.extend({
 		this.renderPage(<IndexPage/>, 'home');
 	},
 
-	learn (name) {
-		let algset = app.DB.find(set => set.id.toLowerCase() === name.toLowerCase())
-		if (algset) {
-			console.log(38, algset)
-			this.renderPage(<LearnPage algset={algset}/>, 'learn');
-		}
-	},
+	// learn (name) {
+	// 	let algset = app.DB.find(set => set.id.toLowerCase() === name.toLowerCase())
+	// 	if (algset) {
+	// 		console.log(38, algset)
+	// 		this.renderPage(<LearnPage algset={algset}/>, 'learn');
+	// 	}
+	// },
 
 	set (name) {
 		let algset = app.findAlgset(name);
