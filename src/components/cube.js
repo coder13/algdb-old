@@ -113,6 +113,11 @@ const cycle = window.cycle = function (pieces, cube) {
 	return newCube;
 };
 
+const combine = window.combine = function (moves) {
+	moves.reverse().push(solved()); // apend to beggining;
+	return moves.reverse().reduce(cycle);
+}
+
 // cube containing corners and edges each containing a permutation and orientation array
 // side note: these can be combined to create an entire scramble.
 const Moves = window.Moves = {
@@ -183,22 +188,20 @@ const Moves = window.Moves = {
 	},
 	S: {
 		edges: {
-			perm: [0,3,2,11,4,5,6,7,8,1,10,9],
+			perm: [0,9,2,1,4,5,6,7,8,11,10,3],
 			orient: [0,1,0,1,0,0,0,0,0,1,0,1]
 		},
-		centers: [1,5,2,0,4,3]
+		centers: [3,0,2,5,4,1]
 	},
 	E: {
 		edges: {
 			perm: [0,1,2,3,5,6,7,4,8,9,10,11],
 			orient: [0,0,0,0,1,1,1,1,0,0,0,0]
 		},
-		centers: [0,2,3,4,1,5]
+		centers: [0,4,1,2,3,5]
 	},
-/* Rotations: */
 
 /* Triggers: */
-	
 	sune: {
 		corners: {
 			perm:   [2,3,0,1,4,5,6,7],
@@ -213,11 +216,27 @@ const Moves = window.Moves = {
 
 // generate ' and 2 moves.
 
-Object.keys(Moves).forEach(function (key) {
+const gen = function (key) {
 	let move = Moves[key];
 	Moves[key + '2'] = cycle(cycle(move, solved()), move);
 	Moves[key + '\''] = cycle(cycle(Moves[key + '2'], solved()), move)
-});
+};
+
+['U', 'D', 'R', 'L', 'F', 'B', 'M', 'S', 'E'].forEach(gen);
+
+/* Rotations: */
+Moves.y = combine([Moves.U, Moves['E\''], Moves['D\'']]);
+Moves.x = combine([Moves.R, Moves['M\''], Moves['L\'']]);
+Moves.z = combine([Moves.F, Moves['S\''], Moves['B\'']]);
+
+Moves.u = combine([Moves.U, Moves['E\'']]);
+Moves.r = combine([Moves.R, Moves['M\'']]);
+Moves.f = combine([Moves.F, Moves['S\'']]);
+Moves.d = combine([Moves.D, Moves['E']]);
+Moves.l = combine([Moves.L, Moves['M\'']]);
+Moves.b = combine([Moves.B, Moves['S']]);
+
+['y', 'x', 'z'].forEach(gen);
 
 console.log(Moves);
 
