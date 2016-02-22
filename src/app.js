@@ -22,7 +22,11 @@ const app = window.app = App.extend({
 	},
 
 	findAlgset (name) {
-		return app.DB.find(set => (set.id||set.abbrev||set.name||'').toLowerCase() === name.toLowerCase())
+		if (typeof name === 'string') {
+			return app.DB.find(set => (set.id||set.abbrev||set.name||'').toLowerCase() === name.toLowerCase())
+		} else {
+			return name;
+		}
 	}
 });
 

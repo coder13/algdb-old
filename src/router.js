@@ -7,6 +7,8 @@ const IndexPage = require('./pages/index');
 const AlgPage = require('./pages/algset');
 // const DrillPage = require('./pages/drill');
 
+const match = (name) => ((set) => (set.id||set.abbrev||set.name||'').toLowerCase() === name.toLowerCase());
+
 module.exports = Router.extend({
 	renderPage (page, active) {
 		page = (
@@ -21,10 +23,7 @@ module.exports = Router.extend({
 
 	routes: {
 		'': 'index',
-		'set/:algset': 'set',
-		'learn/:algset': 'set',
-		'drill': 'drill',
-		'drill/:algset': 'drill',
+		'set/*path': 'set',
 		'*404': 'redirect'
 	},
 
@@ -32,21 +31,24 @@ module.exports = Router.extend({
 		this.renderPage(<IndexPage/>, 'home');
 	},
 
-	// learn (name) {
-	// 	let algset = app.DB.find(set => set.id.toLowerCase() === name.toLowerCase())
-	// 	if (algset) {
-	// 		console.log(38, algset)
-	// 		this.renderPage(<LearnPage algset={algset}/>, 'learn');
-	// 	}
-	// },
+	set (path) {
+		console.log(33, path);
+		if (path) {
+			let algset = path.split('/').filter(i => !!i).reduce(function (pl, pr) {
+				return (typeof pl === 'string' ? app.findAlgset(pl).subsets : pl).find(match(pr))
+			});
 
-	set (name) {
-		let algset = app.findAlgset(name);
-		if (algset) {
-			console.log(38, algset)
-			this.renderPage(<AlgPage algset={algset}/>, 'learn');
+			if (typeof algset === 'string') {
+				algset = app.findAlgset(algset);
+			}
+
+			console.log(path, algset);
+			if (algset) {
+				this.renderPage(<AlgPage path={path.split('/')} algset={algset}/>, 'learn');
+				return;
+			}
 		}
-		console.log(44, arguments)
+		this.redirect();
 	},
 
 	drill (algset) {

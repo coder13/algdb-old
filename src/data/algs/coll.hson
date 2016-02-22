@@ -4,8 +4,8 @@
 	image: "coll",
 
 	description: `
-		*COLL* is a subset of [C*LL](/learn/cxll) that preserves edges.
-		CLL is best used for ZZ and petrus where preserving edges is a must and cfop for the off chance that edges are oriented.
+*COLL* is a subset of [C*LL](/set/cxll) that preserves edges.
+CLL is best used for ZZ and petrus where preserving edges is a must and cfop for the off chance that edges are oriented.
 	`,
 
 	subsets: [{
@@ -16,6 +16,11 @@
 				orient: [1, 0, 0, 2, 0, 0, 0, 0]
 			}
 		},
+
+		description: `
+Split this case into 3 sets of 2 cases. Split them up by looking at the top colors. They will either be opposite, adjacent or matching colors.
+you'll then look a the back heaadlights. They will also either be the same, opposite or adjacent.
+		`,
 
 		cases: [{
 			cp: [0, 1, 2, 3, 4, 5, 6, 7],
@@ -108,9 +113,14 @@
 		name: "U",
 		cube: {
 			corners: {
-				orient: [1, 0, 0, 2, 0, 0, 0, 0]
+				orient: [2, 0, 0, 1, 0, 0, 0, 0]
 			}
 		},
+
+		description: `
+		Split this case into 3 sets of 2 cases. Split them up by looking at the top colors. They will either be opposite, adjacent or matching colors.
+		you'll then look a the back heaadlights. They will also either be the same, opposite or adjacent.
+		`,
 		
 		cases: [{
 			perm: 0,
@@ -241,7 +251,7 @@
 		name: "Pi",
 		cube: {
 			corners: {
-				orient: [2, 0, 1, 0, 0, 0, 0, 0]
+				orient: [2, 2, 1, 1, 0, 0, 0, 0]
 			}
 		},
 
@@ -330,7 +340,7 @@
 		name: "L",
 		cube: {
 			corners: {
-				orient: [1, 0, 2, 0, 0, 0, 0, 0]
+				orient: [2, 0, 1, 0, 0, 0, 0, 0]
 			}
 		},
 
@@ -349,11 +359,21 @@
 		}]
 	}, {
 		name: "S",
+		cube: {
+			corners: {
+				orient: [1, 1, 1, 0, 0, 0, 0, 0]
+			}
+		},
 		
 		cases: []
 	}, {
 		name: "AS",
-		
+		cube: {
+			corners: {
+				orient: [0, 2, 2, 2, 0, 0, 0, 0]
+			}
+		},
+
 		cases: []
 	}]
 }

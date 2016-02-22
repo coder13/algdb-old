@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
 	render () {
 		let puzzle = 3;
-		let size = 80;
+		let size = 100;
 		let colStyle = {minWidth: '10%', width: '10%'};
 
 		let algset = this.props.algset;
@@ -41,16 +41,18 @@ module.exports = React.createClass({
 		return (
 			<div className='well row'>
 				<div className='page-header' style={{marginTop: '-20px'}}>
-					<h1 className='text-center'>{algset.name} {abbrev ? <small>({abbrev})</small> : ''}</h1>
+					<h1 className='text-center'>{this.props.path[0]} {algset.name} {abbrev ? <small>({abbrev})</small> : ''}</h1>
 				</div>
 				<div>
 					<div className='panel panel-primary' style={{margin: '0px'}}>
-						<div className='panel-heading' style={{paddingLeft: '50px'}}><h4 style={{pading: '0px', margin: '2px'}}>Description</h4></div>
-						<div className='panel-body' style={{paddingLeft: '15px'}}>
-							<div style={{display: 'inline-block', width: '75%'}}>
-								<Markdown source={algset.description}/>
+						<div className='panel-heading' style={{paddingLeft: '50px'}}>
+							<h4 style={{margin: '2px'}}>Description</h4>
+						</div>
+						<div className='panel-body' style={{paddingLeft: '0px'}}>
+							<div className='col-sm-10' style={{display: 'inline-block'}}>
+								<Markdown source={algset.description} style={{wordWrap: 'break-word'}}/>
 							</div>
-							<div className='well' style={{margin: '0px', width: '20%', height: '100%', float: 'right', }}>
+							<div className='well col-sm-2' style={{margin: '0px', height: '100%'}}>
 								{algset.image ? <img src={Assets[algset.image]} alt={Assets.blank} align='middle' width='100px'/> : ''} 
 								<hr/>
 								<p>No. of algs: <span style={{color: 'grey'}}>2</span></p>
@@ -60,19 +62,23 @@ module.exports = React.createClass({
 					</div>
 				</div>
 				{subsets ?
-				<div className='panel panel-default'>
-				<div className='panel-body' style={{paddingLeft: '5px'}}>
-					<h1 className='text-center'>Subsets</h1>
-					<div className='container'>{subsets.map((set, index) => (<AlgsetIcon key={index} algset={set} href={'/set/' + set.id}/>))}</div>
-				</div>
-				</div> : ''}
+					<div className='panel panel-default'>
+					<div className='panel-heading' style={{paddingLeft: '50px'}}>
+						<h1>Subsets</h1>
+					</div>
+					<div className='panel-body' style={{paddingLeft: '5px'}}>
+						<div className='container'>{subsets.map((set, index) => (<AlgsetIcon key={index} algset={set} href={`/set/${algset.id}/${set.id||set.name}`}/>))}</div>
+					</div>
+					</div> : ''}
 				{cases ?
-				<div className='panel panel-default'>
-				<div className='panel-body' style={{paddingLeft: '5px'}}>
-					<h1 className='text-center'>Cases</h1>
-					<div className='container'>{}</div>
-				</div>
-				</div> : ''}
+					<div className='panel panel-default'>
+					<div className='panel-heading' style={{paddingLeft: '50px'}}>
+						<h1>Cases</h1>
+					</div>
+					<div className='panel-body' style={{paddingLeft: '5px'}}>
+						<div className='container'>{}</div>
+					</div>
+					</div> : ''}
 			</div>
 		);
 	}

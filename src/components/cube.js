@@ -215,7 +215,6 @@ const Moves = window.Moves = {
 };
 
 // generate ' and 2 moves.
-
 const gen = function (key) {
 	let move = Moves[key];
 	Moves[key + '2'] = cycle(cycle(move, solved()), move);
@@ -238,8 +237,6 @@ Moves.b = combine([Moves.B, Moves['S']]);
 
 ['y', 'x', 'z'].forEach(gen);
 
-console.log(Moves);
-
 window.Cube = module.exports = React.createClass({
 	style: {
 		padding: '1px'
@@ -252,13 +249,14 @@ window.Cube = module.exports = React.createClass({
 			scale: 20,
 			lineWidth: 4,
 
+			cube: solved(),
 			// 		UURRFFLLBBDD
 			mask: 0xffffffffffff // all 6 faces
 		}
 	},
 
 	componentWillReceiveProps (props) {
-		this.state.cube = solved();
+		this.state.cube = this.props.cube;
 		this.doMoves(props.scramble);
 	},
 
@@ -269,6 +267,8 @@ window.Cube = module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
+		console.log(270, this.props.cube);
+		this.state.cube = this.props.cube;
 		this.doMoves(this.props.scramble);
 	},
 
