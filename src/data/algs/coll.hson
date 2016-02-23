@@ -11,9 +11,9 @@ CLL is best used for ZZ and petrus where preserving edges is a must and cfop for
 	subsets: [{
 		name: "T",
 		cube: {
-			mask: 0,
+			mask: 749055, // only show corners and LL edges
 			corners: {
-				orient: [1, 0, 0, 2, 0, 0, 0, 0]
+				orient: [1, 0, 0, 2]
 			}
 		},
 
@@ -23,7 +23,7 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		`,
 
 		cases: [{
-			cp: [0, 1, 2, 3, 4, 5, 6, 7],
+			cp: [0, 1, 2, 3],
 
 			comment: "pure 2gen case",
 			algs: [{
@@ -37,6 +37,8 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 				alg: "R U R' U R U2 R' L' U' L U' L' U2 L"
 			}]
 		}, {
+			cp: [1, 0, 2, 3],
+
 			algs: [{
 				type: ["TH", "OP"],
 				moveSet: "RUF",
@@ -58,6 +60,8 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 				alg: "R' U' R U L U' R' U x"
 			}]
 		}, {
+			cp: [0, 1, 3, 2],
+
 			algs: [{
 				type: "*",
 				moveSet: "RUF",
@@ -73,6 +77,8 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 				alg: "R U R' U' L' U R U' R' L"
 			}]
 		}, {
+			cp: [0, 2, 1, 3],
+
 			algs: [{
 				type: "TH",
 				moveSet: "RUF",
@@ -89,6 +95,8 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 				alg: "x' R U2 R D2 R' U2 R D2 R2 x"
 			}]
 		}, {
+			cp: [3, 1, 2, 0],
+
 			algs: [{
 				type: "*",
 				moveSet: "RUL",
@@ -101,6 +109,8 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 				alg: "R U' R' U2 L R U' R' U L'"
 			}]
 		}, {
+			cp: [2, 1, 0, 3],
+
 			comment: "diagonal swap case",
 			algs: [{
 				type: "*",
