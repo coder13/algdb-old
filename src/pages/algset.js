@@ -15,12 +15,13 @@ module.exports = React.createClass({
 
 	getDefaultProps () {
 		return {
-			algset: {}
+			algset: {},
+			path: ''
 		};
 	},
 
 	componentWillMount () {
-		console.log('algset', this.props)
+		// console.log('algset', this.props)
 	},
 
 	render () {
@@ -41,7 +42,7 @@ module.exports = React.createClass({
 
 		let abbrev = algset.abbrev;
 		let subsets = algset.subsets ? algset.subsets.map(name => app.findAlgset(name)).filter(i=>!!i) : false;
-		let cases = algset.cases.map(function (_case) {
+		let cases = algset.cases ? algset.cases.map(function (_case) {
 			// ugh
 			let caseCube = _case.cube ? _.merge({}, cube, _case.cube) : cube;
 			if (_case.cp) {
@@ -55,7 +56,7 @@ module.exports = React.createClass({
 			}
 
 			return _.merge({}, _case, {cube: caseCube});
-		});
+		}) : undefined;
 
 		const preName = (this.props.path.length > 2 ? this.props.path.slice(1, -1) : this.props.path[0]).toUpperCase();
 

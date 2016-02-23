@@ -32,7 +32,6 @@ module.exports = Router.extend({
 	},
 
 	set (path) {
-		console.log(33, path);
 		if (path) {
 			let algset = path.split('/').filter(i => !!i).reduce(function (pl, pr) {
 				return (typeof pl === 'string' ? app.findAlgset(pl).subsets : pl).find(match(pr))
@@ -42,7 +41,6 @@ module.exports = Router.extend({
 				algset = app.findAlgset(algset);
 			}
 
-			console.log(path, algset);
 			if (algset) {
 				this.renderPage(<AlgPage path={path.split('/')} algset={algset}/>, 'learn');
 				return;

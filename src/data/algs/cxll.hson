@@ -2,7 +2,9 @@
 	id: 'cxll',
 	name: 'Corners of Last Layer',
 	abbrev: 'C*LL',
-	image: 'coll',
+	image: 'cll',
+
+	listOnHomePage: false,
 
 	description: `**Corners of Last Layer** is a group of methods collectively known as **C\\*LL** or **CxLL** that solve the last layer corners in one algorithm. Each method has certain restrictions that apply, and each can affect other pieces in different ways.
 

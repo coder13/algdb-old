@@ -21,10 +21,6 @@ module.exports = React.createClass({
 		};
 	},
 
-	componentWillMount () {
-		console.log('algsetIcon', this.props)
-	},
-
 	render () {
 		let size = 60;
 

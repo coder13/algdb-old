@@ -267,7 +267,6 @@ window.Cube = module.exports = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log(270, this.props.cube);
 		this.state.cube = this.props.cube;
 		this.doMoves(this.props.scramble);
 	},
@@ -322,8 +321,6 @@ window.Cube = module.exports = React.createClass({
 			eo = this.state.cube.edges.orient,
 			centers = this.state.cube.centers;
 		let mask = this.props.mask;
-
-		console.log((mask >>> 0).toString(2));
 
 		return (
 			<svg width={this.props.size} height={this.props.size} viewBox={`0 0 ${8} ${8}`} style={style}>

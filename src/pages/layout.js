@@ -32,7 +32,7 @@ module.exports = React.createClass({
 						<div className='collapse navbar-collapse' id='navbar'>
 							<ul className='nav navbar-nav'>
 								<li className={this.props.active === 'home' ? 'active': ''}><a href='/'>AlgDB</a></li>
-								<li className={this.props.active === 'learn' ? 'active': ''}><a href='/learn'>Learn</a></li>
+								<li className={this.props.active === 'learn' ? 'active': ''}><a href='/'>Learn</a></li>
 								<li className={this.props.active === 'drill' ? 'active': ''}><a href='/drill'>Drill</a></li>
 								<li className={this.props.active === 'about' ? 'active': ''}><a href='/about'>About</a></li>
 							</ul>
