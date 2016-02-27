@@ -25,7 +25,7 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		cases: [{
 			cp: [0, 1, 2, 3],
 
-			comment: "pure 2gen case",
+			comment: "Pure 2gen case. Recognize the top colors are matching and back colors are matching.",
 			algs: [{
 				type: "*",
 				moveSet: "RU",
@@ -38,25 +38,26 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 			}]
 		}, {
 			cp: [1, 0, 2, 3],
+			rotate: 'y2',
 
 			algs: [{
 				type: ["TH", "OP"],
 				moveSet: "RUF",
-				auf: "U2",
 				alg: "R' F' r U R U' r' F"
 			}, {
 				type: ["TH", "OP"],
 				moveSet: "RUF",
+				auf: "U2",
 				alg: "F R F' r U R' U' r'"
 			}, {
 				type: "*",
 				moveSet: "RUD",
-				auf: "U'",
+				auf: "U",
 				alg: "x' R U R' D R U' R' D'"
 			}, {
 				type: "*",
 				moveSet: "RUL",
-				auf: "U'",
+				auf: "U",
 				alg: "R' U' R U L U' R' U x"
 			}]
 		}, {
