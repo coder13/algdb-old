@@ -15,7 +15,7 @@ For the object: It contains either a cube object and optional name, description 
 
 ## Cube object
 You can either specify what the cube should look like by using a cube object which is made up of a corners and edges which are each made up of permuation and orientation.
-```json
+```js
 cube: {
     corners: {
         perm: [0,1,2,3,4,5,6,7], (8 corners, starting from bl and move in a clockwise motion. First 4 are top layer, second 4 are down layer)
