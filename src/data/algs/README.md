@@ -24,7 +24,8 @@ cube: {
         perm: [0,1,2,3,4,5,6,7,8,9,10,11], (12 edges, starting from UB and going in a clockwise, then E layer edges starting from bl and clockwise, then bottom layer and clockwise)
         orient: [0,0,0,0,0,0,0,0,0,0,0,0] (which edges are flipped, all in the same place as perm)
     }
-}```
+}
+```
 
 Or you can individually specify these by using cp, co, ep or eo.
 
