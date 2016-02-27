@@ -1,53 +1,35 @@
 {
   "name": "algdb",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Website for based off of http://algdb.net for learning algsets.",
+  "main": "server",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
-    "build": "NODE_ENV=prod webpack --progress",
-    "surge": "surge -p public -d algdb.surge.sh",
-    "deploy": "npm run build; npm run surge",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "validate": "npm ls"
+    "server": "node server.js",
+    "lint:server": "eslint ./server/ --config ./server/.eslintrc",
+    "lint:app": "(cd ./app && npm run lint)",
+    "lint": "npm run lint:server; npm run lint:app",
+    "validate": "npm ls",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coder13/algdb.git"
   },
   "author": "= <=>",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coder13/algdb/issues"
+  },
+  "homepage": "https://github.com/coder13/algdb#readme",
   "dependencies": {
-    "ampersand-app": "^1.0.4",
-    "ampersand-model": "^6.0.2",
-    "ampersand-react-mixin": "^1.0.1",
-    "ampersand-router": "^3.0.2",
-    "bootstrap-styl": "^5.0.5",
-    "jquery": "^2.2.0",
-    "lodash": "^4.3.0",
-    "react": "^0.14.7",
-    "react-checkbox-group": "^0.3.1",
-    "react-dom": "^0.14.7",
-    "react-markdown": "^1.2.4"
+    "hapi": "^13.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.3",
-    "babel": "^6.5.1",
-    "babel-core": "^6.5.1",
-    "babel-loader": "^6.2.2",
-    "babel-plugin-react-transform": "^2.0.0",
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-react-hmre": "^1.1.0",
-    "css-loader": "^0.23.1",
-    "file-loader": "^0.8.5",
-    "html-webpack-plugin": "^2.9.0",
-    "json-loader": "^0.5.4",
-    "local-links": "^1.4.0",
-    "postcss-loader": "^0.8.0",
-    "react-hot-loader": "^1.3.0",
-    "react-transform-hmr": "^1.0.2",
-    "style-loader": "^0.13.0",
-    "stylus-loader": "^1.5.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.12.0",
-    "webpack-dev-server": "^1.10.1"
-  }
+    "git-validate": "^2.1.4"
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }

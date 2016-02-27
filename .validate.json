@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "pre-commit": ["lint", "validate", "test"]
+}
+

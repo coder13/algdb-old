@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+'use strict';
+
+/*
+	algdb add algset <name> 
+	algdb add alg <algset> 
+	algdb remove algset <name> 
+ */
+
+var fs = require('fs');
+var inquirer = require('inquirer');
+var hanson = require('hanson');
+
+const add = {
+	algset: function (args) {},
+	alg: function (args) {
+		// try {
+			var file = String(fs.readFileSync(args[0]));
+			var hson = hanson.parse(file);
+			
+			inquirer.prompt([{
+				type: 'list',
+				name: 'case',
+				message: 'Case',
+				choices: hson.cases.map((_case, index) => (_case.name || index))
+			}, {
+				type: 'input',
+				name: 'alg',
+				message: 'Alg:',
+				validate: (value) => !!value || 'Cannot be empty'
+			}, {
+				type: 'list',
+				name: 'auf',
+				message: 'Alg:',
+				choices: ['', 'U', 'U\'', 'U2']
+			}, {
+				type: 'checkbox',
+				name: 'type',
+				message: 'Type',
+				choices: [{name: '*'}, {name: 'TH'}, {name: 'OH'}, {name: 'Optimal'}],
+				default: ['*'],
+				filter: function (choices) {
+				}
+			}], function (answers) {
+				console.log(answers);
+				hson.cases[answers.case] = {
+					type: answers.type,
+					auf: answers.auf,
+					algset: answers.alg
+				};
+				fs.writeFileSync(args[0], hanson.stringify(hson));
+			});
+		// } catch (e) {
+		// 	console.trace(e);
+		// }
+	}
+};
+
+const commands = {
+	add: function (args) {
+		if (args.length > 1) {
+			if (add[args[0]]) {
+				add[args[0]](args.slice(1));
+			}
+		} else {
+			console.log('Must specify algset');
+		}
+	},
+	remove: function (args) {
+
+	}
+};
+
+if (process.argv[2] && commands[process.argv[2]]) {
+	commands[process.argv[2]](process.argv.slice(3))
+}
+

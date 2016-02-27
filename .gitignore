@@ -1,2 +1,4 @@
 node_modules
-public
+./app/node_modules
+./app/public
+npm-debug.log
