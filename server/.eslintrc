@@ -37,7 +37,7 @@
         "yoda": [1, "never"],
         "sort-vars": 1,
         "consistent-this": [2, "self"],
-        "func-style": [2, "expression"],
+        "func-style": [1, "expression"],
         "new-parens": 2,
         "no-array-constructor": 2,
         "no-new-object": 2,

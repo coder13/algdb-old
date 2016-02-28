@@ -3,7 +3,7 @@ const Router = require('ampersand-router');
 const ReactDOM = require('react-dom');
 const Layout = require('./pages/layout');
 const IndexPage = require('./pages/index');
-// const LearnPage = require('./pages/learn');
+const Algset = require('./models/algset');
 const AlgPage = require('./pages/algset');
 // const DrillPage = require('./pages/drill');
 
@@ -23,12 +23,13 @@ module.exports = Router.extend({
 
 	routes: {
 		'': 'index',
-		'set/*path': 'set',
-		'*404': 'redirect'
+		'algset/:id': 'algset',
+		'*404': 'redirect',
+		'login': 'login'
 	},
 
 	index () {
-		this.renderPage(<IndexPage/>, 'home');
+		this.renderPage(<IndexPage algsets={app.algsets}/>, 'home');
 	},
 
 	set (path) {
@@ -49,9 +50,23 @@ module.exports = Router.extend({
 		this.redirect();
 	},
 
+	algset (id) {
+		console.log(id);
+		let algset = app.algsets.find({id: id});
+		if (!algset) {
+			algset = new Algset({id: id});
+			algset.fetch();
+		}
+		this.renderPage(<AlgPage algset={algset}/>, 'learn');
+	},
+
 	drill (algset) {
 		let scrambleType = algset === 'cmll' ? CMLL : COLL;
 		this.renderPage(<DrillPage scrambleType={scrambleType}/>, 'drill');
+	},
+
+	login () {
+
 	},
 
 	redirect () {

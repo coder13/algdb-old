@@ -1,3 +1,4 @@
+require('./assets/favicon.png');
 require('./styles/main.styl');
 require('jquery');
 require('./lib/bootstrap.min.js');
@@ -6,6 +7,8 @@ require('./globals.js');
 const App = require('ampersand-app');
 const Router = require('./router');
 const Me = require('./models/me');
+const Algsets = require('./models/algset-collection');
+const Config = require('./config');
 
 if (typeof window !== 'undefined') {
 	window.React = require('react');
@@ -15,10 +18,14 @@ const app = window.app = App.extend({
 	init () {
 		this.me = new Me();
 
-		this.DB = require('./data/algs');
+		this.algsets = new Algsets();
+		this.algsets.fetch({
+			success: function () {
+				app.router = new Router();
+				app.router.history.start();
+			}
+		});
 
-		this.router = new Router();
-		this.router.history.start();
 	},
 
 	findAlgset (name) {
@@ -27,6 +34,6 @@ const app = window.app = App.extend({
 		}
 		return name;
 	}
-});
+}, Config);
 
 app.init();

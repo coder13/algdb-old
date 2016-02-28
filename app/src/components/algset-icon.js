@@ -11,17 +11,21 @@ module.exports = React.createClass({
 		width: 'auto',
 		height: 'auto',
 		margin: '10px',
-		padding: '15px',
+		padding: '10px',
 		display: 'inline-block',
 
-		backgroundColor: '#3f3f3f7f'
-		// color: '#000'
+		backgroundColor: '#3f3f3f7f',
+		color: '#333'
 	},
 
 	getDefaultProps () {
 		return {
 			algset: {}
 		};
+	},
+
+	delete () {
+
 	},
 
 	render () {
@@ -35,10 +39,12 @@ module.exports = React.createClass({
 		}
 
 		return (
-			<a href={this.props.href}><div className='well container' style={this.style}>
-				{image}
-				<h3 style={{textAlign: 'center'}}>{this.props.algset.name}</h3>
-			</div></a>
+			<a href={this.props.href} style={{color: 'inherit', textDecoration: 'none'}}>
+				<div className='well container' style={this.style}>
+					{image}
+					<h3 style={{textAlign: 'center'}}>{this.props.algset.name}</h3>
+				</div>
+			</a>
 		);
 	}
 });

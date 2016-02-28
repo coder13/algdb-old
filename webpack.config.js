@@ -19,15 +19,15 @@ console.log('NODE_ENV=', ENV);
 // }
 
 const config = module.exports = {
-	entry: './src/app.js',
-	// entry: [
-	// 	'./src/app.js', // main entry
-	// 	'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
-	// 	'webpack/hot/only-dev-server' // no need to do --hot
-	// ],
+	// entry: './app/src/app.js',
+	entry: [
+		'./app/src/app.js', // main entry
+		'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
+		'webpack/hot/only-dev-server' // no need to do --hot
+	],
 
 	output: {
-		path: './public',
+		path: './app/public',
 		filename: 'app.js',
 		publicPath: '/'
 	},
@@ -40,7 +40,7 @@ const config = module.exports = {
 		loaders: [{
 			test: /(\.js$)|(\.jsx$)/,
 			exclude: /node_modules/,
-			loaders: ['react-hot', 'babel-loader']
+			loaders: ['react-hot', 'babel?cacheDirectory']
 		}, {
 			test: /\/public\//,
 			loader: 'url-loader?limit=10000'
@@ -69,7 +69,14 @@ const config = module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'visualcube demo',
-			template: './src/index.html'
+			template: './app/src/index.html',
+			favicon: './app/src/assets/favicon.png'
+		}),
+		new HtmlWebpackPlugin({
+			filename: '404',
+			title: 'visualcube demo',
+			template: './app/src/index.html',
+			favicon: './app/src/assets/favicon.png'
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.NoErrorsPlugin()
@@ -88,10 +95,6 @@ if (ENV === 'dev') { // dev specific stuff
 		stats: {colors: false},
 		port: 3000
 	};
-
-	config.plugins.push(
-		new webpack.HotModuleReplacementPlugin()
-	);
 
 } else { // Produciton stuff
 	config.plugins.push(

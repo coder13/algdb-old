@@ -6,13 +6,16 @@ module.exports = Model.extend({
 	},
 
 	initialize () {
-		this.load();
-		this.save();
+		this.login();
+	},
+
+	login () {
+
 	},
 
 	save () {
 		console.log('saving...', JSON.stringify(this));
-		window.localStorage.setItme('algdb_me', JSON.stringify(this));
+		window.localStorage.setItem('algdb_me', JSON.stringify(this));
 	},
 
 	load () {
