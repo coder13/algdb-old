@@ -23,6 +23,10 @@ const app = window.app = App.extend({
 			success: function () {
 				app.router = new Router();
 				app.router.history.start();
+			},
+			error: function () {
+				app.router = new Router();
+				app.router.history.start();
 			}
 		});
 

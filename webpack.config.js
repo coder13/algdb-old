@@ -7,24 +7,24 @@ const ENV = process.env.NODE_ENV || 'dev';
 
 console.log('NODE_ENV=', ENV);
 
-// const Stylus = {
-// 	dev: {
-// 	  test: /\.styl$/,
-// 	  loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
-// 	},
-// 	prod: {
-// 	  test: /\.styl$/,
-// 	  loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader')
-// 	}
-// }
+const Stylus = {
+	dev: {
+		test: /\.styl$/,
+		loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
+	},
+	prod: {
+		test: /\.styl$/,
+		loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader')
+	}
+}
 
 const config = module.exports = {
-	// entry: './app/src/app.js',
-	entry: [
-		'./app/src/app.js', // main entry
-		'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
-		'webpack/hot/only-dev-server' // no need to do --hot
-	],
+	entry: './app/src/app.js',
+	// entry: [
+	// 	'./app/src/app.js', // main entry
+	// 	'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
+	// 	'webpack/hot/only-dev-server' // no need to do --hot
+	// ],
 
 	output: {
 		path: './app/public',
@@ -40,7 +40,7 @@ const config = module.exports = {
 		loaders: [{
 			test: /(\.js$)|(\.jsx$)/,
 			exclude: /node_modules/,
-			loaders: ['react-hot', 'babel?cacheDirectory']
+			loaders: ENV === 'dev' ? ['react-hot', 'babel?cacheDirectory'] : ['babel']
 		}, {
 			test: /\/public\//,
 			loader: 'url-loader?limit=10000'
@@ -64,7 +64,6 @@ const config = module.exports = {
 			loaders: ['hson']
 		}]
 	},
-
 
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -95,7 +94,6 @@ if (ENV === 'dev') { // dev specific stuff
 		stats: {colors: false},
 		port: 3000
 	};
-
 } else { // Produciton stuff
 	config.plugins.push(
 		new webpack.optimize.DedupePlugin(),

@@ -4,12 +4,6 @@ const Assets = require('../assets');
 const AlgsetIcon = require('../components/algset-icon');
 const Alg = require('../components/alg');
 
-const Types = {
-	'*': (<span key={0} style={{marginLeft: '.5em'}} className='label label-default'>*</span>),
-	'TH': (<span key={1} style={{marginLeft: '.5em'}} className='label label-primary'>TH</span>),
-	'OH': (<span key={2} style={{marginLeft: '.5em'}} className='label label-success'>OH</span>),
-	'OP': (<span key={3} style={{marginLeft: '.5em'}} className='label label-info'>optimal</span>)
-};
 
 module.exports = React.createClass({
 	displayName: 'Algset',
@@ -90,13 +84,13 @@ module.exports = React.createClass({
 							<h4 style={{margin: '2px'}}>Description</h4>
 						</div>
 						<div className='panel-body container-fluid' style={{paddingLeft: '0px'}}>
-							<div className='col-xs-12 col-sm-10' style={{}}>
+							<div className='col-xs-12 col-sm-10'>
 								<Markdown source={algset.description || ''} style={{wordWrap: 'break-word'}}/>
 							</div>
 							<div className='well col-xs-12 col-sm-2' style={{margin: '0px', padding: 'auto', height: '100%', float: 'right'}}>
 								{image}
 								<hr/>
-								<p>No. of algs: <span style={{color: 'grey'}}>2</span></p>
+								<p>No. of algs: <span style={{color: 'grey'}}>{algset.caseCount}</span></p>
 								<p>avg moves: <span style={{color: 'grey'}}>2</span></p>
 							</div>
 						</div>

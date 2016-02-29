@@ -1,10 +1,12 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Algset = require('./algset');
+const Case = require('./case');
+const Alg = require('./alg');
 
 module.exports = {
-	Algset: mongoose.model('Algset', require('./algset'), 'algdb'),
-	Subset: mongoose.model('Subset', require('./subset'), 'algdb'),
-	Case: mongoose.model('Case', require('./case'), 'algdb'),
-	Alg: mongoose.model('Alg', require('./alg'), 'algdb')
+	Algset: mongoose.model('Algset', Algset, 'algsets'),
+	Case: mongoose.model('Case', Case, 'algsets'),
+	Alg: mongoose.model('Alg', Alg, 'algsets')
 };

@@ -5,7 +5,7 @@ const Layout = require('./pages/layout');
 const IndexPage = require('./pages/index');
 const Algset = require('./models/algset');
 const AlgPage = require('./pages/algset');
-// const DrillPage = require('./pages/drill');
+const AboutPage = require('./pages/about');
 
 const match = (name) => ((set) => (set.id || set.abbrev || set.name || '').toLowerCase() === name.toLowerCase());
 
@@ -24,8 +24,8 @@ module.exports = Router.extend({
 	routes: {
 		'': 'index',
 		'algset/:id': 'algset',
-		'*404': 'redirect',
-		'login': 'login'
+		'about': 'about',
+		'*404': 'redirect'
 	},
 
 	index () {
@@ -67,6 +67,11 @@ module.exports = Router.extend({
 
 	login () {
 
+	},
+
+	about () {
+		console.log('about');
+		this.renderPage(<AboutPage/>, 'about');
 	},
 
 	redirect () {

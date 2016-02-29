@@ -1,12 +1,13 @@
 'use strict';
 const Schema = require('mongoose').Schema;
+const Alg = require('./alg');
 
 const Case = module.exports = new Schema({
 	id: String,
 	name: String,
 	cube: Object,
 	comment: String,
-	algs: Array
+	algs: [Alg]
 });
 
 Case.statics.findByName = function (name, cb) {

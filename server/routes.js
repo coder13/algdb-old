@@ -5,6 +5,17 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const Algset = App.models.Algset;
 
+const validateAlgset = {
+	payload: {
+		name: Joi.string().required(),
+		image: Joi.string(),
+		abbrev: Joi.string(),
+		description: Joi.string(),
+		subsets: Joi.array(),
+		cases: Joi.array()
+	}
+};
+
 module.exports = [{
 /*	Algsets: 	*/
 
@@ -38,22 +49,13 @@ module.exports = [{
 	method: 'POST',
 	path: '/algsets/{id}',
 	config: {
-		// auth: 'simple',
-		validate: {
-			payload: {
-				name: Joi.string().required()
-				// abbrev: Joi.string(),
-				// description: Joi.string(),
-				// subsets: Joi.array(),
-				// cases: Joi.array()
-			}
-		},
+		auth: 'simple',
+		validate: validateAlgset,
 		handler: function (request, reply) {
-			console.log(55);
-			console.log(request.info);
 			let algset = new Algset({
 				id: request.params.id,
 				name: request.payload.name,
+				image: request.params.image,
 				abbrev: request.payload.abbrev,
 				description: request.payload.description
 			});
@@ -70,10 +72,10 @@ module.exports = [{
 	method: 'PUT',
 	path: '/algsets/{id}',
 	config: {
-		// auth: 'simple',
+		auth: 'simple',
+		validate: validateAlgset,
 		handler: function (request, reply) {
-			console.log(75)
-			reply(200);
+			reply(Boom.notFound());
 		}
 	}
 }, { // delete
@@ -83,15 +85,6 @@ module.exports = [{
 		auth: 'simple',
 		handler: function (request, reply) {
 			reply(Boom.notFound());
-		}
-	}
-}, { // delete
-	method: 'OPTIONS',
-	path: '/algsets/{id}',
-	config: {
-		auth: 'simple',
-		handler: function (request, reply) {
-			reply(200);
 		}
 	}
 }];
