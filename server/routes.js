@@ -77,7 +77,7 @@ module.exports = [{
 		auth: 'simple',
 		validate: validateAlgset,
 		handler: function (request, reply) {
-			Algset.findOneByID(request.params.id, function (err, algset) {
+			Algset.findByID(request.params.id, function (err, algset) {
 				if (!algset || algset.length === 0) {
 					return reply(Boom.notFound(`Algset with id, ${request.params.id}, could not be found`));
 				}

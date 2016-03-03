@@ -17,6 +17,7 @@ const baseConfig = {
 
 const config = {
 	dev: {
+
 	},
 	prod: {
 

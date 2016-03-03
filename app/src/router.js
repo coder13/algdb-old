@@ -32,32 +32,13 @@ module.exports = Router.extend({
 		this.renderPage(<IndexPage algsets={app.algsets}/>, 'home');
 	},
 
-	set (path) {
-		if (path) {
-			let algset = path.split('/').filter(i => !!i).reduce(function (pl, pr) {
-				return (typeof pl === 'string' ? app.findAlgset(pl).subsets : pl).find(match(pr));
-			});
-
-			if (typeof algset === 'string') {
-				algset = app.findAlgset(algset);
-			}
-
-			if (algset) {
-				this.renderPage(<AlgPage path={path.split('/')} algset={algset}/>, 'learn');
-				return;
-			}
-		}
-		this.redirect();
-	},
-
 	algset (id) {
-		console.log(id);
 		let algset = app.algsets.find({id: id});
 		if (!algset) {
 			algset = new Algset({id: id});
 			algset.fetch();
 		}
-		this.renderPage(<AlgPage algset={algset}/>, 'learn');
+		this.renderPage(<AlgPage algset={algset} editable={app.admin}/>, 'learn');
 	},
 
 	drill (algset) {

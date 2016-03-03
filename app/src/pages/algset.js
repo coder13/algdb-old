@@ -1,6 +1,6 @@
 const app = require('ampersand-app');
 const React = require('react');
-const {Panel} = require('react-bootstrap');
+const {Panel, Input} = require('react-bootstrap');
 const Markdown = require('react-markdown');
 const ampersandReactMixin = require('ampersand-react-mixin');
 const Assets = require('../assets');
@@ -13,13 +13,36 @@ const Description = React.createClass({
 
 	getDefaultProps () {
 		return {
-			algset: {}
+			algset: {},
+			editable: false
 		};
+	},
+
+	getInitialState () {
+		return {
+			editing: false
+		};
+	},
+
+	edit () {
+		this.setState({editing: true});
+	},
+
+	onChange (e) {
+		this.props.algset.description = e.target.value;
+	},
+
+	onKeyDown (e) {
+		if (e.keyCode === 13) {
+			this.setState({editing: false});
+			this.props.algset.save(); // done editing, save model;
+		}
 	},
 
 	render () {
 		let size = Math.max(window.innerWidth / 12, 64);
 		let {algset} = this.props;
+		let {editing} = this.state;
 
 		let image = '';
 		if (algset.cube) {
@@ -29,11 +52,22 @@ const Description = React.createClass({
 			image = (<img width={`${size}px`} src={Assets[algset.image || 'blank']} alt={Assets.blank}/>);
 		}
 
+		const header = (<div>
+			<span style={{fontSize: '18px'}}>Description</span>
+			{this.props.editable ?
+				<span className='glyphicon glyphicon-pencil' style={{float: 'right', marginRight: '10px', cursor: 'pointer'}} onClick={this.edit}/> : ''}
+		</div>);
+
 		return (
-				<Panel header='Description' bsStyle='primary'>
+				<Panel header={header} bsStyle='primary'>
 				<div className='panel-body container-fluid' style={{paddingLeft: '0px'}}>
 					<div className='col-xs-12 col-sm-10'>
-						<Markdown source={algset.description || ''} style={{wordWrap: 'break-word'}}/>
+						{!editing ?
+							<Markdown source={algset.description || ''} style={{wordWrap: 'break-word'}}/> :
+							<Input ref='input' type='textarea' defaultValue={algset.description} style={{
+								height: '250px'
+							}} onChange={this.onChange} onKeyDown={this.onKeyDown}/>
+						}
 					</div>
 					<div className='well col-xs-12 col-sm-2' style={{margin: '0px', padding: 'auto', height: '100%', float: 'right'}}>
 						{image}
@@ -149,20 +183,14 @@ module.exports = React.createClass({
 		return {
 			algset: {},
 			path: '',
-			initialEditing: false
-		};
-	},
-
-	getIntiailState () {
-		return {
-			editing: this.props.initialEditing // description / cases / subsets
+			editable: false
 		};
 	},
 
 	render () {
 		let colStyle = {minWidth: '10%', width: '10%'};
 
-		let {algset} = this.props;
+		let {algset, editable} = this.props;
 		let {abbrev, subsets, cases} = algset;
 
 		// Some fun. Different handler based off of path length...might go away.
@@ -171,15 +199,17 @@ module.exports = React.createClass({
 			2: path => path[0]
 		})[this.props.path.length](this.props.path) : this.props.path.slice(1, -1)).toUpperCase() : '';
 
+		abbrev = abbrev && abbrev !== algset.name ? <small>({abbrev})</small> : '';
+
 		return (
 			<div>
 				<div className='page-header' style={{marginTop: '20px'}}>
-					<h1 className='text-center'>{preName} {algset.name} {abbrev && abbrev !== algset.name ? <small>({abbrev})</small> : ''}</h1>
+					<h1 className='text-center'>{preName} {algset.name} {abbrev}</h1>
 				</div>
-				<Description algset={algset}/>
+				<Description algset={algset} editable={editable}/>
 
-				{subsets ? <Subsets algset={algset}/> : ''}
-				{cases ? <Cases algset={algset}/> : ''}
+				{subsets ? <Subsets algset={algset} editable={editable}/> : ''}
+				{cases ? <Cases algset={algset} editable={editable}/> : ''}
 			</div>
 		);
 	}

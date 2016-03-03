@@ -54,8 +54,6 @@ const Algset = module.exports = Model.extend({
 
 	url () {
 		let id = this.get('id');
-		console.log(this);
-		console.log(`${app.baseURL}/algsets/${id}`);
 		return `${app.baseURL}/algsets/${id}`;
 	}
 });
