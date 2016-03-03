@@ -4,7 +4,7 @@ module.exports = {
 		admin: true
 	},
 	'algdb.surge.sh': {
-		baseURL: 'http://localhost:8000',
+		// baseURL: 'http://localhost:8000',
 		admin: false
 	}
 }[window.location.hostname];

@@ -8,6 +8,7 @@ const Algset = App.models.Algset;
 const validateAlgset = {
 	payload: {
 		name: Joi.string().required(),
+		id: Joi.string(),
 		image: Joi.string(),
 		abbrev: Joi.string(),
 		description: Joi.string(),

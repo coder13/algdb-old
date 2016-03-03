@@ -11,7 +11,7 @@ const users = {
 	al: {
 		username: 'al',
 		password: 'gs',
-		name: 'John Doe',
+		name: 'Al Gs',
 		id: '2133d32a'
 	}
 };
@@ -22,23 +22,18 @@ const plugins = [{
 		reporters: [{
 			reporter: require('good-console'),
 			events: {log: '*', response: '*'}
-		}, {
-			reporter: require('good-file'),
-			events: {ops: '*'},
-			config: './log/log'
 		}]
 	}
 }, {
 	register: require('hapi-cors'),
 	options: {
 		methods: ['POST, GET, OPTIONS, PUT, DELTE'],
-		origins: ['*']
+		origins: ['http://localhost:3000']
 	}
 }];
 
 const validate = function (request, username, password, callback) {
 	const user = users[username];
-	console.log(username);
 	if (!user) {
 		return callback(null, false);
 	}
@@ -65,10 +60,7 @@ const App = global.App = app.extend({
 		});
 
 		server.connection({
-			port: config.port,
-			routes: {
-				cors: true
-			}
+			port: config.port
 		});
 
 		mongoose.connect(config.db.url);

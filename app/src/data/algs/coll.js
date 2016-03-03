@@ -1,4 +1,4 @@
-{
+module.exports = {
 	id: "coll",
 	name: "COLL",
 	image: "coll",
@@ -8,14 +8,13 @@
 CLL is best used for ZZ and petrus where preserving edges is a must and cfop for the off chance that edges are oriented.
 	`,
 
+	cube: {
+		mask: 749055, // only show corners and LL edges
+	},
+
 	subsets: [{
 		name: "T",
-		cube: {
-			mask: 749055, // only show corners and LL edges
-			corners: {
-				orient: [1, 0, 0, 2]
-			}
-		},
+			co: [1, 0, 0, 2],
 
 		description: `
 Split this case into 3 sets of 2 cases. Split them up by looking at the top colors. They will either be opposite, adjacent or matching colors.
@@ -122,17 +121,13 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		}]
 	}, {
 		name: "U",
-		cube: {
-			corners: {
-				orient: [2, 0, 0, 1, 0, 0, 0, 0]
-			}
-		},
+		co: [2, 0, 0, 1],
 
 		description: `
 		Split this case into 3 sets of 2 cases. Split them up by looking at the top colors. They will either be opposite, adjacent or matching colors.
 		you'll then look a the back heaadlights. They will also either be the same, opposite or adjacent.
 		`,
-		
+
 		cases: [{
 			perm: 0,
 			algs: [{
@@ -217,11 +212,7 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		}]
 	}, {
 		name: "H",
-		cube: {
-			corners: {
-				orient: [1, 2, 1, 2, 0, 0, 0, 0]
-			}
-		},
+		co: [1, 2, 1, 2],
 
 		cases: [{
 			perm: 0,
@@ -260,11 +251,7 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		}]
 	}, {
 		name: "Pi",
-		cube: {
-			corners: {
-				orient: [2, 2, 1, 1, 0, 0, 0, 0]
-			}
-		},
+		co: [2, 2, 1, 1],
 
 		cases: [{
 			perm: 0,
@@ -349,11 +336,7 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		}]
 	}, {
 		name: "L",
-		cube: {
-			corners: {
-				orient: [2, 0, 1, 0, 0, 0, 0, 0]
-			}
-		},
+		co: [2, 0, 1, 0],
 
 		cases: [{
 			
@@ -370,20 +353,12 @@ you'll then look a the back heaadlights. They will also either be the same, oppo
 		}]
 	}, {
 		name: "S",
-		cube: {
-			corners: {
-				orient: [1, 1, 1, 0, 0, 0, 0, 0]
-			}
-		},
+		co: [1, 1, 1, 0],
 		
 		cases: []
 	}, {
 		name: "AS",
-		cube: {
-			corners: {
-				orient: [0, 2, 2, 2, 0, 0, 0, 0]
-			}
-		},
+		co: [0, 2, 2, 2],
 
 		cases: []
 	}]

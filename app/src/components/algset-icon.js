@@ -28,15 +28,30 @@ module.exports = React.createClass({
 	},
 
 	render () {
-		let size = 60;
+		let size = 100;
+		let algset = this.props.algset;
 
 		let image = '';
-		if (this.props.algset.cube) {
-			image = <Cube size={size} cube={_.merge(solved(), this.props.algset.cube)}/>;
-		} else if (this.props.algset.image) {
-			image = (<img width='100px' src={Assets[this.props.algset.image]} alt={Assets.blank}/>);
+		if (algset.cube || algset.cp || algset.co || algset.ep || algset.eo) {
+			let parent = {};
+			if (this.props.parent) {
+				parent = this.props.parent.cube ? this.props.parent.cube : this.props.parent;
+			}
+
+			let mask = (parent.mask) | (algset.mask);
+			image = <Cube size={size} cube={_.merge(solved(), parent, algset.cube, {
+				corners: {
+					perm: algset.cp,
+					orient: algset.co
+				},
+				edges: {
+					perm: algset.ep,
+					orient: algset.eo
+				}
+			})} mask={mask} />;
+		} else if (algset.image) {
+			image = (<img width='100px' src={Assets[algset.image]} alt={Assets.blank}/>);
 		} else {
-			image = (<img width='100px' src={Assets[this.props.algset.image]} alt={Assets.blank}/>);
 			image = (<img width='100px' src={Assets.blank} alt={Assets.blank}/>);
 		}
 
@@ -44,7 +59,7 @@ module.exports = React.createClass({
 			<a href={this.props.href} style={{color: 'inherit', textDecoration: 'none'}}>
 				<div className='well container' style={this.style}>
 					{image}
-					<h3 style={{textAlign: 'center'}}>{this.props.algset.name}</h3>
+					<h3 style={{textAlign: 'center'}}>{algset.abbrev || algset.name}</h3>
 				</div>
 			</a>
 		);

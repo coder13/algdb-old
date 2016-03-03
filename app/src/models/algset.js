@@ -1,11 +1,18 @@
 const Model = require('ampersand-model');
+const Collection = require('ampersand-collection');
+const Case = require('./case');
 
 const countSet = function (subset) {
 	return (subset.cases ? subset.cases.length : 0) +
 	(subset.subsets ? subset.subsets.map(countSet).reduce((a,b) => a + b) : 0);
 };
 
-module.exports = Model.extend({
+const Cases = Collection.extend({
+	model: Case
+});
+
+const Algset = module.exports = Model.extend({
+	idAttribute: '_id',
 	props: {
 		id: 'string', // change to url
 		name: 'string',
@@ -13,7 +20,13 @@ module.exports = Model.extend({
 		abbrev: 'string',
 		description: 'string',
 		subsets: 'array',
-		cases: 'array'
+		cases: 'array',
+
+		cp: 'array',
+		co: 'array',
+		ep: 'array',
+		eo: 'array',
+		mask: 'number'
 	},
 
 	derived: {
@@ -25,9 +38,20 @@ module.exports = Model.extend({
 		}
 	},
 
+	ajaxConfig () {
+		return {
+			headers: {
+				authorization: 'Basic YWw6Z3M=' // al:gs
+			},
+			xhrFields: {
+				withCredentials: true
+			}
+		};
+	},
+
 	url () {
 		let id = this.get('id');
-		console.log(`${app.baseURL}/algset/${id}`);
-		return `${app.baseURL}/algset/${id}`;
+		console.log(`${app.baseURL}/algsets/${id}`);
+		return `${app.baseURL}/algsets/${id}`;
 	}
 });

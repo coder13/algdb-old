@@ -72,7 +72,7 @@ const config = module.exports = {
 			favicon: './app/src/assets/favicon.png'
 		}),
 		new HtmlWebpackPlugin({
-			filename: '404',
+			filename: '404.html',
 			title: 'visualcube demo',
 			template: './app/src/index.html',
 			favicon: './app/src/assets/favicon.png'

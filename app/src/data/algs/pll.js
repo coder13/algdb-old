@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"id": "pll",
 	"name": "PLL",
 	"image": "pll",

@@ -1,4 +1,5 @@
-var React = require('react');
+const _ = require('lodash');
+const React = require('react');
 
 /*
 	mask: counter clockwise starting from top left corner: U, L, F, R, B, D
@@ -62,63 +63,42 @@ const solved = window.solved = function () {
 	};
 };
 
-const cycle = window.cycle = function (pieces, cube) {
-	let newCube = {
-		corners: {},
-		edges: {},
-		centers: []
+// [0, 1, 2, 0, 0, 2, 1, 0]
+
+const nextPerm = (how) => (p,i,what) => what[how[i]];
+const prevPerm = (how) => (p,i,what) => how.indexOf(what[i]);
+const nextOrient = (how, n) => (p,i,what) => (p + how[i]) % (n || 3);
+const prevOrient = (how, n) => (p,i,what) => (p + how[i]) % (n || 3);
+
+const cycle = window.cycle = function (pieces, cube, dir) {
+	cube = _.merge({}, solved(), cube);
+	pieces = _.merge({}, solved(), pieces); // fill in the gaps
+
+	let inv = (dir && dir < 0);
+
+	let perm = inv ? prevPerm : nextPerm;
+	let orient = inv ? prevOrient : nextOrient;
+
+	let cp = perm(pieces.corners.perm);
+	let co = orient(pieces.corners.orient);
+	let ep = perm(pieces.edges.perm);
+	let eo = orient(pieces.edges.orient, 2);
+
+	return {
+		corners: {
+			perm: cube.corners.perm.map(cp),
+			orient: !inv ? cube.corners.orient.map(co).map(cp) : cube.corners.orient.map(cp).map(co)
+		},
+		edges: {
+			perm: cube.edges.perm.map(ep),
+			orient: cube.edges.orient.map(eo).map(ep)
+		},
+		centers: cube.centers.map(perm(pieces.centers))
 	};
-
-	if (pieces.corners) {
-		if (!cube.corners) {
-			cube.corners = solved().corners;
-		}
-
-		if (pieces.corners.orient) {
-			newCube.corners.orient = cube.corners.orient.map((p,i) => (p + pieces.corners.orient[i]) % 3);
-		} else {
-			newCube.corners.orient = cube.corners.orient;
-		}
-
-		if (pieces.corners.perm) {
-			newCube.corners.perm = cube.corners.perm.map((p, i, arry) => arry[pieces.corners.perm[(i)]]);
-			newCube.corners.orient = newCube.corners.orient.map((p, i, arry) => arry[pieces.corners.perm[(i)]]);
-		}
-	} else {
-		newCube.corners = cube.corners;
-	}
-
-	if (pieces.edges) {
-		if (!cube.edges) {
-			cube.edges = solved().edges;
-		}
-
-		if (pieces.edges.orient) {
-			newCube.edges.orient = cube.edges.orient.map((p,i) => (p + pieces.edges.orient[i]) % 2);
-		} else {
-			newCube.edges.orient = cube.edges.orient;
-		}
-
-		if (pieces.edges.perm) {
-			newCube.edges.perm = cube.edges.perm.map((p, i, arry) => arry[pieces.edges.perm[(i)]]);
-			newCube.edges.orient = newCube.edges.orient.map((p, i, arry) => arry[pieces.edges.perm[(i)]]);
-		}
-	}
-
-	if (pieces.centers) {
-		if (!cube.centers) {
-			cube.centers = solved().centers;
-		}
-
-		newCube.centers = cube.centers.map((p, i, arry) => arry[pieces.centers[(i)]]);
-	} else {
-		newCube.centers = cube.centers;
-	}
-	return newCube;
 };
 
 const combine = window.combine = function (moves) {
-	moves.reverse().push(solved()); // apend to beggining;
+	moves.reverse().push(solved()); // apend to beginning;
 	return moves.reverse().reduce(cycle);
 };
 
@@ -221,8 +201,10 @@ const Moves = window.Moves = {
 // generate ' and 2 moves.
 const gen = function (key) {
 	let move = Moves[key];
-	Moves[key + '2'] = cycle(cycle(move, solved()), move);
-	Moves[key + '\''] = cycle(cycle(Moves[key + '2'], solved()), move);
+	Moves[`${key}2`] = cycle(cycle(move, solved()), move);
+	Moves[`${key}'`] = cycle(cycle(Moves[`${key}2`], solved()), move);
+
+	// Moves[key + '\''] = cycle(move, solved(), -1);
 };
 
 ['U', 'D', 'R', 'L', 'F', 'B', 'M', 'S', 'E'].forEach(gen);
@@ -232,12 +214,12 @@ Moves.y = combine([Moves.U, Moves['E\''], Moves['D\'']]);
 Moves.x = combine([Moves.R, Moves['M\''], Moves['L\'']]);
 Moves.z = combine([Moves.F, Moves['S\''], Moves['B\'']]);
 
-Moves.u = combine([Moves.U, Moves['E\'']]);
-Moves.r = combine([Moves.R, Moves['M\'']]);
-Moves.f = combine([Moves.F, Moves['S\'']]);
-Moves.d = combine([Moves.D, Moves['E']]);
-Moves.l = combine([Moves.L, Moves['M\'']]);
-Moves.b = combine([Moves.B, Moves['S']]);
+// Moves.u = combine([Moves.U, Moves['E\'']]);
+// Moves.r = combine([Moves.R, Moves['M\'']]);
+// Moves.f = combine([Moves.F, Moves['S\'']]);
+// Moves.d = combine([Moves.D, Moves['E']]);
+// Moves.l = combine([Moves.L, Moves['M\'']]);
+// Moves.b = combine([Moves.B, Moves['S']]);
 
 ['y', 'x', 'z'].forEach(gen);
 
@@ -279,6 +261,7 @@ window.Cube = module.exports = React.createClass({
 	doMoves (moves) {
 		moves.split(' ').forEach(function (m) {
 			if (Moves[m]) {
+				console.log(319, m, this.state.cube)
 				this.state.cube = cycle(Moves[m], this.state.cube);
 			}
 		}, this);
@@ -286,7 +269,7 @@ window.Cube = module.exports = React.createClass({
 	},
 
 	render () {
-		return this.props.puzzle == '2' ? this.render2() : this.render3();
+		return this.props.puzzle.toString() === '2' ? this.render2() : this.render3();
 	},
 
 	render2 () {

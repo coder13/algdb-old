@@ -9,6 +9,7 @@ const Router = require('./router');
 const Me = require('./models/me');
 const Algsets = require('./models/algset-collection');
 const Config = require('./config');
+const DB = require('./data/algs');
 
 if (typeof window !== 'undefined') {
 	window.React = require('react');
@@ -29,7 +30,16 @@ const app = window.app = App.extend({
 				app.router.history.start();
 			}
 		});
+	},
 
+	addAlgset (algset) {
+		if (algset.name.length > 10) {
+			algset.abbrev = algset.name.split(' ').map(i => i ? i[0].toUpperCase() : '').join('');
+		}
+
+		app.algsets.create(algset, {
+			success: () => console.log('Successfully created algset.')
+		});
 	},
 
 	findAlgset (name) {
