@@ -1,3 +1,4 @@
+const app = require('ampersand-app');
 var React = require('react');
 var Scrambler = require('../lib/scrambler');
 

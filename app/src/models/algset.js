@@ -1,3 +1,4 @@
+const app = require('ampersand-app');
 const Model = require('ampersand-model');
 const Collection = require('ampersand-collection');
 const Case = require('./case');
@@ -14,7 +15,8 @@ const Cases = Collection.extend({
 const Algset = module.exports = Model.extend({
 	idAttribute: '_id',
 	props: {
-		id: 'string', // change to url
+		_id: 'string',
+		id: 'string',
 		name: 'string',
 		image: 'string',
 		abbrev: 'string',
@@ -22,6 +24,7 @@ const Algset = module.exports = Model.extend({
 		subsets: 'array',
 		cases: 'array',
 
+		cube: 'object',
 		cp: 'array',
 		co: 'array',
 		ep: 'array',
@@ -51,6 +54,7 @@ const Algset = module.exports = Model.extend({
 
 	url () {
 		let id = this.get('id');
+		console.log(this);
 		console.log(`${app.baseURL}/algsets/${id}`);
 		return `${app.baseURL}/algsets/${id}`;
 	}

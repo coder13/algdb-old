@@ -44,7 +44,7 @@ const app = window.app = App.extend({
 
 	findAlgset (name) {
 		if (typeof name === 'string') {
-			return app.DB.find(set => (set.id || set.abbrev || set.name || '').toLowerCase() === name.toLowerCase());
+			return app.DB.find(set => (set.algsetID || set.abbrev || set.name || '').toLowerCase() === name.toLowerCase());
 		}
 		return name;
 	}

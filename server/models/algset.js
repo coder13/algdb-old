@@ -12,6 +12,10 @@ Algset.add({ // becasue of problems defining recrusive schema
 	Cases: [Case]
 });
 
+Algset.statics.findByID = function (id, cb) {
+	return this.findOne({id: id}, cb);
+};
+
 Algset.statics.findByName = function (name, cb) {
-	return this.find({name: name});
+	return this.find({name: name}, cb);
 };

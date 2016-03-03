@@ -6,7 +6,6 @@ const AlgsetIcon = require('../components/algset-icon');
 
 const Cube = require('../components/cube');
 
-
 const AddAlgsetModal = React.createClass({
 	displayName: 'AddAlgsetModal',
 
@@ -95,7 +94,6 @@ const AddAlgsetModal = React.createClass({
 			</Modal>
 		);
 	}
-
 });
 
 module.exports = React.createClass({

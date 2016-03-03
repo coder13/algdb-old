@@ -1,9 +1,12 @@
+const app = require('ampersand-app');
 const React = require('react');
 const {Panel} = require('react-bootstrap');
 const Markdown = require('react-markdown');
+const ampersandReactMixin = require('ampersand-react-mixin');
 const Assets = require('../assets');
 const AlgsetIcon = require('../components/algset-icon');
 const Alg = require('../components/alg');
+const resize = require('../helpers/react-resize-mixin');
 
 const Description = React.createClass({
 	displayName: 'Description',
@@ -138,9 +141,9 @@ const Cases = React.createClass({
 	}
 });
 
-
 module.exports = React.createClass({
 	displayName: 'Algset',
+	mixins: [ampersandReactMixin, resize],
 
 	getDefaultProps () {
 		return {
@@ -154,18 +157,6 @@ module.exports = React.createClass({
 		return {
 			editing: this.props.initialEditing // description / cases / subsets
 		};
-	},
-
-	componentWillMount () {
-		window.addEventListener('resize', this.resize);
-	},
-
-	componentWillUnmount () {
-		window.removeEventListener('resize', this.resize);
-	},
-
-	resize () {
-		this.forceUpdate();
 	},
 
 	render () {
@@ -183,7 +174,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<div className='page-header' style={{marginTop: '20px'}}>
-					<h1 className='text-center'>{preName} {algset.name} {abbrev ? <small>({abbrev})</small> : ''}</h1>
+					<h1 className='text-center'>{preName} {algset.name} {abbrev && abbrev !== algset.name ? <small>({abbrev})</small> : ''}</h1>
 				</div>
 				<Description algset={algset}/>
 

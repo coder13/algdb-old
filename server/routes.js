@@ -7,6 +7,7 @@ const Algset = App.models.Algset;
 
 const validateAlgset = {
 	payload: {
+		_id: Joi.string(),
 		name: Joi.string().required(),
 		id: Joi.string(),
 		image: Joi.string(),
@@ -56,7 +57,7 @@ module.exports = [{
 			let algset = new Algset({
 				id: request.params.id,
 				name: request.payload.name,
-				image: request.params.image,
+				image: request.payload.image,
 				abbrev: request.payload.abbrev,
 				description: request.payload.description
 			});
@@ -70,13 +71,28 @@ module.exports = [{
 		}
 	}
 }, { // update
-	method: 'PUT',
+	method: ['PUT', 'PATCH'],
 	path: '/algsets/{id}',
 	config: {
 		auth: 'simple',
 		validate: validateAlgset,
 		handler: function (request, reply) {
-			reply(Boom.notFound());
+			Algset.findOneByID(request.params.id, function (err, algset) {
+				if (!algset || algset.length === 0) {
+					return reply(Boom.notFound(`Algset with id, ${request.params.id}, could not be found`));
+				}
+
+				delete request.payload._id;
+				request.payload.modified = new Date();
+				console.log(87, algset, '\n', request.payload);
+				Algset.update({id: algset.id}, request.payload, {multi: false}, function (err, set) {
+					if (err) {
+						reply(Boom.badData(err));
+					} else {
+						reply(set);
+					}
+				});
+			});
 		}
 	}
 }, { // delete
@@ -85,7 +101,12 @@ module.exports = [{
 	config: {
 		auth: 'simple',
 		handler: function (request, reply) {
-			reply(Boom.notFound());
+			Algset.findOneAndRemove({id: request.params.id}, function (err, doc, result) {
+				if (err) {
+					return reply(Boom.badData(err));
+				}
+				return reply(doc);
+			});
 		}
 	}
 }];

@@ -27,7 +27,7 @@ const plugins = [{
 }, {
 	register: require('hapi-cors'),
 	options: {
-		methods: ['POST, GET, OPTIONS, PUT, DELTE'],
+		methods: ['POST, GET, OPTIONS, PUT, DELETE'],
 		origins: ['http://localhost:3000']
 	}
 }];
