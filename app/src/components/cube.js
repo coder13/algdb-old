@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const React = require('react');
+const Cube = require('../models/cube');
 
 /*
 	mask: counter clockwise starting from top left corner: U, L, F, R, B, D
@@ -223,7 +224,7 @@ Moves.z = combine([Moves.F, Moves['S\''], Moves['B\'']]);
 
 ['y', 'x', 'z'].forEach(gen);
 
-window.Cube = module.exports = React.createClass({
+module.exports = React.createClass({
 	style: {
 		padding: '1px'
 	},
@@ -234,6 +235,7 @@ window.Cube = module.exports = React.createClass({
 			puzzle: 3,
 			scale: 20,
 			lineWidth: 4,
+			editable: false,
 
 			cube: solved(),
 			rotate: '',
@@ -261,7 +263,6 @@ window.Cube = module.exports = React.createClass({
 	doMoves (moves) {
 		moves.split(' ').forEach(function (m) {
 			if (Moves[m]) {
-				console.log(319, m, this.state.cube)
 				this.state.cube = cycle(Moves[m], this.state.cube);
 			}
 		}, this);
@@ -269,34 +270,35 @@ window.Cube = module.exports = React.createClass({
 	},
 
 	render () {
-		return this.props.puzzle.toString() === '2' ? this.render2() : this.render3();
+		// No 2x2 rendering yet.
+		return this.render3();
 	},
 
-	render2 () {
-		let lw = 1 / 16;
-		let style = Object.assign({}, this.style, this.props.style);
-		let corners = this.state.corners;
+	// render2 () {
+	// 	let lw = 1 / 16;
+	// 	let style = Object.assign({}, this.style, this.props.style);
+	// 	let corners = this.state.corners;
 
-		return (
-			<svg width={this.props.size} height={this.props.size} viewBox={`0 0 ${6} ${6}`} style={style}>
-				<rect x='0' y='1' width={1} height={2} style={{fill: corners[0][0], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='1' y='0' width={2} height={1} style={{fill: corners[0][1], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='1' y='1' width={2} height={2} style={{fill: corners[0][2], stroke: lineColor, strokeWidth: lw}}/>
+	// 	return (
+	// 		<svg width={this.props.size} height={this.props.size} viewBox={`0 0 ${6} ${6}`} style={style}>
+	// 			<rect x='0' y='1' width={1} height={2} style={{fill: corners[0][0], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='1' y='0' width={2} height={1} style={{fill: corners[0][1], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='1' y='1' width={2} height={2} style={{fill: corners[0][2], stroke: lineColor, strokeWidth: lw}}/>
 
-				<rect x='3' y='0' width={2} height={1} style={{fill: corners[1][0], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='5' y='1' width={1} height={2} style={{fill: corners[1][1], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='3' y='1' width={2} height={2} style={{fill: corners[1][2], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='3' y='0' width={2} height={1} style={{fill: corners[1][0], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='5' y='1' width={1} height={2} style={{fill: corners[1][1], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='3' y='1' width={2} height={2} style={{fill: corners[1][2], stroke: lineColor, strokeWidth: lw}}/>
 
-				<rect x='5' y='3' $width={1} height={2} style={{fill: corners[2][0], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='3' y='5' width={2} height={1} style={{fill: corners[2][1], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='3' y='3' width={2} height={2} style={{fill: corners[2][2], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='5' y='3' $width={1} height={2} style={{fill: corners[2][0], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='3' y='5' width={2} height={1} style={{fill: corners[2][1], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='3' y='3' width={2} height={2} style={{fill: corners[2][2], stroke: lineColor, strokeWidth: lw}}/>
 
-				<rect x='1' y='5' width={2} height={1} style={{fill: corners[3][0], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='0' y='3' width={1} height={2} style={{fill: corners[3][1], stroke: lineColor, strokeWidth: lw}}/>
-				<rect x='1' y='3' width={2} height={2} style={{fill: corners[3][2], stroke: lineColor, strokeWidth: lw}}/>
-			</svg>
-		);
-	},
+	// 			<rect x='1' y='5' width={2} height={1} style={{fill: corners[3][0], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='0' y='3' width={1} height={2} style={{fill: corners[3][1], stroke: lineColor, strokeWidth: lw}}/>
+	// 			<rect x='1' y='3' width={2} height={2} style={{fill: corners[3][2], stroke: lineColor, strokeWidth: lw}}/>
+	// 		</svg>
+	// 	);
+	// },
 
 	render3 () {
 		const cubie = (c) => ({fill: c, stroke: lineColor, strokeWidth: lw});

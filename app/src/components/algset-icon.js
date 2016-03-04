@@ -32,25 +32,17 @@ module.exports = React.createClass({
 		let algset = this.props.algset;
 
 		let image = '';
-		if (algset.cube || algset.cp || algset.co || algset.ep || algset.eo) {
+		if (algset.image) {
+			image = (<img width='100px' src={Assets[algset.image]} alt={Assets.blank}/>);			
+		} else if (algset.cube) {
 			let parent = {};
 			if (this.props.parent) {
 				parent = this.props.parent.cube ? this.props.parent.cube : this.props.parent;
 			}
 
 			let mask = (parent.mask) | (algset.mask);
-			image = <Cube size={size} cube={_.merge(solved(), parent, algset.cube, {
-				corners: {
-					perm: algset.cp,
-					orient: algset.co
-				},
-				edges: {
-					perm: algset.ep,
-					orient: algset.eo
-				}
-			})} mask={mask} />;
-		} else if (algset.image) {
-			image = (<img width='100px' src={Assets[algset.image]} alt={Assets.blank}/>);
+			image = <Cube size={size} cube={_.merge(solved(), parent, algset.cube)} mask={mask} />;
+
 		} else {
 			image = (<img width='100px' src={Assets.blank} alt={Assets.blank}/>);
 		}

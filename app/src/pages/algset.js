@@ -1,15 +1,17 @@
 const app = require('ampersand-app');
 const React = require('react');
-const {Panel, Input} = require('react-bootstrap');
+const {Panel, Input, Button} = require('react-bootstrap');
 const Markdown = require('react-markdown');
 const ampersandReactMixin = require('ampersand-react-mixin');
 const Assets = require('../assets');
 const AlgsetIcon = require('../components/algset-icon');
 const Alg = require('../components/alg');
+const Cube = require('../components/cube');
 const resize = require('../helpers/react-resize-mixin');
 
 const Description = React.createClass({
 	displayName: 'Description',
+	mixins: [ampersandReactMixin],
 
 	getDefaultProps () {
 		return {
@@ -45,17 +47,17 @@ const Description = React.createClass({
 		let {editing} = this.state;
 
 		let image = '';
-		if (algset.cube) {
+		if (algset.image) {
+			image = (<img width={`${size}px`} src={Assets[algset.image || 'blank']} alt={Assets.blank}/>);
+		} else {
 			let cube = _.merge({}, solved(), this.props.algset.cube);
 			image = <Cube size={size} cube={cube} mask={cube.mask}/>;
-		} else {
-			image = (<img width={`${size}px`} src={Assets[algset.image || 'blank']} alt={Assets.blank}/>);
 		}
 
 		const header = (<div>
 			<span style={{fontSize: '18px'}}>Description</span>
 			{this.props.editable ?
-				<span className='glyphicon glyphicon-pencil' style={{float: 'right', marginRight: '10px', cursor: 'pointer'}} onClick={this.edit}/> : ''}
+				<span className='glyphicon glyphicon-pencil' style={{float: 'right', marginRight: '10px', cursor: 'pointer'}} onClick={this.edit}/> : false}
 		</div>);
 
 		return (
@@ -83,6 +85,7 @@ const Description = React.createClass({
 
 const Subsets = React.createClass({
 	displayName: 'Subsets',
+	mixins: [ampersandReactMixin],
 
 	getDefaultProps () {
 		return {
@@ -109,11 +112,16 @@ const Subsets = React.createClass({
 
 const Cases = React.createClass({
 	displayName: 'Cases',
+	mixins: [ampersandReactMixin],
 
 	getDefaultProps () {
 		return {
 			algset: {}
 		};
+	},
+
+	addAlg () {
+		this.props.algset.addAlg();
 	},
 
 	render () {
@@ -122,9 +130,6 @@ const Cases = React.createClass({
 		let {cases} = algset;
 
 		let cube = _.merge({}, algset.cube, solved());
-		cases = cases ? cases.forEach(function (_case) {
-			_.merge(cube, _case.cube);
-		}) : undefined;
 
 		let casesHeader = (
 			<div>
@@ -144,19 +149,23 @@ const Cases = React.createClass({
 							</tr>
 						</thead>
 						<tbody>
-							{cases.map((_case,index) => (
-								<tr key={index}>
-									<td>{_case.name || (index + 1)}</td>
-									<td><Cube rotate={_case.rotate} cube={_case.cube} mask={cube.mask} size={size}/></td>
-									<td>
-									{_case.algs ? _case.algs.map((alg, i) =>
-										(<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>)
-									) : ''}
-									<button className='btn btn-default'><span className='glyphicon glyphicon-plus'/></button>
-									</td>
-									<td>{_case.comment}</td>
-								</tr>)
-							)}
+							{cases.map((_case,index) => {
+								let caseCube = _.merge({}, cube, _case.cube);
+
+								return (
+									<tr key={index}>
+										<td>{_case.name || (index + 1)}</td>
+										<td><Cube rotate={_case.rotate} cube={caseCube} mask={cube.mask} size={size}/></td>
+										<td>
+										{_case.algs.map((alg, i) =>
+											<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>
+										)}
+										<Button onClick={this.addAlg}><span className='glyphicon glyphicon-plus'/></Button>
+										</td>
+										<td>{_case.comment}</td>
+									</tr>
+								);
+							})}
 						</tbody>
 					</table>
 				</Panel>
@@ -186,9 +195,9 @@ module.exports = React.createClass({
 		const preName = this.props.path ? (this.props.path.length < 3 ? ({
 			1: () => '',
 			2: path => path[0]
-		})[this.props.path.length](this.props.path) : this.props.path.slice(1, -1)).toUpperCase() : '';
+		})[this.props.path.length](this.props.path) : this.props.path.slice(1, -1)).toUpperCase() : false;
 
-		abbrev = abbrev && abbrev !== algset.name ? <small>({abbrev})</small> : '';
+		abbrev = abbrev && abbrev !== algset.name ? <small>({abbrev})</small> : false;
 
 		return (
 			<div>
@@ -197,8 +206,8 @@ module.exports = React.createClass({
 				</div>
 				<Description algset={algset} editable={editable}/>
 
-				{subsets && subsets.length ? <Subsets algset={algset} editable={editable}/> : ''}
-				{cases && cases.length ? <Cases algset={algset} editable={editable}/> : ''}
+				{subsets && subsets.length ? <Subsets algset={algset} editable={editable}/> : false}
+				{cases && cases.length ? <Cases algset={algset} editable={editable}/> : false}
 			</div>
 		);
 	}

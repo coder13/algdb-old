@@ -19,7 +19,7 @@ const prevPerm = (how) => (p,i,what) => how.indexOf(what[i]);
 const nextOrient = (how, n) => (p,i,what) => (p + how[i]) % (n || 3);
 const prevOrient = (how, n) => (p,i,what) => (p + how[i]) % (n || 3);
 
-const cycle = window.cycle = function (pieces, cube, dir) {
+const cycle = function (pieces, cube, dir) {
 	cube = _.merge({}, solved(), cube);
 	pieces = _.merge({}, solved(), pieces); // fill in the gaps
 
@@ -169,44 +169,26 @@ Moves.b = combine([Moves.B, Moves['S']]);
 
 ['y', 'x', 'z'].forEach(gen);
 
-module.exports = Model.extend({
+const Cube = window.CubeModel = module.exports = Model.extend({
 	idAttribute: '_id',
-	dataTypes: {
-		piece: {
-			set (newVal) {
-				if (newVal.perm && Array.isArray(newVal.perm) &&
-						newVal.orient && Array.isArray(newVal.orient)) {
-					return {
-						val: newVal,
-						type: 'piece'
-					};
-				}
-
-				return {
-					val: newVal,
-					type: typeof newVal
-				};
-			},
-			compare (currentVal, newVal) {
-				return currentVal.equals(newVal);
-			}
-		}
-	},
 
 	props: {
 		mask: 'number',
-		corners: 'piece',
-		edges: 'piece',
+		corners: 'object',
+		edges: 'object',
 		centers: 'array'
 	},
 
-	initialize () {
-
+	initialize (options) {
+		options = options || {};
+		this.corners = _.merge({}, solved().corners, options.corners);
+		this.edges = _.merge({}, solved().edges, options.edges);
 	},
 
 	doMoves (moves) {
 		moves.split(' ').forEach(function (m) {
 			if (Moves[m]) {
+				console.log(m, this);
 				this.set(cycle(Moves[m], this));
 			}
 		}, this);

@@ -14,13 +14,6 @@ module.exports = Model.extend({
 		mask: 'number'
 	},
 
-	initialize (options) {
-		this.cube = _.merge({}, solved(), {
-			corners: {perm: options.cp, orient: options.co},
-			edges: {perm: options.ep, orient: options.eo}
-		});
-	},
-
 	derived: {
 		algCount: {
 			deps: [],

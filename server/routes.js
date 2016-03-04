@@ -2,7 +2,6 @@
 
 const Boom = require('boom');
 const Joi = require('joi');
-const flat = require('flat');
 const mongoose = require('mongoose');
 const Algset = App.models.Algset;
 
@@ -79,8 +78,7 @@ module.exports = [{
 		auth: 'simple',
 		validate: validateAlgset,
 		handler: function (request, reply) {
-			console.log(82,flat(request.payload));
-			Algset.findOneAndUpdate({id: request.params.id}, flat(request.payload), function (err, algset) {
+			Algset.findOneAndUpdate({id: request.params.id}, request.payload, function (err, algset) {
 				console.log(84, err, algset.cases);
 				if (err) {
 					reply(Boom.badData(err));
@@ -88,22 +86,6 @@ module.exports = [{
 					reply(algset);
 				}
 			});
-			// Algset.findByID(request.params.id, function (err, algset) {
-			// 	if (!algset || algset.length === 0) {
-			// 		return reply(Boom.notFound(`Algset with id, ${request.params.id}, could not be found`));
-			// 	}
-
-			// 	delete request.payload._id;
-			// 	request.payload.modified = new Date();
-			// 	console.log(87, request.payload.cases);
-			// 	Algset.update({id: algset.id}, request.payload, {multi: false}, function (err, set) {
-			// 		if (err) {
-			// 			reply(Boom.badData(err));
-			// 		} else {
-			// 			reply(set);
-			// 		}
-			// 	});
-			// });
 		}
 	}
 }, { // delete

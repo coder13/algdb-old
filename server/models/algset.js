@@ -24,10 +24,10 @@ Algset.add({ // because of problems defining recrusive schema
 	cases: [Case]
 });
 
-// Algset.pre('findOneAndUpdate', function (next) {
-// 	this._update = flat(this._update);
-// 	next();
-// });
+Algset.pre('findOneAndUpdate', function (next) {
+	this._update = flat(this._update);
+	next();
+});
 
 Algset.statics.findByID = function (id, cb) {
 	return this.findOne({id: id}, cb);
