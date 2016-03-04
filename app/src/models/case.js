@@ -1,3 +1,5 @@
+const _ = require('lodash');
+const Collection = require('ampersand-collection');
 const Model = require('ampersand-model');
 
 module.exports = Model.extend({
@@ -9,11 +11,14 @@ module.exports = Model.extend({
 		algs: 'array',
 
 		cube: 'object',
-		cp: 'array',
-		co: 'array',
-		ep: 'array',
-		eo: 'array',
 		mask: 'number'
+	},
+
+	initialize (options) {
+		this.cube = _.merge({}, solved(), {
+			corners: {perm: options.cp, orient: options.co},
+			edges: {perm: options.ep, orient: options.eo}
+		});
 	},
 
 	derived: {

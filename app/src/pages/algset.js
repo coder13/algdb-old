@@ -117,24 +117,13 @@ const Cases = React.createClass({
 	},
 
 	render () {
-		let size = Math.max(window.innerWidth / 20, 40);
-		let {algset} = this.props;
+		let size = Math.max(window.innerWidth / 16, 40);
+		let {algset, editable} = this.props;
 		let {cases} = algset;
 
 		let cube = _.merge({}, algset.cube, solved());
-		cases = cases ? cases.map(function (_case) {
-			let caseCube = caseCube = _.merge({}, cube, _case.cube, {
-				corners: {
-					perm: _case.cp,
-					orient: _case.co
-				},
-				edges: {
-					perm: _case.ep,
-					orient: _case.eo
-				}
-			});
-
-			return _.merge({}, _case, {cube: caseCube});
+		cases = cases ? cases.forEach(function (_case) {
+			_.merge(cube, _case.cube);
 		}) : undefined;
 
 		let casesHeader = (
@@ -144,7 +133,7 @@ const Cases = React.createClass({
 		);
 
 		return (
-			<Panel header={casesHeader} collapsible defaultExpanded style={{margin: '0px'}}>
+			<Panel header={casesHeader} style={{margin: '0px'}}>
 					<table className='table'>
 						<thead>
 							<tr>
@@ -158,10 +147,10 @@ const Cases = React.createClass({
 							{cases.map((_case,index) => (
 								<tr key={index}>
 									<td>{_case.name || (index + 1)}</td>
-									<td><Cube puzzle={3} rotate={_case.rotate} cube={_case.cube} mask={cube.mask} size={size}/></td>
+									<td><Cube rotate={_case.rotate} cube={_case.cube} mask={cube.mask} size={size}/></td>
 									<td>
 									{_case.algs ? _case.algs.map((alg, i) =>
-										(<Alg key={i} type={alg.type} auf={alg.auf} alg={alg.alg}/>)
+										(<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>)
 									) : ''}
 									<button className='btn btn-default'><span className='glyphicon glyphicon-plus'/></button>
 									</td>
@@ -208,8 +197,8 @@ module.exports = React.createClass({
 				</div>
 				<Description algset={algset} editable={editable}/>
 
-				{subsets ? <Subsets algset={algset} editable={editable}/> : ''}
-				{cases ? <Cases algset={algset} editable={editable}/> : ''}
+				{subsets && subsets.length ? <Subsets algset={algset} editable={editable}/> : ''}
+				{cases && cases.length ? <Cases algset={algset} editable={editable}/> : ''}
 			</div>
 		);
 	}

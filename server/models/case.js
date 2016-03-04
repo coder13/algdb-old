@@ -5,7 +5,17 @@ const Alg = require('./alg');
 const Case = module.exports = new Schema({
 	id: String,
 	name: String,
-	cube: Object,
+	cube: {
+		corners: {
+			perm: Array,
+			orient: Array
+		},
+		edges: {
+			perm: Array,
+			orient: Array
+		},
+		centers: Array
+	},
 	comment: String,
 	algs: [Alg]
 });

@@ -9,10 +9,13 @@ const Router = require('./router');
 const Me = require('./models/me');
 const Algsets = require('./models/algset-collection');
 const Config = require('./config');
-const DB = require('./data/algs');
 
 if (typeof window !== 'undefined') {
 	window.React = require('react');
+}
+
+if (typeof window !== 'undefined') {
+	window.Lodash = require('lodash');
 }
 
 const app = window.app = App.extend({
