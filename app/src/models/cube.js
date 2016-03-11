@@ -180,9 +180,7 @@ const Cube = window.CubeModel = module.exports = Model.extend({
 	},
 
 	initialize (options) {
-		options = options || {};
-		this.corners = _.merge({}, solved().corners, options.corners);
-		this.edges = _.merge({}, solved().edges, options.edges);
+		this.set(_.merge({}, solved(), options));
 	},
 
 	doMoves (moves) {

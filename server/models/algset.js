@@ -8,17 +8,18 @@ Algset.add({ // because of problems defining recrusive schema
 	id: String,
 	name: String,
 	abbrev: String,
+	image: String,
 	description: String,
 	cube: {
 		corners: {
-			perm: Array,
-			orient: Array
+			perm: {type: Array, default: [0,1,2,3,4,5,6,7]},
+			orient: {type: Array, default: [0,0,0,0,0,0,0,0]}
 		},
 		edges: {
-			perm: Array,
-			orient: Array
+			perm: {type: Array, default: [0,1,2,3,4,5,6,7,8,9,10,11]},
+			orient: {type: Array, default: [0,0,0,0,0,0,0,0,0,0,0,0]}
 		},
-		centers: Array
+		centers: {type: Array, default: [0,1,2,3,4,5]}
 	},
 	subsets: [Algset],
 	cases: [Case]

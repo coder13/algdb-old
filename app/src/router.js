@@ -18,7 +18,6 @@ module.exports = Router.extend({
 		);
 
 		ReactDOM.render(page, document.getElementById('root'));
-		// ReactDOM.render(page, document.body);
 	},
 
 	routes: {

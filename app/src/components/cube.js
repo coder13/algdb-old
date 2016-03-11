@@ -60,7 +60,8 @@ const solved = window.solved = function () {
 			perm: [0,1,2,3,4,5,6,7,8,9,10,11],
 			orient: [0,0,0,0,0,0,0,0,0,0,0,0]
 		},
-		centers: [0, 1, 2, 3, 4, 5]
+		centers: [0, 1, 2, 3, 4, 5],
+		mask: 0xffffffffffff
 	};
 };
 
@@ -94,7 +95,8 @@ const cycle = window.cycle = function (pieces, cube, dir) {
 			perm: cube.edges.perm.map(ep),
 			orient: cube.edges.orient.map(eo).map(ep)
 		},
-		centers: cube.centers.map(perm(pieces.centers))
+		centers: cube.centers.map(perm(pieces.centers)),
+		mask: cube.mask
 	};
 };
 
@@ -314,30 +316,30 @@ module.exports = React.createClass({
 
 		return (
 			<svg width={this.props.size} height={this.props.size} viewBox={`0 0 ${8} ${8}`} style={style}>
-				<rect x='0' y='1' width={1} height={2} style={cubie((mask >>  8) & 1 ? Corners[cp[0]][(co[ 0 ] + 0) % 3] : Grey)}/>{/*UBL*/}
-				<rect x='1' y='0' width={2} height={1} style={cubie((mask >> 19) & 1 ? Corners[cp[0]][(co[ 0 ] + 1) % 3] : Grey)}/>{/*ULB*/}
-				<rect x='1' y='1' width={2} height={2} style={cubie((mask >>  0) & 1 ? Corners[cp[0]][(co[ 0 ] + 2) % 3] : Grey)}/>{/*BLU*/}
+				<rect x='0' y='1' width={1} height={2} style={cubie((mask >>  8) & 1 ? Corners[cp[0]][(co[0] + 0) % 3] : Grey)}/>{/*UBL*/}
+				<rect x='1' y='0' width={2} height={1} style={cubie((mask >> 19) & 1 ? Corners[cp[0]][(co[0] + 1) % 3] : Grey)}/>{/*ULB*/}
+				<rect x='1' y='1' width={2} height={2} style={cubie((mask >>  0) & 1 ? Corners[cp[0]][(co[0] + 2) % 3] : Grey)}/>{/*BLU*/}
 
 				<rect x='3' y='0' width={2} height={1} style={cubie((mask >> 18) & 1 ? Edges[ep[0]][(eo[0] + 0) % 2 ] : Grey)}/>{/*UB*/}
 				<rect x='3' y='1' width={2} height={2} style={cubie((mask >>  1) & 1 ? Edges[ep[0]][(eo[0] + 1) % 2 ] : Grey)}/>{/*BU*/}
 
-				<rect x='5' y='0' width={2} height={1} style={cubie((mask >> 17) & 1 ? Corners[cp[1]][(co[ 1 ] + 0) % 3] : Grey)}/>
-				<rect x='7' y='1' width={1} height={2} style={cubie((mask >> 16) & 1 ? Corners[cp[1]][(co[ 1 ] + 1) % 3] : Grey)}/>
-				<rect x='5' y='1' width={2} height={2} style={cubie((mask >>  2) & 1 ? Corners[cp[1]][(co[ 1 ] + 2) % 3] : Grey)}/>
+				<rect x='5' y='0' width={2} height={1} style={cubie((mask >> 17) & 1 ? Corners[cp[1]][(co[1] + 0) % 3] : Grey)}/>
+				<rect x='7' y='1' width={1} height={2} style={cubie((mask >> 16) & 1 ? Corners[cp[1]][(co[1] + 1) % 3] : Grey)}/>
+				<rect x='5' y='1' width={2} height={2} style={cubie((mask >>  2) & 1 ? Corners[cp[1]][(co[1] + 2) % 3] : Grey)}/>
 
 				<rect x='7' y='3' width={1} height={2} style={cubie((mask >> 15) & 1 ? Edges[ep[1]][(eo[1] + 0) % 2 ] : Grey)}/>
 				<rect x='5' y='3' width={2} height={2} style={cubie((mask >>  3) & 1 ? Edges[ep[1]][(eo[1] + 1) % 2 ] : Grey)}/>
 
-				<rect x='7' y='5' width={1} height={2} style={cubie((mask >> 14) & 1 ? Corners[cp[2]][(co[ 2 ] + 0) % 3] : Grey)}/>
-				<rect x='5' y='7' width={2} height={1} style={cubie((mask >> 13) & 1 ? Corners[cp[2]][(co[ 2 ] + 1) % 3] : Grey)}/>
-				<rect x='5' y='5' width={2} height={2} style={cubie((mask >>  4) & 1 ? Corners[cp[2]][(co[ 2 ] + 2) % 3] : Grey)}/>
+				<rect x='7' y='5' width={1} height={2} style={cubie((mask >> 14) & 1 ? Corners[cp[2]][(co[2] + 0) % 3] : Grey)}/>
+				<rect x='5' y='7' width={2} height={1} style={cubie((mask >> 13) & 1 ? Corners[cp[2]][(co[2] + 1) % 3] : Grey)}/>
+				<rect x='5' y='5' width={2} height={2} style={cubie((mask >>  4) & 1 ? Corners[cp[2]][(co[2] + 2) % 3] : Grey)}/>
 
 				<rect x='3' y='7' width={2} height={1} style={cubie((mask >> 12) & 1 ? Edges[ep[2]][(eo[2] + 0) % 2 ] : Grey)}/>
 				<rect x='3' y='5' width={2} height={2} style={cubie((mask >>  5) & 1 ? Edges[ep[2]][(eo[2] + 1) % 2 ] : Grey)}/>
 
-				<rect x='1' y='7' width={2} height={1} style={cubie((mask >> 11) & 1 ? Corners[cp[3]][(co[ 3 ] + 0) % 3] : Grey)}/>
-				<rect x='0' y='5' width={1} height={2} style={cubie((mask >> 10) & 1 ? Corners[cp[3]][(co[ 3 ] + 1) % 3] : Grey)}/>
-				<rect x='1' y='5' width={2} height={2} style={cubie((mask >>  6) & 1 ? Corners[cp[3]][(co[ 3 ] + 2) % 3] : Grey)}/>
+				<rect x='1' y='7' width={2} height={1} style={cubie((mask >> 11) & 1 ? Corners[cp[3]][(co[3] + 0) % 3] : Grey)}/>
+				<rect x='0' y='5' width={1} height={2} style={cubie((mask >> 10) & 1 ? Corners[cp[3]][(co[3] + 1) % 3] : Grey)}/>
+				<rect x='1' y='5' width={2} height={2} style={cubie((mask >>  6) & 1 ? Corners[cp[3]][(co[3] + 2) % 3] : Grey)}/>
 
 				<rect x='0' y='3' width={1} height={2} style={cubie((mask >>  9) & 1 ? Edges[ep[3]][(eo[3] + 0) % 2 ] : Grey)}/>
 				<rect x='1' y='3' width={2} height={2} style={cubie((mask >>  7) & 1 ? Edges[ep[3]][(eo[3] + 1) % 2 ] : Grey)}/>

@@ -1,6 +1,7 @@
+const _ = require('lodash');
 const app = require('ampersand-app');
 const React = require('react');
-const {Panel, Input, Button} = require('react-bootstrap');
+const {Panel, Input, Button, Modal, Row, Col, Glyphicon} = require('react-bootstrap');
 const Markdown = require('react-markdown');
 const ampersandReactMixin = require('ampersand-react-mixin');
 const Assets = require('../assets');
@@ -8,6 +9,7 @@ const AlgsetIcon = require('../components/algset-icon');
 const Alg = require('../components/alg');
 const Cube = require('../components/cube');
 const resize = require('../helpers/react-resize-mixin');
+const Case = require('../models/case');
 
 const Description = React.createClass({
 	displayName: 'Description',
@@ -57,7 +59,7 @@ const Description = React.createClass({
 		const header = (<div>
 			<span style={{fontSize: '18px'}}>Description</span>
 			{this.props.editable ?
-				<span className='glyphicon glyphicon-pencil' style={{float: 'right', marginRight: '10px', cursor: 'pointer'}} onClick={this.edit}/> : false}
+				<Glyphicon glyph='pencil' style={{float: 'right', marginRight: '10px', cursor: 'pointer'}} onClick={this.edit}/> : false}
 		</div>);
 
 		return (
@@ -110,6 +112,128 @@ const Subsets = React.createClass({
 	}
 });
 
+const AddCaseModal = React.createClass({
+	getInitialState () {
+		return {
+			showModal: false,
+
+			id: '',
+			cube: solved(),
+			scramble: ''
+		};
+	},
+
+	open () {
+		this.setState({showModal: true});
+	},
+
+	close () {
+		this.setState({showModal: false});
+	},
+
+	changeName (e) {
+		this.setState({
+			id: e.target.value
+		});
+	},
+
+	isArray (ref) {
+		// try {
+		// 	console.log(ref, this.refs);
+		// 	JSON.parse(`[[${this.refs[ref].value}]]`);
+		// 	return 'success';
+		// } catch (e) {
+		// 	console.log(136, e);
+		// 	return 'error';
+		// }
+	},
+
+	changeCP (e) {
+		try {
+			let value = JSON.parse(`${e.target.value}`);
+			this.forceUpdate();
+		} catch (e) {
+			console.log(e);
+		}
+	},
+
+	changeCO (e) {
+		try {
+			let value = JSON.parse(`${e.target.value}`);
+			this.state.cube.corners.orient = value;
+			this.forceUpdate();
+		} catch (e) {
+			console.log(e);
+		}
+	},
+
+	changeEP (e) {
+		try {
+			let value = JSON.parse(`${e.target.value}`);
+			this.state.cube.edges.perm = value;
+			this.forceUpdate();
+		} catch (e) {
+			console.log(e);
+		}
+	},
+
+	changeEO (e) {
+		try {
+			let value = JSON.parse(`${e.target.value}`);
+			this.state.cube.edges.orient = value;
+			this.forceUpdate();
+		} catch (e) {
+			console.log(e);
+		}
+	},
+
+	submit () {
+		if (this.props.submit) {
+			this.props.submit(this.state);
+		}
+		this.close();
+	},
+
+	render () {
+		let {cube} = this.state;
+		let cp = cube.corners.perm;
+		let co = cube.corners.orient;
+		let ep = cube.edges.perm;
+		let eo = cube.edges.orient;
+
+		return (
+			<Modal show={this.state.showModal} style={{width: '25vw'}}>
+				<Modal.Header>
+					<Modal.Title>Add Case</Modal.Title>
+				</Modal.Header>
+
+				<Modal.Body>
+					<Input type='text' refs='name' addonBefore='Name' onChange={this.changeName}/>
+					<Row>
+						<Col sm={2}>
+							<Cube size='100px' cube={cube}/>
+						</Col>
+						<Col sm={9} style={{margin: '10px'}}>
+							<Input type='text' refs='cp' addonBefore='CP' defaultValue={cp} onChange={this.changeCP}
+								bsStyle={this.isArray('cp')}/>
+							<Input type='text' refs='co' addonBefore='CO' defaultValue={co} onChange={this.changeCO}
+								bsStyle={this.isArray('co')}/>
+							<Input type='text' refs='ep' addonBefore='EP' defaultValue={ep} onChange={this.changeEP}
+								bsStyle={this.isArray('ep')}/>
+							<Input type='text' refs='eo' addonBefore='EO' defaultValue={eo} onChange={this.changeEO}
+								bsStyle={this.isArray('eo')}/>
+							<Button bsStyle='primary' style={{width: '15%'}} onClick={this.submit}>Add</Button>
+						</Col>
+					</Row>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button bsStyle='danger' style={{float: 'right'}} onClick={this.close}>Cancel</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+	}
+});
+
 const Cases = React.createClass({
 	displayName: 'Cases',
 	mixins: [ampersandReactMixin],
@@ -120,9 +244,25 @@ const Cases = React.createClass({
 		};
 	},
 
-	addAlg () {
-		this.props.algset.addAlg();
+	showCaseModal () {
+		this.refs.addCase.open();
 	},
+
+	addCase (options) {
+		let c = this.props.algset.cases.addCase(new Case({
+			id: options.id,
+			cube: options.cube
+		}));
+		console.log(247, this.props.algset.cases, c);
+		this.props.algset.save();
+		this.forceUpdate();
+	},
+
+	// componentWillMount () {
+	// 	this.props.algset.on('all', function (name, event) {
+	// 		this.forceUpdate();
+	// 	}, this);
+	// },
 
 	render () {
 		let size = Math.max(window.innerWidth / 16, 40);
@@ -137,37 +277,43 @@ const Cases = React.createClass({
 			</div>
 		);
 
+		let addGlyph = <Glyphicon glyph='plus' style={{cursor: 'pointer'}}/>;
+		let removeGlyph = <Glyphicon glyph='remove' style={{color: '#d32', cursor: 'pointer'}}/>;
+
 		return (
 			<Panel header={casesHeader} style={{margin: '0px'}}>
+					<AddCaseModal ref='addCase' submit={this.addCase}/>
 					<table className='table'>
 						<thead>
 							<tr>
 								<th style={{width: '1em'}}>#</th>
 								<th style={{width: `${size}px`}}>Case</th>
 								<th style={{width: 'auto'}}>Algs</th>
-								<th>Comment</th>
+								{app.admin ? <th style={{width: '1em'}}></th> : ''}
 							</tr>
 						</thead>
 						<tbody>
 							{cases.map((_case,index) => {
 								let caseCube = _.merge({}, cube, _case.cube);
-
 								return (
 									<tr key={index}>
 										<td>{_case.name || (index + 1)}</td>
-										<td><Cube rotate={_case.rotate} cube={caseCube} mask={cube.mask} size={size}/></td>
 										<td>
-										{_case.algs.map((alg, i) =>
-											<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>
-										)}
-										<Button onClick={this.addAlg}><span className='glyphicon glyphicon-plus'/></Button>
+											<Cube rotate={_case.rotate} cube={caseCube} mask={cube.mask} size={size}/>
 										</td>
-										<td>{_case.comment}</td>
+										<td>
+											{_case.algs.map((alg, i) =>
+												<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>
+											)}
+											<Button onClick={() => _case.addAlg().edit()}>{addGlyph}</Button>
+										</td>
+										{app.admin ? <td><Button onClick={_case.remove}>{removeGlyph}</Button></td> : ''}
 									</tr>
 								);
 							})}
 						</tbody>
 					</table>
+					<Button onClick={this.showCaseModal}>Add Case</Button>
 				</Panel>
 		);
 	}
@@ -204,10 +350,10 @@ module.exports = React.createClass({
 				<div className='page-header' style={{marginTop: '20px'}}>
 					<h1 className='text-center'>{preName} {algset.name} {abbrev}</h1>
 				</div>
-				<Description algset={algset} editable={editable}/>
 
-				{subsets && subsets.length ? <Subsets algset={algset} editable={editable}/> : false}
-				{cases && cases.length ? <Cases algset={algset} editable={editable}/> : false}
+				<Description algset={algset} editable={editable}/>
+				{(subsets && subsets.length) || app.admin ? <Subsets algset={algset} editable={editable}/> : false}
+				{(cases && cases.length) || app.admin ? <Cases algset={algset} editable={editable}/> : false}
 			</div>
 		);
 	}

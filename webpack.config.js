@@ -16,7 +16,7 @@ const Stylus = {
 		test: /\.styl$/,
 		loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader')
 	}
-}
+};
 
 const config = module.exports = {
 	entry: './app/src/app.js',

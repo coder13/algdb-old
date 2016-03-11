@@ -7,14 +7,14 @@ const Case = module.exports = new Schema({
 	name: String,
 	cube: {
 		corners: {
-			perm: Array,
-			orient: Array
+			perm: {type: [Number], default: [0,1,2,3,4,5,6,7]},
+			orient: {type: [Number], default: [0,0,0,0,0,0,0,0]}
 		},
 		edges: {
-			perm: Array,
-			orient: Array
+			perm: {type: [Number], default: [0,1,2,3,4,5,6,7,8,9,10,11]},
+			orient: {type: [Number], default: [0,0,0,0,0,0,0,0,0,0,0,0]}
 		},
-		centers: Array
+		centers: {type: [Number], default: [0,1,2,3,4,5]}
 	},
 	comment: String,
 	algs: [Alg]

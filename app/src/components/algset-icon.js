@@ -33,7 +33,7 @@ module.exports = React.createClass({
 
 		let image = '';
 		if (algset.image) {
-			image = (<img width='100px' src={Assets[algset.image]} alt={Assets.blank}/>);			
+			image = (<img width='100px' src={Assets[algset.image]} alt={Assets.blank}/>);
 		} else if (algset.cube) {
 			let parent = {};
 			if (this.props.parent) {

@@ -1,6 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const {Input, Button} = require('react-bootstrap');
+const {Input, Button, ButtonGroup, Glyphicon} = require('react-bootstrap');
+const ampersandReactMixin = require('ampersand-react-mixin');
 
 const Types = {
 	'*': (<span key={0} style={{marginLeft: '.5em'}} className='label label-default'>*</span>),
@@ -11,6 +12,7 @@ const Types = {
 
 module.exports = React.createClass({
 	displayName: 'Alg',
+	mixins: [ampersandReactMixin],
 
 	getDefaultProps () {
 		return {
@@ -32,6 +34,12 @@ module.exports = React.createClass({
 		};
 	},
 
+	componentWillMount () {
+		this.props.alg.on('edit', function () {
+			this.edit();
+		}, this);
+	},
+
 	edit () {
 		if (this.props.editable && !this.state.editing) {
 			this.setState({
@@ -47,8 +55,9 @@ module.exports = React.createClass({
 			this.props.alg.alg = this.state.alg;
 			this.props.alg.type = this.state.type;
 
-			if (this.props.algset) {
-				this.props.algset.save();
+			if (this.props._case) {
+				// this.props.case.save();
+				this.props.algs.remove();
 			}
 
 			this.setState({
@@ -77,6 +86,12 @@ module.exports = React.createClass({
 		return Array.isArray(type) ? type.map((t, i) => Types[t]) : '';
 	},
 
+	remove () {
+		let coll = this.props.alg.collection;
+		this.props.alg.destroy();
+		coll.save();
+	},
+
 	onBlur (e) {
 		this.setState({editing: false});
 	},
@@ -95,11 +110,19 @@ module.exports = React.createClass({
 				</select>
 			);
 
+			let deleteGlyph = <Button onClick={this.remove}><Glyphicon style={{color: '#d22'}} glyph='remove'/></Button>;
+
 			return (
 				<div className='input-group' style={{marginBottom: '2px', marginTop: '2px'}}>
 					<span className='input-group-btn' style={{padding: '0px'}}>{aufSelect}</span>
-					<Input type='text' defaultValue={alg} onChange={this.onChangeAlg} onKeyDown={this.onKeyDown}
-						onBlur={this.onBlur}/>
+
+					<div className='form-group' style={{margin: '0px'}}>
+						<div className='input-group' style={{width: '100%'}}>
+							<input type='text' className='form-control' defaultValue={alg}
+								onChange={this.onChangeAlg} onKeyDown={this.onKeyDown} onBlur={this.onBlur}/>
+							<span className='input-group-btn'>{deleteGlyph}</span>
+						</div>
+					</div>
 				</div>
 			);
 		}

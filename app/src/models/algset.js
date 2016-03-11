@@ -1,6 +1,7 @@
 const app = require('ampersand-app');
 const Model = require('ampersand-model');
 const Cases = require('./case-collection');
+const Cube = require('./cube');
 
 const countSet = function (subset) {
 	return (subset.cases ? subset.cases.length : 0) +
@@ -16,9 +17,14 @@ const Algset = module.exports = Model.extend({
 		image: 'string',
 		abbrev: 'string',
 		description: 'string',
-		cube: 'object',
-		subsets: 'array'
-		// cases: 'array',
+		cube: {
+			type: 'object',
+			default: (() => solved())
+		},
+		subsets: {
+			type: 'array',
+			default: (() => [])
+		}
 	},
 
 	derived: {
@@ -34,6 +40,22 @@ const Algset = module.exports = Model.extend({
 		cases: Cases
 	},
 
+	initialize (options) {
+		this.on('all', function (name, event) {
+			console.log(39, name, event);
+		})
+
+		if (options.cube) {
+			this.set('cube', new Cube(options.cube));
+		} else {
+			this.set('cube', new Cube(solved()));
+		}
+	},
+
+	addCase (_case) {
+		return this.cases.addCase(_case);
+	},
+
 	ajaxConfig () {
 		return {
 			headers: {
@@ -47,6 +69,7 @@ const Algset = module.exports = Model.extend({
 
 	url () {
 		let id = this.get('id');
-		return `${app.baseURL}/algsets/${id}`;
+		let baseURL = this.collection ? this.collection.url() : `${app.baseURL}/algsets`;
+		return `${baseURL}/${id}`;
 	}
 });
