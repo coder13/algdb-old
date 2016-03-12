@@ -55,10 +55,7 @@ module.exports = React.createClass({
 			this.props.alg.alg = this.state.alg;
 			this.props.alg.type = this.state.type;
 
-			if (this.props._case) {
-				// this.props.case.save();
-				this.props.algs.remove();
-			}
+			this.props.alg.save();
 
 			this.setState({
 				editing: false
@@ -87,9 +84,7 @@ module.exports = React.createClass({
 	},
 
 	remove () {
-		let coll = this.props.alg.collection;
-		this.props.alg.destroy();
-		coll.save();
+		this.props.case.removeAlg(this.props.alg);
 	},
 
 	onBlur (e) {

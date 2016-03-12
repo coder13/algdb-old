@@ -305,9 +305,9 @@ const Cases = React.createClass({
 											{_case.algs.map((alg, i) =>
 												<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>
 											)}
-											<Button onClick={() => _case.addAlg().edit()}>{addGlyph}</Button>
+											<Button onClick={() => _case.addAlg()}>{addGlyph}</Button>
 										</td>
-										{app.admin ? <td><Button onClick={_case.remove}>{removeGlyph}</Button></td> : ''}
+										{editable ? <td><Button onClick={() => cases.remove(_case)}>{removeGlyph}</Button></td> : ''}
 									</tr>
 								);
 							})}

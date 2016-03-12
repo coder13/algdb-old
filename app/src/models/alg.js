@@ -24,11 +24,6 @@ module.exports = Model.extend({
 		this.trigger('edit');
 	},
 
-	remove () {
-		this.collection.remove(this);
-		this.collection.save();
-	},
-
 	validate: function () {
 		return aufRegex.test(this.auf) && (this.alg === '' || algRegex.test(this.alg));
 	},

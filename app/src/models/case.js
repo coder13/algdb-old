@@ -5,7 +5,6 @@ const Alg = require('./alg');
 const Cube = require('./cube');
 
 const Algs = Collection.extend({
-	idAttribute: '_id',
 	model: Alg,
 
 	initialize () {
@@ -15,12 +14,23 @@ const Algs = Collection.extend({
 		}, this);
 	},
 
+	addAlg (alg) {
+		alg = alg || {};
+		if (!alg.id) {
+			alg.id = (this.models.length).toString();
+		}
+
+		this.trigger('change');
+		return this.add(alg);
+	},
+
 	save () {
 		this.parent.save();
 	}
 });
 
 module.exports = Model.extend({
+	idAttribute: '_id',
 	props: {
 		id: 'string',
 		image: 'string',
@@ -60,10 +70,15 @@ module.exports = Model.extend({
 	},
 
 	addAlg (alg) {
-		let newAlg = this.algs.add(new Alg(alg));
-		this.trigger('change', alg);
-		// this.save();
+		let newAlg = this.algs.addAlg(alg);
+		this.save();
 		return newAlg;
+	},
+
+	removeAlg (alg) {
+		this.algs.remove(alg);
+		this.trigger('change'); // ugh
+		this.save();
 	},
 
 	remove () {
