@@ -1,33 +1,33 @@
-'use strict'
+'use strict';
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ENV = process.env.NODE_ENV || 'dev';
 
-console.log('NODE_ENV=', ENV)
+console.log('NODE_ENV=', ENV);
 
-// const Stylus = {
-// 	dev: {
-// 	  test: /\.styl$/,
-// 	  loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
-// 	},
-// 	prod: {
-// 	  test: /\.styl$/,
-// 	  loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader')
-// 	}
-// }
+const Stylus = {
+	dev: {
+		test: /\.styl$/,
+		loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
+	},
+	prod: {
+		test: /\.styl$/,
+		loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!stylus-loader')
+	}
+};
 
 const config = module.exports = {
-	entry: './src/app.js',
+	entry: './app/src/app.js',
 	// entry: [
-	// 	'./src/app.js', // main entry
+	// 	'./app/src/app.js', // main entry
 	// 	'webpack-dev-server/client?http://localhost:3000', // no need to do --inline
 	// 	'webpack/hot/only-dev-server' // no need to do --hot
 	// ],
 
 	output: {
-		path: './public',
+		path: './app/public',
 		filename: 'app.js',
 		publicPath: '/'
 	},
@@ -40,7 +40,7 @@ const config = module.exports = {
 		loaders: [{
 			test: /(\.js$)|(\.jsx$)/,
 			exclude: /node_modules/,
-			loaders: ['react-hot', 'babel-loader']
+			loaders: ENV === 'dev' ? ['react-hot', 'babel?cacheDirectory'] : ['babel']
 		}, {
 			test: /\/public\//,
 			loader: 'url-loader?limit=10000'
@@ -65,11 +65,17 @@ const config = module.exports = {
 		}]
 	},
 
-
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'visualcube demo',
-			template: './src/index.html'
+			title: 'AlgDB',
+			template: './app/src/index.html',
+			favicon: './app/src/assets/favicon.png'
+		}),
+		new HtmlWebpackPlugin({
+			filename: '404.html',
+			title: 'AlgDB',
+			template: './app/src/index.html',
+			favicon: './app/src/assets/favicon.png'
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.NoErrorsPlugin()
@@ -88,11 +94,6 @@ if (ENV === 'dev') { // dev specific stuff
 		stats: {colors: false},
 		port: 3000
 	};
-
-	config.plugins.push(
-		new webpack.HotModuleReplacementPlugin()
-	);
-
 } else { // Produciton stuff
 	config.plugins.push(
 		new webpack.optimize.DedupePlugin(),
