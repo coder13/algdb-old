@@ -215,9 +215,12 @@ module.exports = React.createClass({
 		};
 	},
 
-	render () {
-		let colStyle = {minWidth: '10%', width: '10%'};
+	destroy () {
+		this.props.algset.destroy();
+		app.router.navigate('/');
+	},
 
+	render () {
 		let {algset, editable} = this.props;
 		let {abbrev, subsets, cases} = algset;
 
@@ -236,8 +239,9 @@ module.exports = React.createClass({
 				</div>
 
 				<Description algset={algset} editable={editable}/>
-				{(subsets && subsets.length) || app.admin ? <Subsets algset={algset} editable={editable}/> : false}
-				{(cases && cases.length) || app.admin ? <Cases algset={algset} editable={editable}/> : false}
+				{(subsets && subsets.length) || editable ? <Subsets algset={algset} editable={editable}/> : false}
+				{(cases && cases.length) || editable ? <Cases algset={algset} editable={editable}/> : false}
+				{editable ? <Button bsStyle='danger' onClick={this.destroy} style={{margin: '1vw', marginLeft: '2vw'}}>Delete Algset</Button> : false}
 			</div>
 		);
 	}

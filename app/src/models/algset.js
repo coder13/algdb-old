@@ -41,10 +41,6 @@ const Algset = module.exports = Model.extend({
 	},
 
 	initialize (options) {
-		// this.on('all', function (name, event) {
-		// 	console.log(39, name, event);
-		// })
-
 		if (options.cube) {
 			this.set('cube', new Cube(options.cube));
 		} else {

@@ -1,33 +1,8 @@
 const _ = require('lodash');
 const Model = require('ampersand-model');
 const Collection = require('ampersand-collection');
-const Alg = require('./alg');
+const Algs = require('./alg-collection');
 const Cube = require('./cube');
-
-const Algs = Collection.extend({
-	model: Alg,
-
-	initialize () {
-		// Propagate the event upwards.
-		this.on('all', function (name, event) {
-			this.parent.trigger(name, event);
-		}, this);
-	},
-
-	addAlg (alg) {
-		alg = alg || {};
-		if (!alg.id) {
-			alg.id = (this.models.length).toString();
-		}
-
-		this.trigger('change');
-		return this.add(alg);
-	},
-
-	save () {
-		this.parent.save();
-	}
-});
 
 module.exports = Model.extend({
 	idAttribute: '_id',

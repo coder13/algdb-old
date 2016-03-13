@@ -54,7 +54,6 @@ const combine = window.combine = function (moves) {
 // cube containing corners and edges each containing a permutation and orientation array
 const Moves = window.Moves = {
 /* Normal Moves: */
-	// Doesn't effect orientation
 	U: {
 		corners: {
 			perm: [3,0,1,2,4,5,6,7],

@@ -12,7 +12,6 @@ module.exports = Collection.extend({
 	},
 
 	addCase (_case) {
-		console.log(15, _case);
 		if (!_case.name) {
 			_case.name = (this.models.length).toString();
 		}

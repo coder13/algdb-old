@@ -44,7 +44,7 @@ module.exports = React.createClass({
 					{this.props.children}
 				</div>
 
-				<div id='footer' style={{height: '100px'}}>
+				<div id='footer' style={{height: '2em'}}>
 				</div>
 			</NavHelper>
 		);
