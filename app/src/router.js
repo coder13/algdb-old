@@ -8,13 +8,14 @@ const AlgPage = require('./pages/algset');
 const AboutPage = require('./pages/about');
 
 module.exports = Router.extend({
-	renderPage (page, active) {
+	renderPage (page, active, title) {
 		page = (
 			<Layout active={active}>
 				{page}
 			</Layout>
 		);
 
+		document.title = title || 'AlgDB';
 		ReactDOM.render(page, document.getElementById('root'));
 	},
 
@@ -33,15 +34,10 @@ module.exports = Router.extend({
 	algset (id) {
 		let algset = app.algsets.find({id: id});
 		if (algset) {
-			this.renderPage(<AlgPage algset={algset} editable={app.admin}/>, 'learn');
+			this.renderPage(<AlgPage algset={algset} editable={app.admin}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
 		} else {
 			this.redirect('Algset does not exist');
 		}
-	},
-
-	drill (algset) {
-		let scrambleType = algset === 'cmll' ? CMLL : COLL;
-		this.renderPage(<DrillPage scrambleType={scrambleType}/>, 'drill');
 	},
 
 	login () {
@@ -50,7 +46,7 @@ module.exports = Router.extend({
 
 	about () {
 		console.log('about');
-		this.renderPage(<AboutPage/>, 'about');
+		this.renderPage(<AboutPage/>, 'about', 'About');
 	},
 
 	redirect (message) {
