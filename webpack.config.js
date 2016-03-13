@@ -67,13 +67,13 @@ const config = module.exports = {
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'visualcube demo',
+			title: 'AlgDB',
 			template: './app/src/index.html',
 			favicon: './app/src/assets/favicon.png'
 		}),
 		new HtmlWebpackPlugin({
 			filename: '404.html',
-			title: 'visualcube demo',
+			title: 'AlgDB',
 			template: './app/src/index.html',
 			favicon: './app/src/assets/favicon.png'
 		}),

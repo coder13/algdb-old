@@ -246,7 +246,7 @@ module.exports = React.createClass({
 	},
 
 	componentWillReceiveProps (props) {
-		this.state.cube = this.props.cube;
+		this.state.cube = props.cube;
 		this.doMoves(props.scramble);
 	},
 

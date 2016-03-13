@@ -4,7 +4,7 @@ const Schema = require('mongoose').Schema;
 const Case = require('./case');
 
 const Algset = module.exports = new Schema();
-Algset.add({ // because of problems defining recrusive schema
+Algset.add({ // because of problems defining recursive schema
 	id: String,
 	name: String,
 	abbrev: String,
@@ -12,23 +12,23 @@ Algset.add({ // because of problems defining recrusive schema
 	description: String,
 	cube: {
 		corners: {
-			perm: {type: Array, default: [0,1,2,3,4,5,6,7]},
-			orient: {type: Array, default: [0,0,0,0,0,0,0,0]}
+			perm: {type: [Number], default: [0,1,2,3,4,5,6,7]},
+			orient: {type: [Number], default: [0,0,0,0,0,0,0,0]}
 		},
 		edges: {
-			perm: {type: Array, default: [0,1,2,3,4,5,6,7,8,9,10,11]},
-			orient: {type: Array, default: [0,0,0,0,0,0,0,0,0,0,0,0]}
+			perm: {type: [Number], default: [0,1,2,3,4,5,6,7,8,9,10,11]},
+			orient: {type: [Number], default: [0,0,0,0,0,0,0,0,0,0,0,0]}
 		},
-		centers: {type: Array, default: [0,1,2,3,4,5]}
+		centers: {type: [Number], default: [0,1,2,3,4,5]}
 	},
 	subsets: [Algset],
 	cases: [Case]
 });
 
-Algset.pre('findOneAndUpdate', function (next) {
-	this._update = flat(this._update);
-	next();
-});
+// Algset.pre('findOneAndUpdate', function (next) {
+// 	this._update = flat(this._update);
+// 	next();
+// });
 
 Algset.statics.findByID = function (id, cb) {
 	return this.findOne({id: id}, cb);

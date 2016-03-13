@@ -24,11 +24,14 @@ const app = window.app = App.extend({
 
 		this.algsets = new Algsets();
 		this.algsets.fetch({
-			success: function () {
+			success: function (coll, response, options) {
+				console.log('Grabbed', response.length, 'algsets');
 				app.router = new Router();
 				app.router.history.start();
 			},
-			error: function () {
+			error: function (coll, response, options) {
+				let error = JSON.parse(response.body);
+				console.error('Error:', error.statusCode, error.error);
 				app.router = new Router();
 				app.router.history.start();
 			}
@@ -43,13 +46,6 @@ const app = window.app = App.extend({
 		app.algsets.create(algset, {
 			success: () => console.log('Successfully created algset.')
 		});
-	},
-
-	findAlgset (name) {
-		if (typeof name === 'string') {
-			return app.DB.find(set => (set.algsetID || set.abbrev || set.name || '').toLowerCase() === name.toLowerCase());
-		}
-		return name;
 	}
 }, Config);
 

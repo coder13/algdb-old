@@ -7,8 +7,6 @@ const Algset = require('./models/algset');
 const AlgPage = require('./pages/algset');
 const AboutPage = require('./pages/about');
 
-const match = (name) => ((set) => (set.id || set.abbrev || set.name || '').toLowerCase() === name.toLowerCase());
-
 module.exports = Router.extend({
 	renderPage (page, active) {
 		page = (
@@ -28,16 +26,17 @@ module.exports = Router.extend({
 	},
 
 	index () {
+		app.algsets.fetch();
 		this.renderPage(<IndexPage algsets={app.algsets}/>, 'home');
 	},
 
 	algset (id) {
 		let algset = app.algsets.find({id: id});
-		if (!algset) {
-			algset = new Algset({id: id});
-			algset.fetch();
+		if (algset) {
+			this.renderPage(<AlgPage algset={algset} editable={app.admin}/>, 'learn');
+		} else {
+			this.redirect('Algset does not exist');
 		}
-		this.renderPage(<AlgPage algset={algset} editable={app.admin}/>, 'learn');
 	},
 
 	drill (algset) {
@@ -54,7 +53,7 @@ module.exports = Router.extend({
 		this.renderPage(<AboutPage/>, 'about');
 	},
 
-	redirect () {
+	redirect (message) {
 		this.redirectTo('/');
 	}
 });

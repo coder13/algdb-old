@@ -32,7 +32,7 @@ const Algs = Collection.extend({
 module.exports = Model.extend({
 	idAttribute: '_id',
 	props: {
-		id: 'string',
+		name: 'string',
 		image: 'string',
 		description: 'string',
 

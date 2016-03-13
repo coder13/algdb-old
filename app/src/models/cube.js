@@ -192,6 +192,15 @@ const Cube = window.CubeModel = module.exports = Model.extend({
 		}, this);
 	},
 
+	merge (cube) {
+		return new Cube({
+			corners: _.merge({}, this.corners, cube.corners),
+			edges: _.merge({}, this.edges, cube.edges),
+			centers: _.merge([], this.centers, cube.centers),
+			mask: cube.mask | this.mask
+		});
+	},
+
 	equals (val) {
 		return this.corners.perm === val.corners.perm &&
 						this.corners.orient === val.corners.orient &&

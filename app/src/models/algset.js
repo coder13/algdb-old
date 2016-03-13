@@ -41,9 +41,9 @@ const Algset = module.exports = Model.extend({
 	},
 
 	initialize (options) {
-		this.on('all', function (name, event) {
-			console.log(39, name, event);
-		})
+		// this.on('all', function (name, event) {
+		// 	console.log(39, name, event);
+		// })
 
 		if (options.cube) {
 			this.set('cube', new Cube(options.cube));
@@ -54,6 +54,12 @@ const Algset = module.exports = Model.extend({
 
 	addCase (_case) {
 		return this.cases.addCase(_case);
+	},
+
+	removeCase (_case) {
+		this.cases.remove(_case);
+		this.trigger('change'); // ugh
+		this.save();
 	},
 
 	ajaxConfig () {
