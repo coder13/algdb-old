@@ -113,15 +113,12 @@ const App = global.App = app.extend({
 								redirectTo: false
 							}
 						},
-						handler: function (request, reply) {
-							reply.file('index.html');
+						handler: {
+							file: {
+								path: 'index.html'
+							}
 						}
 					}
-					// handler: {
-					// 	file: {
-					// 		path: 'index.html'
-					// 	}
-					// }
 				});
 
 				server.route({
