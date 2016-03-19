@@ -8,7 +8,7 @@ module.exports = React.createClass({
 	onClick (event) {
 		const pathname = localLinks.getLocalPathname(event);
 
-		if  (pathname) {
+		if (pathname) {
 			event.preventDefault();
 			app.router.history.navigate(pathname);
 		}

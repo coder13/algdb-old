@@ -3,40 +3,42 @@
 const Boom = require('boom');
 const Algset = require('./handlers/algset');
 
+const base = '/api/v0';
+
 module.exports = [{
 /*	Algsets: 	*/
 	method: 'GET',
-	path: '/algsets',
+	path: `${base}/algsets`,
 	config: {
 		handler: Algset.getAll
 	}
 }, { // get algset
 	method: 'GET',
-	path: '/algsets/{id}',
+	path: `${base}/algsets/{id}`,
 	config: {
 		handler: Algset.get
 	}
 }, { // create
 	method: 'POST',
-	path: '/algsets/{id}',
+	path: `${base}/algsets/{id}`,
 	config: {
-		auth: 'simple',
+		auth: 'session',
 		validate: Algset.validate,
 		handler: Algset.create
 	}
 }, { // update
 	method: 'PUT',
-	path: '/algsets/{id}',
+	path: `${base}/algsets/{id}`,
 	config: {
-		auth: 'simple',
+		auth: 'session',
 		validate: Algset.validate,
 		handler: Algset.update
 	}
 }, { // delete
 	method: 'DELETE',
-	path: '/algsets/{id}',
+	path: `${base}/algsets/{id}`,
 	config: {
-		auth: 'simple',
+		auth: 'session',
 		handler: Algset.remove
 	}
 }];

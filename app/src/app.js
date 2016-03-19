@@ -21,21 +21,12 @@ if (typeof window !== 'undefined') {
 const app = window.app = App.extend({
 	init () {
 		this.me = new Me();
+		this.me.fetch();
 
 		this.algsets = new Algsets();
-		this.algsets.fetch({
-			success: function (coll, response, options) {
-				console.log('Grabbed', response.length, 'algsets');
-				app.router = new Router();
-				app.router.history.start();
-			},
-			error: function (coll, response, options) {
-				let error = JSON.parse(response.body);
-				console.error('Error:', error.statusCode, error.error);
-				app.router = new Router();
-				app.router.history.start();
-			}
-		});
+
+		app.router = new Router();
+		app.router.history.start();
 	},
 
 	addAlgset (algset) {

@@ -58,20 +58,10 @@ const Algset = module.exports = Model.extend({
 		this.save();
 	},
 
-	ajaxConfig () {
-		return {
-			headers: {
-				authorization: 'Basic YWw6Z3M=' // al:gs
-			},
-			xhrFields: {
-				withCredentials: true
-			}
-		};
-	},
-
 	url () {
 		let id = this.get('id');
-		let baseURL = this.collection ? this.collection.url() : `${app.baseURL}/algsets`;
+		console.log(63, !!this.collection);
+		let baseURL = this.collection ? this.collection.url() : `${app.apiURL}/algsets`;
 		return `${baseURL}/${id}`;
 	}
 });

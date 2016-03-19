@@ -90,6 +90,8 @@ if (ENV === 'dev') { // dev specific stuff
 		lazy: false,
 		historyApiFallback: true,
 		hot: true,
+		inline: true,
+		progress: true,
 		publicPath: '/',
 		stats: {colors: false},
 		port: 3000

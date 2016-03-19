@@ -12,8 +12,6 @@ module.exports = React.createClass({
 		return {};
 	},
 
-	componentDidMount: function() {},
-
 	render () {
 		return (
 			<NavHelper id='layout' style={{height: '100%', width: '100%'}}>
@@ -36,6 +34,16 @@ module.exports = React.createClass({
 								<li className={this.props.active === 'drill' ? 'active' : ''}><a href='/drill'>Drill</a></li>
 								<li className={this.props.active === 'about' ? 'active' : ''}><a href='/about'>About</a></li>
 							</ul>
+							<ul className='nav navbar-nav pull-right'>
+								<li>
+									{app.me.isLoggedIn ? <a href='/logout'>Logout</a> : <a href='/login'>Login</a>}
+								</li>
+							</ul>
+							{app.me.isLoggedIn ?
+							<div className='pull-right'>
+								<span>Logged in as {app.me.name} </span>
+								<image width='50px' height='50px' src={app.me.avatar ? app.me.avatar.thumb_url : ''}/>
+							</div> : ''}
 						</div>
 					</div>
 				</nav>
