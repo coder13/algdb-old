@@ -9,6 +9,10 @@ const Cube = require('../components/cube');
 const AddAlgsetModal = React.createClass({
 	displayName: 'AddAlgsetModal',
 
+	componentWillMount () {
+
+	},
+
 	getInitialState () {
 		return {
 			showModal: false,
@@ -146,7 +150,7 @@ module.exports = React.createClass({
 							</div>
 						)}
 						<div className='pull-left'>
-							{app.admin ? addAlgset : ''}
+							{app.me.isLoggedIn ? addAlgset : ''}
 						</div>
 					</div>
 				</div>

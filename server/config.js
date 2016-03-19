@@ -1,4 +1,6 @@
-// Return differnet config based off of NODE_ENV;
+const webpack = require('webpack');
+
+// Return different config based off of NODE_ENV;
 const baseConfig = {
 	host: 'localhost',
 	port: '8000',
@@ -17,7 +19,6 @@ const baseConfig = {
 
 const config = {
 	dev: {
-
 	},
 	prod: {
 

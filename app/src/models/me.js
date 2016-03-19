@@ -1,26 +1,27 @@
+const app = require('ampersand-app');
 const Model = require('ampersand-model');
+const xhr = require('xhr');
 
 module.exports = Model.extend({
 	props: {
-
+		id: 'number',
+		username: 'string',
+		wca_id: 'string',
+		name: 'string',
+		avatar: 'object',
+		email: 'string'
 	},
 
-	initialize () {
-		this.login();
-	},
-
-	login () {
-
-	},
-
-	save () {
-		console.log('saving...', JSON.stringify(this));
-		window.localStorage.setItem('algdb_me', JSON.stringify(this));
-	},
-
-	load () {
-		if (window.localStorage.getItem('algdb_me')) {
-			this.set(JSON.parse(window.localStorage.getItem('algdb_me')));
+	derived: {
+		isLoggedIn: {
+			deps: ['id'],
+			fn () {
+				return !!this.id;
+			}
 		}
+	},
+
+	url () {
+		return `${app.apiURL}/me`;
 	}
 });

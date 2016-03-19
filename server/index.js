@@ -1,22 +1,19 @@
 'use strict';
 
+const DEV = process.env.NODE_ENV === 'dev';
+
 const app = require('ampersand-app');
+const fs = require('fs');
+const path = require('path');
 const Hapi = require('hapi');
 const Hoek = require('hoek');
 const boom = require('boom');
 const mongoose = require('mongoose');
 const config = require('./config');
 
-const users = {
-	al: {
-		username: 'al',
-		password: 'gs',
-		name: 'Al Gs',
-		id: '2133d32a'
-	}
-};
-
 const plugins = [{
+	register: require('inert')
+}, {
 	register: require('good'),
 	options: {
 		reporters: [{
@@ -28,34 +25,35 @@ const plugins = [{
 	register: require('hapi-cors'),
 	options: {
 		methods: ['POST, GET, OPTIONS, PUT, DELETE'],
-		origins: ['http://localhost:3000']
+		origins: ['*'],
+		allowCredentials: 'true'
 	}
+}, {
+	register: require('hapi-auth-cookie')
+}, {
+	register: require('bell')
+}, {
+	register: require('./auth')
 }];
 
-const validate = function (request, username, password, callback) {
-	const user = users[username];
-	if (!user) {
-		return callback(null, false);
-	}
-
-	if (password === user.password) {
-		callback(null, true, {
-			id: user.id,
-			name: user.name
-		});
-	} else {
-		callback(null, false);
-	}
-	// bcrypt.compare(password, user.password, (err, isValid) => {
-	// 	callback(err, isValid, { id: user.id, name: user.name });
-	// });
-};
+if (DEV) {
+	plugins.push({
+		register: require('h2o2')
+	});
+}
 
 const App = global.App = app.extend({
 	init: function () {
 		let server = this.server = new Hapi.Server({
 			debug: {
 				request: ['error']
+			},
+			connections: {
+				routes: {
+					files: {
+						relativeTo: path.join(__dirname, '../app/public')
+					}
+				}
 			}
 		});
 
@@ -74,15 +72,73 @@ const App = global.App = app.extend({
 
 		this.models = require('./models');
 
-		server.register(require('hapi-auth-basic'), function (err) {
-			Hoek.assert(!err, 'Error registering hapi-auth-basic');
-			server.auth.strategy('simple', 'basic', {validateFunc: validate});
+		server.register(plugins, function (err) {
+			server.route(require('./routes'));
 
-			server.register(plugins, function (err) {
-				server.route(require('./routes'));
+			const tryAuth = {
+				strategy: 'session',
+				mode: 'optional'
+			};
 
-				App.start();
-			});
+			if (DEV) {
+				console.log('Setting up proxy...');
+				server.route({
+					method: 'GET',
+					path: '/{path*}',
+					config: {
+						auth: tryAuth,
+						plugins: {
+							'hapi-auth-cookie': {
+								redirectTo: false
+							}
+						},
+						handler: {
+							proxy: {
+								host: '0.0.0.0',
+								port: '3000',
+								protocol: 'http',
+								passThrough: true
+							}
+						}
+					}
+				});
+			} else {
+				server.route({
+					method: 'GET',
+					path: '/',
+					config: {
+						auth: tryAuth,
+						plugins: {
+							'hapi-auth-cookie': {
+								redirectTo: false
+							}
+						},
+						handler: function (request, reply) {
+							reply.file('index.html');
+						}
+					}
+					// handler: {
+					// 	file: {
+					// 		path: 'index.html'
+					// 	}
+					// }
+				});
+
+				server.route({
+					method: 'GET',
+					path: '/{path*}',
+					handler: {
+						directory: {
+							path: '.',
+							index: false,
+							listing: false,
+							showHidden: false
+						}
+					}
+				});
+			}
+
+			App.start();
 		});
 	},
 
