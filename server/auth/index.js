@@ -31,7 +31,7 @@ module.exports.register = function(server, options, next) {
 		password: 'secret_cookie_encryption_password', //Use something more secure in production
 		cookie: 'sid-algdb',
 		redirectTo: '/', //If there is no session, redirect here
-		isSecure: process.env.NODE_ENV !== 'dev' //Should be set to true (which is the default) in production,
+		isSecure: false //Should be set to true (which is the default) in production,
 	});
 
 	//Added a separate file for just routes.
