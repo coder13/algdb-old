@@ -1,5 +1,4 @@
 node_modules
 log
-app/node_modules
-app/public
+app/public/*
 npm-debug.log
