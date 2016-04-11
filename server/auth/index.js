@@ -1,7 +1,16 @@
 'use strict';
 
+const Users = require('./users');
+
 module.exports.register = function(server, options, next) {
-	console.log('registering auth...');
+	server.log('Setting up auth...');
+
+	if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
+		throw new Error('Enviroment variables CLIENT_ID and/or CLIENT_SECRET not defined.');
+	}
+
+	console.log(`CLIENT_ID: ${process.env.CLIENT_ID}`);
+	console.log(`CLIENT_SECRET: ${process.env.CLIENT_SECRET}`);
 
 	// Setup the social WCA login strategy
 	server.auth.strategy('wca', 'bell', {
@@ -34,11 +43,27 @@ module.exports.register = function(server, options, next) {
 		isSecure: false //Should be set to true (which is the default) in production,
 	});
 
+	server.ext('onPostAuth', function (request, reply) {
+		if (request.route.settings.role) {
+			console.log(request.route.settings.role)
+		}
+		reply.continue();
+	});
+
+	// server.auth.scheme('users', Users);
+
+	// server.auth.strategy('admin', 'users', {role: 'Admin'});
+	// server.auth.strategy('moderator', 'users', {role: 'Moderator'});
+	// server.auth.strategy('user', 'users', {role: 'User'});
+
 	//Added a separate file for just routes.
 	server.route(require('./routes'));
 	next();
 };
 
 module.exports.register.attributes = {
-	pkg: require('../../package.json')
+	pkg: {
+		name: 'auth',
+		version: '0'
+	}
 };

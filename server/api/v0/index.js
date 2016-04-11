@@ -1,25 +1,16 @@
 'use strict';
 
+module.exports.register = function(server, options, next) {
+	server.log('info', 'Setting up api...');
+	server.route(require('./algsets'));
+	server.route(require('./users'));
 
+	next();
+};
 
-module.exports = [{
-	method: 'GET',
-	path: '/api/v0',
-	handler: function (request, reply) {
-		reply({
-			version: require('../../../package.json').version
-		});
+module.exports.register.attributes = {
+	pkg: {
+		name: 'api',
+		version: '0'
 	}
-}, {
-	method: 'GET',
-	path: '/api/v0/set/{set}',
-	handler: function (request, reply) {
-		console.log(request.params);
-		let set = data.find(set => set.id.toLowerCase() === request.params.set.toLowerCase());
-		if (set) {
-			reply(set);
-		} else {
-			reply(`Could not find set ${request.params.set}`);
-		}
-	}
-}];
+};
