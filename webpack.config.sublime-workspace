@@ -1,0 +1,1437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"input-gr",
+				"input-group-btn"
+			],
+			[
+				"cursor",
+				"cursor = 'auto'	Style CSS"
+			],
+			[
+				"pas",
+				"password	URLUtils"
+			],
+			[
+				"functio",
+				"function without name"
+			],
+			[
+				"es",
+				"eslint"
+			],
+			[
+				"Regist",
+				"Registration"
+			],
+			[
+				"case",
+				"caseCube"
+			],
+			[
+				"cas",
+				"caseCube"
+			],
+			[
+				"find",
+				"findAlgset"
+			],
+			[
+				"pa",
+				"paths"
+			],
+			[
+				"fi",
+				"findAlgset"
+			],
+			[
+				"s",
+				"state"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"stok",
+				"strokeWidth"
+			],
+			[
+				"Edg",
+				"Edges"
+			],
+			[
+				"public",
+				"publicPath"
+			],
+			[
+				"web",
+				"webpack"
+			],
+			[
+				"pub",
+				"publicPath"
+			],
+			[
+				"con",
+				"config"
+			],
+			[
+				"al",
+				"_algset"
+			],
+			[
+				"pro",
+				"process"
+			],
+			[
+				"fil",
+				"filterAlgType"
+			],
+			[
+				"filt",
+				"filterCaseType"
+			],
+			[
+				"ind",
+				"indexOf"
+			],
+			[
+				"filter",
+				"filterAlgType"
+			],
+			[
+				"show",
+				"showAlgCauseAlgType"
+			],
+			[
+				"fl",
+				"filterCaseType"
+			],
+			[
+				"sho",
+				"showAlgCauseCaseType"
+			],
+			[
+				"move",
+				"moveSet"
+			],
+			[
+				"exp",
+				"Explanation"
+			],
+			[
+				"get",
+				"getCheckedValues"
+			],
+			[
+				"filte",
+				"filterCaseType"
+			],
+			[
+				"com",
+				"componentWillUnmount"
+			],
+			[
+				"render",
+				"render3"
+			],
+			[
+				"co",
+				"corners"
+			],
+			[
+				"of",
+				"offset"
+			],
+			[
+				"done",
+				"donemoves"
+			],
+			[
+				"pr",
+				"process"
+			],
+			[
+				"ini",
+				"initialize"
+			],
+			[
+				"chan",
+				"channels"
+			],
+			[
+				"remo",
+				"removeRoom"
+			],
+			[
+				"client",
+				"ClientContainer"
+			],
+			[
+				"user",
+				"userUUID"
+			],
+			[
+				"for",
+				"forceUpdate"
+			],
+			[
+				"us",
+				"userUUID"
+			],
+			[
+				"soc",
+				"socketIOListener"
+			],
+			[
+				"ser",
+				"serializeRooms"
+			],
+			[
+				"new",
+				"newScramble"
+			],
+			[
+				"scr",
+				"scramble"
+			],
+			[
+				"clien",
+				"clientDisconnected"
+			],
+			[
+				"scrol",
+				"scrollTimesToBottom"
+			],
+			[
+				"kb",
+				"kGlobal_SocketIO_Server_IP"
+			],
+			[
+				"handls",
+				"handleSettingsSubmit"
+			],
+			[
+				"cur",
+				"currentSession"
+			],
+			[
+				"cacl",
+				"calcStats"
+			],
+			[
+				"sol",
+				"solveArray"
+			],
+			[
+				"webpack",
+				"webpack-dev-server"
+			],
+			[
+				"kGl",
+				"kGlobal_Event_RoomJoined"
+			],
+			[
+				"room",
+				"roomID"
+			],
+			[
+				"cha",
+				"chats"
+			],
+			[
+				"enti",
+				"entity"
+			],
+			[
+				"mouse",
+				"mousedown"
+			],
+			[
+				"mara",
+				"marathonText"
+			],
+			[
+				"size",
+				"sizeText"
+			],
+			[
+				"displa",
+				"displayTimes"
+			],
+			[
+				"marath",
+				"marathondata"
+			],
+			[
+				"rel",
+				"relaydata"
+			],
+			[
+				"lo",
+				"lookupTable"
+			],
+			[
+				"resol",
+				"resolveExpression"
+			],
+			[
+				"onA",
+				"onAddEvent"
+			],
+			[
+				"expo",
+				"exportDataText"
+			],
+			[
+				"export",
+				"exportData"
+			],
+			[
+				"Comp",
+				"Competitions"
+			],
+			[
+				"comp",
+				"competition"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"rout",
+				"routes"
+			],
+			[
+				"env",
+				"NODE_ENV"
+			],
+			[
+				"im",
+				"importText"
+			],
+			[
+				"impor",
+				"importData"
+			],
+			[
+				"spl",
+				"splitRaw"
+			],
+			[
+				"split",
+				"splitRaw"
+			],
+			[
+				"va",
+				"variable"
+			],
+			[
+				"prp",
+				"property"
+			],
+			[
+				"rs",
+				"resolved"
+			],
+			[
+				"reso",
+				"resolved"
+			],
+			[
+				"prop",
+				"properties"
+			],
+			[
+				"Varia",
+				"variable"
+			],
+			[
+				"dec",
+				"declarations"
+			],
+			[
+				"Vari",
+				"variable"
+			],
+			[
+				"sco",
+				"scope"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"argu",
+				"arguments"
+			],
+			[
+				"As",
+				"AssignmentProgram"
+			],
+			[
+				"ne",
+				"neoNode"
+			],
+			[
+				"Obj",
+				"ObjectProgram"
+			],
+			[
+				"util",
+				"utils"
+			],
+			[
+				"neoP",
+				"neoProp"
+			],
+			[
+				"proper",
+				"property"
+			],
+			[
+				"Ass",
+				"AssignmentExpression"
+			],
+			[
+				"neo",
+				"neoNode"
+			],
+			[
+				"res",
+				"resolved"
+			],
+			[
+				"scope",
+				"scope"
+			],
+			[
+				"FUn",
+				"FunctionDeclaration"
+			],
+			[
+				"bod",
+				"bodyScope"
+			],
+			[
+				"resolv",
+				"resolveExpression"
+			],
+			[
+				"Func",
+				"FunctionParams"
+			],
+			[
+				"pars",
+				"parseCode"
+			],
+			[
+				"par",
+				"parseCode"
+			],
+			[
+				"arg",
+				"arguments"
+			],
+			[
+				"var",
+				"VariableDeclaration"
+			],
+			[
+				"qury",
+				"queryBatch"
+			],
+			[
+				"tra",
+				"traverse"
+			],
+			[
+				"Neo",
+				"NeoNode"
+			],
+			[
+				"qu",
+				"queueQuery"
+			],
+			[
+				"scop",
+				"scopeManager"
+			],
+			[
+				"express",
+				"expressions"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"pare",
+				"parentScope"
+			],
+			[
+				"retur",
+				"returns"
+			],
+			[
+				"first",
+				"firstFuncScope"
+			],
+			[
+				"fir",
+				"firstFuncScope"
+			],
+			[
+				"ha",
+				"handler"
+			],
+			[
+				"ag",
+				"arguments"
+			],
+			[
+				"proer",
+				"property"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"fn",
+				"function"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"obj",
+				"object"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"last_filter": "sssty",
+		"selected_items":
+		[
+			[
+				"sssty",
+				"Set Syntax: Stylus"
+			],
+			[
+				"ssjsb",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"for",
+				"Format: Javascript"
+			],
+			[
+				"lintthi",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"en",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"enableli",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"linthti",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"",
+				"Convert Case: Upper Case"
+			],
+			[
+				"inser",
+				"Insert Nums"
+			],
+			[
+				"npm",
+				"npm: Run Tests"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lit",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"litn",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"enab",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"ssjson",
+				"Set Syntax: JSON"
+			],
+			[
+				"sshan",
+				"Set Syntax: Hjson"
+			],
+			[
+				"insertn	",
+				"Insert Nums"
+			],
+			[
+				"sshj",
+				"Set Syntax: Hjson"
+			],
+			[
+				"hjson",
+				"Set Syntax: Hjson"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"ssjs",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"ssst",
+				"Set Syntax: Stylus"
+			],
+			[
+				"disa",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"insertnu	",
+				"Insert Nums"
+			],
+			[
+				"up",
+				"Convert Case: Upper Case"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"inse",
+				"Insert Nums"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"ssjso",
+				"Set Syntax: JSON"
+			],
+			[
+				"insertnu",
+				"Insert Nums"
+			],
+			[
+				"toggl",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"linthtis",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lintthis",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"jsb",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"linthis",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"sjsson",
+				"Set Syntax: JSON"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"sjssb",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"packag",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjsn",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"forma",
+				"Format: Javascript"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"replnod",
+				"SublimeREPL: Node"
+			],
+			[
+				"replno",
+				"SublimeREPL: Python"
+			],
+			[
+				"ssj",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"six",
+				"Set Syntax: Six"
+			],
+			[
+				"ssjst",
+				"Set Syntax: Regular Expressions (Javascript Next)"
+			],
+			[
+				"requ",
+				"Require"
+			],
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"jsfor",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"jsfo",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"gitgu",
+				"GitGutter: Show Comparing Against"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"sss",
+				"Set Syntax: Stylus"
+			],
+			[
+				"nodere",
+				"NodeRequirer: Set Plugin Options"
+			],
+			[
+				"ssss",
+				"Set Syntax: Stylus"
+			],
+			[
+				"enablep",
+				"Package Control: Enable Package"
+			],
+			[
+				"enablli",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"litnhti",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"sssjs",
+				"Set Syntax: Java Server Page (JSP)"
+			],
+			[
+				"console",
+				"Set Syntax: R Console"
+			],
+			[
+				"dis",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"pretty",
+				"HTMLPrettify"
+			],
+			[
+				"SSJS",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"SSJ",
+				"Set Syntax: JSON (Babel)"
+			],
+			[
+				"SSJSO",
+				"Set Syntax: JSON"
+			],
+			[
+				"ena",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"di",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"ssbash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"ssjscb",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"ssjb",
+				"Set Syntax: JSON (Babel)"
+			],
+			[
+				"ssjscbab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"linthi",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"enabl",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"ssjsc",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"ssjscbabel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"ssbab",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"toggle lint",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"lint this",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"txt",
+				"Set Syntax: TeX Math"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"spell",
+				"Google Spell Check"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"linter",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"enablel",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"lime",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"ssp",
+				"Set Syntax: Python"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"eslint",
+				"Preferences: SublimeLinter Settings – User"
+			],
+			[
+				"disbale",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"jshint",
+				"JSHint"
+			],
+			[
+				"sublimelinter:e",
+				"SublimeLinter: Enable Debug Mode"
+			],
+			[
+				"sublimeLinter: sh",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Enable Debug Mode"
+			],
+			[
+				"jsli",
+				"JSLint"
+			],
+			[
+				"jslint",
+				"Build With: JSLint"
+			],
+			[
+				"jsl",
+				"Build With: JSLint"
+			],
+			[
+				"sstxt",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"setcss",
+				"Set Syntax: CSS"
+			],
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 207.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/caleb/websites/algdb"
+	],
+	"file_history":
+	[
+		"/home/caleb/.bashrc",
+		"/home/caleb/.dotfiles/i3/lemonbar/i3_lemonbar_conky",
+		"/home/caleb/.dotfiles/i3/lemonbar/i3_workspaces.py",
+		"/home/caleb/.dotfiles/i3/lemonbar/i3_workspaces.pl",
+		"/home/caleb/.dotfiles/i3/lemonbar/lemonbar_parser.sh",
+		"/home/caleb/.dotfiles/i3/lemonbar/i3_lemonbar_config",
+		"/home/caleb/git/csivanich/dotfiles/install.conf.json",
+		"/home/caleb/.vimrc",
+		"/home/caleb/Projects/Carat/test/ast.js",
+		"/home/caleb/.i3/config",
+		"/home/caleb/Projects/Carat/lib/ast.js",
+		"/home/caleb/.zsh",
+		"/home/caleb/.tmux.conf",
+		"/home/caleb/websites/algdb/server/models/user.js",
+		"/home/caleb/websites/algdb/server/auth/index.js",
+		"/home/caleb/websites/algdb/server/auth/routes.js",
+		"/home/caleb/websites/algdb/server/api/v0/handlers.js",
+		"/home/caleb/websites/algdb/node_modules/bell/lib/oauth.js",
+		"/home/caleb/websites/algdb/server/models/index.js",
+		"/home/caleb/websites/algdb/.gitignore",
+		"/home/caleb/websites/algdb/package.json",
+		"/home/caleb/websites/algdb/app/src/models/algset-collection.js",
+		"/home/caleb/websites/algdb/app/src/models/algset.js",
+		"/home/caleb/websites/algdb/app/src/router.js",
+		"/home/caleb/websites/algdb/server/models/algset.js",
+		"/home/caleb/websites/algdb/server/curl",
+		"/home/caleb/websites/algdb/app/src/components/nav-helper.js",
+		"/home/caleb/websites/algdb/app/src/config.js",
+		"/home/caleb/websites/algdb/node_modules/hapi-cors/index.js",
+		"/home/caleb/websites/algdb/app/src/pages/index.js",
+		"/home/caleb/websites/algdb/app/src/pages/layout.js",
+		"/home/caleb/websites/algdb/webpack.config.js",
+		"/home/caleb/websites/algdb/server/routes.js",
+		"/home/caleb/websites/algdb/server/auth/handlers.js",
+		"/home/caleb/websites/algdb/server/auth/routes",
+		"/home/caleb/websites/algdb/server/auth/handlers",
+		"/home/caleb/websites/algdb/app/src/pages/algset.js",
+		"/home/caleb/websites/algdb/app/src/components/cube.js",
+		"/home/caleb/websites/algdb/app/src/models/cube.js",
+		"/home/caleb/websites/algdb/app/src/models/case.js",
+		"/home/caleb/websites/algdb/app/src/models/alg.js",
+		"/home/caleb/websites/algdb/app/src/components/alg.js",
+		"/home/caleb/websites/algdb/app/src/models/alg-collection.js",
+		"/home/caleb/websites/algdb/app/src/models/case-collection.js",
+		"/home/caleb/websites/algdb/app/src/components/editCaseModal.js",
+		"/home/caleb/websites/algdb/app/src/components/editCubeModal.js",
+		"/home/caleb/websites/algdb/app/src/pages/about.js",
+		"/home/caleb/websites/algdb/scripts/data.js",
+		"/home/caleb/websites/algdb/server/handlers/algset.js",
+		"/home/caleb/websites/algdb/node_modules/eslint-plugin-react/lib/rules/jsx-space-before-closing.js",
+		"/home/caleb/websites/algdb/app/src/components/algset-icon.js",
+		"/home/caleb/websites/algdb/server/config.js",
+		"/home/caleb/websites/algdb/server/models/alg.js",
+		"/home/caleb/websites/algdb/app/src/index.html",
+		"/home/caleb/websites/algdb/server/models/case.js",
+		"/home/caleb/websites/algdb/app/src/helpers/react-resize-mixin.js",
+		"/home/caleb/websites/algdb/app/src/pages/drill.js",
+		"/home/caleb/websites/algdb/app/src/styles/main.styl",
+		"/home/caleb/websites/algdb/src/index.html",
+		"/home/caleb/websites/algdb/app/src/data/algs/index.js",
+		"/home/caleb/websites/algdb/app/src/models/me.js",
+		"/home/caleb/websites/algdb/app/src/data/algs/coll.js",
+		"/home/caleb/websites/algdb/app/src/data/algs/pll.js",
+		"/home/caleb/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/caleb/websites/algdb/server/models/subset.js",
+		"/home/caleb/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/caleb/websites/algdb/.babelrc",
+		"/home/caleb/websites/algdb/app/src/components/Case.js",
+		"/home/caleb/websites/algdb/app/config.js",
+		"/home/caleb/websites/algdb/app/src/app.js",
+		"/home/caleb/websites/algdb/server/index.js",
+		"/home/caleb/websites/algdb/.nodemon",
+		"/home/caleb/websites/algdb/nodemon.js",
+		"/home/caleb/websites/algdb/server/routes",
+		"/home/caleb/websites/algdb/app/.babelrc",
+		"/home/caleb/websites/algdb/node_modules/hapi-auth-basic/lib/index.js",
+		"/home/caleb/websites/algdb/server/mongodb.js",
+		"/home/caleb/websites/algdb/server/api/v0/index.js",
+		"/home/caleb/websites/algdb/server/.eslintrc",
+		"/home/caleb/websites/algdb/server/data/algs/pll.js",
+		"/home/caleb/websites/algdb/server/data/algs/index.js",
+		"/home/caleb/websites/algdb/server/.eslintignore",
+		"/home/caleb/websites/algdb/server/api/index.js",
+		"/home/caleb/websites/algdb/app/.eslintignore",
+		"/home/caleb/websites/learncll/package.json",
+		"/home/caleb/websites/algdb/README.md",
+		"/home/caleb/websites/algdb/app/package.json",
+		"/home/caleb/websites/algdb/app/.eslintrc",
+		"/home/caleb/websites/algdb/app/src/pages/learn.js",
+		"/home/caleb/websites/algdb/app/src/data/cll.js",
+		"/home/caleb/websites/algdb/app/webpack.config.js",
+		"/home/caleb/websites/algdb/server/routes/index.js",
+		"/home/caleb/websites/.eslintrc",
+		"/home/caleb/websites/algdb/.eslintrc",
+		"/home/caleb/websites/algdb/.eslintignore",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/spec/controllers/registrations_controller_spec.rb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/views/registrations/register.html.erb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/views/registrations/edit.html.erb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/controllers/registrations_controller.rb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/views/registrations/edit_registrations.html.erb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/views/competitions/edit.html.erb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/controllers/api/v0/api_controller.rb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/views/competitions/index.html.erb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/controllers/competitions_controller.rb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/db/structure.sql",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/controllers/regulations_controller.rb",
+		"/home/caleb/git/cubing/worldcubeassociation.org/WcaOnRails/app/controllers/users_controller.rb",
+		"/home/caleb/websites/mark2/src/index.html",
+		"/home/caleb/websites/mark2/src/lib/jsss/index.js",
+		"/home/caleb/websites/mark2/src/app.js",
+		"/home/caleb/websites/mark2/src/styles/main.css",
+		"/home/caleb/websites/mark2/package.json",
+		"/home/caleb/websites/mark2/webpack.config.js",
+		"/home/caleb/websites/algdb/src/data/algs/coll.hson",
+		"/home/caleb/websites/algdb/src/data/algs/index.js",
+		"/home/caleb/websites/algdb/src/components/cube.js",
+		"/home/caleb/websites/algdb/src/styles/main.styl",
+		"/home/caleb/websites/algdb/src/data/algs/cxll.hson",
+		"/home/caleb/websites/algdb/node_modules/hson-loader/index.js",
+		"/home/caleb/websites/algdb/src/router.js",
+		"/home/caleb/websites/algdb/src/pages/learn.js",
+		"/home/caleb/websites/algdb/src/data/algs/cmll.hson",
+		"/home/caleb/websites/algdb/src/pages/layout.js",
+		"/home/caleb/websites/algdb/src/pages/index.js",
+		"/home/caleb/websites/algdb/src/data/algs/cll.hson",
+		"/home/caleb/websites/algdb/src/assets/index.js",
+		"/home/caleb/websites/algdb/src/data/algs/oll.hson",
+		"/home/caleb/websites/algdb/src/models/me.js"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"3",
+			"7",
+			"5",
+			"Chrome",
+			"3",
+			"urxvt",
+			"alias",
+			"#",
+			"mouse",
+			"#",
+			"// ",
+			"#  ",
+			"#",
+			"conky",
+			"modmap",
+			"register",
+			"settings.location",
+			"internals.loca",
+			"'",
+			"module.exports",
+			"'",
+			"login",
+			"25",
+			"10",
+			"p>",
+			"p",
+			"1vh",
+			"100px",
+			"NavHelper",
+			"login",
+			"href='",
+			"p",
+			"https:",
+			"response_type",
+			"temporary",
+			"grant_type",
+			"\"",
+			"class",
+			"\"",
+			"class",
+			"\"",
+			"app.me",
+			"NODE_ENV",
+			"false",
+			"google",
+			"\"",
+			"path",
+			"plugin",
+			"var",
+			"twitter",
+			"google",
+			"res",
+			"req",
+			"'",
+			"res",
+			"req",
+			"plugin",
+			"...')\n",
+			"google-encryption-password-and-is-too-short-for-some-reason",
+			"google-encryption-password",
+			"hapiauthhapiauthhapiauthhapiauth",
+			"Hoek",
+			"\"",
+			"'",
+			"\n},",
+			"{",
+			"')",
+			"require",
+			"simple",
+			"twitter",
+			"	 ",
+			"api/v0",
+			"'",
+			"path",
+			"app.admin",
+			"render3",
+			"id",
+			"'",
+			"body",
+			"statusCode",
+			"visualcube",
+			"function () {\n				app.router = new Router();\n				app.router.history.start();\n			}",
+			"fetch",
+			"match",
+			"this.props.cube",
+			"cube",
+			"this.props.case",
+			"Input",
+			"Col",
+			"Row",
+			"id",
+			"corners",
+			"id",
+			"options",
+			"cp",
+			"validate(value)",
+			"isArray(",
+			"isArray('cp')",
+			"isArray",
+			"c",
+			"('cp')",
+			"console.log(e);",
+			"style",
+			"Cube",
+			"'",
+			"Panel",
+			"Button",
+			"Glyphicon",
+			"Panel",
+			"Panel.Body",
+			"body",
+			"style={{}} ",
+			", float: 'right'",
+			"Glyp",
+			"Button",
+			"Row",
+			"${e.target.value}",
+			"alg",
+			"console.log",
+			"onClick",
+			"algset",
+			"_case",
+			"state",
+			"name",
+			"class=",
+			"class",
+			"console.log",
+			"["
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			"'",
+			"",
+			"utils.pos(node)",
+			"addRelationship",
+			"",
+			"	",
+			"=",
+			"'Object'",
+			"scope",
+			"\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "webpack.config.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"tmux",
+				".dotfiles/tmux.conf"
+			],
+			[
+				"bash",
+				"bashrc"
+			],
+			[
+				"ssjsb",
+				"node_modules/eslint-plugin-react/lib/rules/jsx-space-before-closing.js"
+			],
+			[
+				"sjssb",
+				"node_modules/eslint-plugin-react/lib/rules/jsx-space-before-closing.js"
+			],
+			[
+				"",
+				"app/src/app.js"
+			],
+			[
+				"routes.rb",
+				"worldcubeassociation.org/WcaOnRails/config/routes.rb"
+			],
+			[
+				"fs",
+				"npm/node_modules/alasql/src/FileSaver.js"
+			],
+			[
+				"751",
+				"git/node/test/simple/test-regress-GH-7511.js"
+			],
+			[
+				"/lib/middle",
+				"git/nodester/lib/middle.js"
+			],
+			[
+				".eslint",
+				"Projects/tmp/nexe/latest/node-v0.12.2/deps/npm/node_modules/inflight/.eslintrc"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/work.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 400.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

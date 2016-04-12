@@ -12,8 +12,6 @@ const mongoose = require('mongoose');
 const config = require('./config');
 
 const plugins = [{
-	register: require('inert')
-}, {
 	register: require('good'),
 	options: {
 		reporters: [{
@@ -28,13 +26,13 @@ const plugins = [{
 		origins: ['*'],
 		allowCredentials: 'true'
 	}
-}, {
-	register: require('hapi-auth-cookie')
-}, {
-	register: require('bell')
-}, {
-	register: require('./auth')
-}];
+},
+	require('inert'),
+	require('hapi-auth-cookie'),
+	require('bell'),
+	require('./auth'),
+	require('./api')
+];
 
 if (DEV) {
 	plugins.push({
@@ -57,10 +55,12 @@ const App = global.App = app.extend({
 			}
 		});
 
+		// Configure connection
 		server.connection({
 			port: config.port
 		});
 
+		// Database
 		mongoose.connect(config.db.url);
 		this.mongoose = mongoose;
 		this.db = this.mongoose.connection;
@@ -73,13 +73,15 @@ const App = global.App = app.extend({
 		this.models = require('./models');
 
 		server.register(plugins, function (err) {
-			server.route(require('./routes'));
-
+			if (err) {
+				console.error(77, err);
+			}
 			const tryAuth = {
 				strategy: 'session',
 				mode: 'optional'
 			};
 
+			// Should go into seperate files:
 			if (DEV) {
 				console.log('Setting up proxy...');
 				server.route({
@@ -127,14 +129,22 @@ const App = global.App = app.extend({
 					handler: {
 						directory: {
 							path: '.',
-							index: false,
+							index: true,
 							listing: false,
 							showHidden: false
 						}
 					}
 				});
-			}
 
+				server.ext('onPostHandler', function (request, reply) {
+					const response = request.response;
+					if (response.isBoom && response.output.statusCode === 404) {
+						return reply.file('404.html');
+					}
+
+					return reply.continue();
+				});
+			}
 			App.start();
 		});
 	},
