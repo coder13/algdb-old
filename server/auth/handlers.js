@@ -36,7 +36,11 @@ module.exports = {
 
 	profile: function (request, reply) {
 		if (request.auth.isAuthenticated) {
-			reply(request.auth.credentials.profile);
+			User.findOne({email: request.auth.credentials.profile.email}, function (err, user) {
+				reply(Object.assign({}, request.auth.credentials.profile, {
+					role: user.role
+				}));
+			});
 		} else {
 			reply().code(401);
 		}

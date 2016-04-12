@@ -2,6 +2,7 @@
 
 const Boom = require('boom');
 const Algset = require('./handlers');
+const User = App.models.User;
 
 const base = '/api/v0';
 
@@ -23,6 +24,7 @@ module.exports = [{
 	path: `${base}/algsets/{id}`,
 	config: {
 		auth: 'session',
+		pre: [{method: User.role('Admin').bind(User)}],
 		validate: Algset.validate,
 		handler: Algset.create
 	}
@@ -31,6 +33,7 @@ module.exports = [{
 	path: `${base}/algsets/{id}`,
 	config: {
 		auth: 'session',
+		pre: [{method: User.role('Admin').bind(User)}],
 		validate: Algset.validate,
 		handler: Algset.update
 	}
@@ -39,6 +42,7 @@ module.exports = [{
 	path: `${base}/algsets/{id}`,
 	config: {
 		auth: 'session',
+		pre: [{method: User.role('Admin').bind(User)}],
 		handler: Algset.remove
 	}
 }];

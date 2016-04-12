@@ -64,7 +64,7 @@ module.exports = Router.extend({
 	algset (id) {
 		let algset = app.algsets.find({id: id});
 		if (algset) {
-			renderPage(<AlgPage algset={algset} editable={app.me.isLoggedIn}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
+			renderPage(<AlgPage algset={algset} editable={app.me.role === 'Admin'}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
 		} else {
 			this.redirect('Algset does not exist');
 		}

@@ -150,7 +150,7 @@ module.exports = React.createClass({
 							</div>
 						)}
 						<div className='pull-left'>
-							{app.me.isLoggedIn ? addAlgset : ''}
+							{app.me.role === 'Admin' ? addAlgset : ''}
 						</div>
 					</div>
 				</div>
