@@ -8,6 +8,7 @@ const IndexPage = require('./pages/index');
 const Algset = require('./models/algset');
 const AlgPage = require('./pages/algset');
 const AboutPage = require('./pages/about');
+const UsersPage = require('./pages/users');
 
 const auth = function (name) {
 	return function () {
@@ -19,31 +20,32 @@ const auth = function (name) {
 	};
 };
 
+const renderPage = function (page, active, title) {
+	page = (
+		<Layout active={active} algsets={app.algsets} me={app.me}>
+			{page}
+		</Layout>
+	);
+
+	document.title = title || 'AlgDB';
+	ReactDOM.render(page, document.getElementById('root'));
+};
+
 module.exports = Router.extend({
-	renderPage (page, active, title) {
-		page = (
-			<Layout active={active} algsets={app.algsets} me={app.me}>
-				{page}
-			</Layout>
-		);
-
-		document.title = title || 'AlgDB';
-		ReactDOM.render(page, document.getElementById('root'));
-	},
-
 	routes: {
 		'': 'index',
 		'login': 'login',
 		'logout': 'logout',
 		'authcallback?:query': 'authCallback',
 		'algset/:id': 'algset',
+		'users': 'users',
 		'about': 'about',
 		'*404': 'redirect'
 	},
 
 	index () {
 		app.algsets.fetch();
-		this.renderPage(<IndexPage algsets={app.algsets}/>, 'home');
+		renderPage(<IndexPage algsets={app.algsets}/>, 'home');
 	},
 
 	login () {
@@ -62,15 +64,27 @@ module.exports = Router.extend({
 	algset (id) {
 		let algset = app.algsets.find({id: id});
 		if (algset) {
-			this.renderPage(<AlgPage algset={algset} editable={app.me.isLoggedIn}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
+			renderPage(<AlgPage algset={algset} editable={app.me.isLoggedIn}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
 		} else {
 			this.redirect('Algset does not exist');
 		}
 	},
 
+	users () {
+		xhr({
+			uri: `api/v0/users`
+		}, function (err, resp, body) {
+			if (!err) {
+				renderPage(<UsersPage users={JSON.parse(body)}/>);
+			} else {
+				console.error(err);
+				this.redirectTo('/');
+			}
+		});
+	},
+
 	about () {
-		console.log('about');
-		this.renderPage(<AboutPage/>, 'about', 'About');
+		renderPage(<AboutPage/>, 'about', 'About');
 	},
 
 	redirect (message) {

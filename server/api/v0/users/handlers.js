@@ -31,10 +31,6 @@ module.exports = {
 		}
 	},
 
-	get: function (request, reply) {
-		console.log(20, request.params.id);
-	},
-
 	setRole: function (request, reply) {
 		if (request.role !== 'Admin') {
 			reply(Boom.unauthorized());

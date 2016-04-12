@@ -43,19 +43,6 @@ module.exports.register = function(server, options, next) {
 		isSecure: false //Should be set to true (which is the default) in production,
 	});
 
-	server.ext('onPostAuth', function (request, reply) {
-		if (request.route.settings.role) {
-			console.log(request.route.settings.role)
-		}
-		reply.continue();
-	});
-
-	// server.auth.scheme('users', Users);
-
-	// server.auth.strategy('admin', 'users', {role: 'Admin'});
-	// server.auth.strategy('moderator', 'users', {role: 'Moderator'});
-	// server.auth.strategy('user', 'users', {role: 'User'});
-
 	//Added a separate file for just routes.
 	server.route(require('./routes'));
 	next();
