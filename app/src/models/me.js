@@ -9,7 +9,8 @@ module.exports = Model.extend({
 		wca_id: 'string',
 		name: 'string',
 		avatar: 'object',
-		email: 'string'
+		email: 'string',
+		role: 'string'
 	},
 
 	derived: {
