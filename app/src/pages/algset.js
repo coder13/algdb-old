@@ -107,7 +107,7 @@ const Subsets = React.createClass({
 		return (
 			<Panel header={<h1 style={{paddingLeft: '50px'}}>Subsets</h1>} style={{margin: '0px'}}>
 				<div className='container'>{subsets.map((set, index) =>
-					<AlgsetIcon key={index} algset={set} parent={algset} href={`/algset/${algset.id}/${set.id || set.name}`}/>
+					<AlgsetIcon key={index} algset={set} parent={algset} href={`/algsets/${algset.id}/${set.id || set.name}`}/>
 				)}</div>
 			</Panel>
 		);

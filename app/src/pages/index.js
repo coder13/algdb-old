@@ -146,7 +146,7 @@ module.exports = React.createClass({
 					<div className='panel-body row-fluid' style={{paddingLeft: '5px'}}>
 						{algsets.map((algset, index) =>
 							<div key={index} className='pull-left'>
-								<AlgsetIcon algset={algset} href={`/algset/${algset.id || algset.name}`}/>
+								<AlgsetIcon algset={algset} href={`/algsets/${algset.id || algset.name}`}/>
 							</div>
 						)}
 						<div className='pull-left'>

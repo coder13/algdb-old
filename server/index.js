@@ -107,24 +107,6 @@ const App = global.App = app.extend({
 			} else {
 				server.route({
 					method: 'GET',
-					path: '/',
-					config: {
-						auth: tryAuth,
-						plugins: {
-							'hapi-auth-cookie': {
-								redirectTo: false
-							}
-						},
-						handler: {
-							file: {
-								path: 'index.html'
-							}
-						}
-					}
-				});
-
-				server.route({
-					method: 'GET',
 					path: '/{path*}',
 					handler: {
 						directory: {
@@ -136,10 +118,31 @@ const App = global.App = app.extend({
 					}
 				});
 
+				// server.route({
+				// 	method: 'GET',
+				// 	path: '/{path*}',
+				// 	config: {
+				// 		auth: tryAuth,
+				// 		plugins: {
+				// 			'hapi-auth-cookie': {
+				// 				redirectTo: false
+				// 			}
+				// 		},
+				// 		// handler: {
+				// 		// 	file: {
+				// 		// 		path: 'index.html'
+				// 		// 	}
+				// 		// }
+				// 	}
+				// });
+
 				server.ext('onPostHandler', function (request, reply) {
 					const response = request.response;
 					if (response.isBoom && response.output.statusCode === 404) {
-						return reply.file('404.html');
+						console.log(request.path);
+						return reply.file('404.html', {
+							filename: request.path
+						});
 					}
 
 					return reply.continue();
