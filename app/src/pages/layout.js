@@ -1,4 +1,5 @@
 const React = require('react');
+const {Alert} = require('react-bootstrap');
 const app = require('ampersand-app');
 const ampersandMixin = require('ampersand-react-mixin');
 const NavHelper = require('../components/nav-helper');
@@ -47,6 +48,16 @@ module.exports = React.createClass({
 						</div>
 					</div>
 				</nav>
+
+				<div id='messages' className='container'>
+					{app.errors.map(function (err, index) {
+						console.log(err);
+						return <Alert bsStyle='warning' key={index}>
+							{err.message}
+							<a href='#' className='close' data-dismiss='alert' aria-label='close'>&times;</a>
+						</Alert>;
+					})}
+				</div>
 
 				<div id='body'>
 					{this.props.children}

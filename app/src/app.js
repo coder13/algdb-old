@@ -19,6 +19,10 @@ if (typeof window !== 'undefined') {
 }
 
 const app = window.app = App.extend({
+	// Used by pages/layout.js to display errors when fetch data.
+	// router.js will append to this when it receives errors when fetching data.
+	errors: [],
+
 	init () {
 		this.me = new Me();
 		this.me.fetch();

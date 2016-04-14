@@ -37,7 +37,7 @@ module.exports = Router.extend({
 		'login': 'login',
 		'logout': 'logout',
 		'authcallback?:query': 'authCallback',
-		'algset/:id': 'algset',
+		'algsets/:id': 'algset',
 		'users': 'users',
 		'about': 'about',
 		'*404': 'redirect'
@@ -62,12 +62,21 @@ module.exports = Router.extend({
 	},
 
 	algset (id) {
-		let algset = app.algsets.find({id: id});
-		if (algset) {
-			renderPage(<AlgPage algset={algset} editable={app.me.isLoggedIn}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
-		} else {
-			this.redirect('Algset does not exist');
-		}
+		app.algsets.fetch({
+			success: function (coll, resp, options) {
+				let algset = app.algsets.find({id: id});
+				if (algset) {
+					renderPage(<AlgPage algset={algset} editable={app.me.role === 'Admin'}/>, 'learn', `Learn ${algset.id.toUpperCase()}`);
+				} else {
+					app.router.redirect({
+						message: 'Algset does not exist'
+					});
+				}
+			},
+			error: function (coll, resp, options) {
+				app.router.redirect(resp);
+			}
+		});
 	},
 
 	users () {
@@ -78,7 +87,7 @@ module.exports = Router.extend({
 				renderPage(<UsersPage users={JSON.parse(body)}/>);
 			} else {
 				console.error(err);
-				this.redirectTo('/');
+				app.router.redirect(err);
 			}
 		});
 	},
@@ -87,7 +96,11 @@ module.exports = Router.extend({
 		renderPage(<AboutPage/>, 'about', 'About');
 	},
 
-	redirect (message) {
+	redirect (error) {
+		if (error) {
+			app.errors.push(error);
+		}
+
 		this.redirectTo('/');
 	}
 });

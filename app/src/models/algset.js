@@ -60,7 +60,6 @@ const Algset = module.exports = Model.extend({
 
 	url () {
 		let id = this.get('id');
-		console.log(63, !!this.collection);
 		let baseURL = this.collection ? this.collection.url() : `${app.apiURL}/algsets`;
 		return `${baseURL}/${id}`;
 	}

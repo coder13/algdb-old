@@ -36,10 +36,10 @@ module.exports = {
 			if (err) {
 				return reply(Boom.internal('Internal MongoDB error', err));
 			} else if (algset) {
-				console.log(algset);
 				return reply(algset);
 			}
-			reply().code(404);
+			console.log(41);
+			reply(Boom.notFound(`Could not find algset ${request.params.id}!`));
 		});
 	},
 
