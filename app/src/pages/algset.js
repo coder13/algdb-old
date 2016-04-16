@@ -142,7 +142,7 @@ const Cases = React.createClass({
 	},
 
 	render () {
-		let size = Math.max(window.innerWidth / 16, 40);
+		let size = Math.min(Math.max(window.innerWidth / 12, 40), 120);
 		let {algset, editable} = this.props;
 		let {cases, cube} = algset;
 
@@ -150,7 +150,7 @@ const Cases = React.createClass({
 
 		let casesHeader = (
 			<div>
-				<h1 style={{fontSize: '36px'}}>Cases</h1>
+				<h1 style={{fontSize: '2em'}}>Cases</h1>
 			</div>
 		);
 
@@ -167,7 +167,7 @@ const Cases = React.createClass({
 								<th style={{width: '1em'}}>#</th>
 								<th style={{width: `${size}px`}}>Case</th>
 								<th style={{width: 'auto'}}>Algs</th>
-								{app.admin ? <th style={{width: '100px'}}></th> : ''}
+								{app.admin ? <th style={{width: '100px'}}></th> : null}
 							</tr>
 						</thead>
 						<tbody>
@@ -183,7 +183,7 @@ const Cases = React.createClass({
 											{_case.algs.map((alg, i) =>
 												<Alg key={i} alg={alg} editable={editable} case={_case} algset={algset}/>
 											)}
-											{editable ? <Button onClick={() => _case.addAlg()}>{addGlyph}</Button> : ''}
+											{editable ? <Button onClick={() => _case.addAlg()}>{addGlyph}</Button> : null}
 										</td>
 										{editable ?
 										<td>
@@ -191,7 +191,7 @@ const Cases = React.createClass({
 												<Button onClick={() => this.showCaseModal('edit', _case)}>{editGlyph}</Button>
 												<Button onClick={() => algset.removeCase(_case)}>{removeGlyph}</Button>
 											</ButtonGroup>
-										</td> : ''}
+										</td> : null}
 									</tr>
 								);
 							})}

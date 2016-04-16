@@ -40,11 +40,13 @@ module.exports = Router.extend({
 		'algsets/:id': 'algset',
 		'users': 'users',
 		'about': 'about',
-		'*404': 'redirect'
+		'*404': 'four'
 	},
 
 	index () {
-		app.algsets.fetch();
+		app.algsets.fetch({
+			error: (coll, resp, options) => this.redirect(resp)
+		});
 		renderPage(<IndexPage algsets={app.algsets}/>, 'home');
 	},
 
@@ -57,7 +59,6 @@ module.exports = Router.extend({
 	},
 
 	authCallback (query) {
-		console.log(query);
 		this.redirect('/');
 	},
 
@@ -73,9 +74,7 @@ module.exports = Router.extend({
 					});
 				}
 			},
-			error: function (coll, resp, options) {
-				app.router.redirect(resp);
-			}
+			error: (coll, resp, options) => this.redirect(resp)
 		});
 	},
 
@@ -86,7 +85,6 @@ module.exports = Router.extend({
 			if (!err) {
 				renderPage(<UsersPage users={JSON.parse(body)}/>);
 			} else {
-				console.error(err);
 				app.router.redirect(err);
 			}
 		});
@@ -96,11 +94,18 @@ module.exports = Router.extend({
 		renderPage(<AboutPage/>, 'about', 'About');
 	},
 
+	four () {
+		this.redirect({
+			message: 'Page doesn\' exist!'
+		});
+	},
+
 	redirect (error) {
+		console.trace();
+		this.redirectTo('/');
+
 		if (error) {
 			app.errors.push(error);
 		}
-
-		this.redirectTo('/');
 	}
 });

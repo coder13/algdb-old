@@ -118,24 +118,6 @@ const App = global.App = app.extend({
 					}
 				});
 
-				// server.route({
-				// 	method: 'GET',
-				// 	path: '/{path*}',
-				// 	config: {
-				// 		auth: tryAuth,
-				// 		plugins: {
-				// 			'hapi-auth-cookie': {
-				// 				redirectTo: false
-				// 			}
-				// 		},
-				// 		// handler: {
-				// 		// 	file: {
-				// 		// 		path: 'index.html'
-				// 		// 	}
-				// 		// }
-				// 	}
-				// });
-
 				server.ext('onPostHandler', function (request, reply) {
 					const response = request.response;
 					if (response.isBoom && response.output.statusCode === 404) {

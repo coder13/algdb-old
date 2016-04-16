@@ -9,6 +9,12 @@ module.exports = React.createClass({
 	mixins: [ampersandMixin],
 	displayName: 'LayoutPage',
 
+	componentDidMount () {
+		app.on('all', function () {
+			this.forceUpdate();
+		}, this);
+	},
+
 	getInitialState () {
 		return {};
 	},
@@ -49,7 +55,7 @@ module.exports = React.createClass({
 					</div>
 				</nav>
 
-				<div id='messages' className='container'>
+				<div id='messages' className='container' style={{marginTop: '1vh'}}>
 					{app.errors.map(function (err, index) {
 						console.log(err);
 						return <Alert bsStyle='warning' key={index}>

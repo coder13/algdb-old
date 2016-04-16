@@ -31,6 +31,13 @@ const app = window.app = App.extend({
 
 		app.router = new Router();
 		app.router.history.start();
+
+		app.router.on('route', function (name, args) {
+			console.log(name);
+			if (name !== 'four') {
+				app.errors = [];
+			}
+		});
 	},
 
 	addAlgset (algset) {

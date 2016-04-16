@@ -38,8 +38,7 @@ module.exports = {
 			} else if (algset) {
 				return reply(algset);
 			}
-			console.log(41);
-			reply(Boom.notFound(`Could not find algset ${request.params.id}!`));
+			reply(Boom.notFound(`Could not find algset ${request.params.id}!`)).code(404);
 		});
 	},
 

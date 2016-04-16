@@ -121,14 +121,14 @@ module.exports = React.createClass({
 			<a style={{color: 'inherit', cursor: 'pointer'}} onClick={this.addAlgset}>
 				<div className='well container' style={{
 					display: 'inline-block',
-					fontSize: '80px',
+					fontSize: '16vh',
 					margin: '10px',
 					padding: 'auto',
 					width: '20vh',
 					height: '25vh',
 					textAlign: 'center'
 				}}>
-					<span className='glyphicon glyphicon-plus'/>
+					<span className='glyphicon glyphicon-plus' style={{display: 'inline-block', verticalAlign: '+2px'}}/>
 				</div>
 			</a>
 		);
