@@ -10,7 +10,7 @@ module.exports = React.createClass({
 			<div className='container'>
 				<h1 className='text-center'>About</h1>
 				<div style={{paddingLeft: '80px', paddingRight: '80px'}}>
-					<Markdown source={``}/>
+					<Markdown source={''}/>
 				</div>
 			</div>
 		);

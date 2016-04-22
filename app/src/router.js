@@ -80,7 +80,7 @@ module.exports = Router.extend({
 
 	users () {
 		xhr({
-			uri: `api/v0/users`
+			uri: 'api/v0/users'
 		}, function (err, resp, body) {
 			if (!err) {
 				renderPage(<UsersPage users={JSON.parse(body)}/>);
